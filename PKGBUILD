@@ -7,14 +7,14 @@ arch=('any')
 url="https://git.tar.black/crystal/programs/jade_gui"
 makedepends=('flutter-group-pacman-hook' 'flutter')
 depends=('jade')
-source=("git+${url}.git")
+source=("gui::git+${url}.git")
 
 build() {
-    cd ${srcdir}/jade_gui
+    cd ${srcdir}/gui
     flutter build linux
 }
 
 package() {
    mkdir -p ${pkgdir}/usr/bin
-   cp ${srcdir}/jade_gui/build/linux/x64/release/bundle/jade_gui ${pkgdir}/usr/bin/. 
+   cp ${srcdir}/gui/build/linux/x64/release/bundle/jade_gui ${pkgdir}/usr/bin/. 
 }
