@@ -27,20 +27,6 @@ class _jadeguiState extends State<jadegui> {
     });
   }
 
-  List<Location> america = [];
-  List<Location> antarctica = [];
-  List<Location> arctic = [];
-  List<Location> asia = [];
-  List<Location> atlantic = [];
-  List<Location> australia = [];
-  List<Location> brazil = [];
-  List<Location> canada = [];
-  List<Location> chile = [];
-  List<Location> indian = [];
-  List<Location> mexico = [];
-  List<Location> pacific = [];
-  List<Location> us = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
