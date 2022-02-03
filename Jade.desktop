@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Comment=GUI frontend for the jade crystal installer
+Name=Jade GUI
+Icon=jade-gui
+Exec=jade_gui
+Categories=System
