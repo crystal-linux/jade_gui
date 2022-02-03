@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'functions/welcome.dart';
+import 'functions/locale.dart';
+import 'classes/location.dart';
+import 'Locales/locales.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -17,6 +20,27 @@ class jadegui extends StatefulWidget {
 
 class _jadeguiState extends State<jadegui> {
   int _selectedIndex = 0;
+  bool nextpage = false;
+  void nextslide() {
+    setState(() {
+      _selectedIndex = _selectedIndex + 1;
+    });
+  }
+
+  List<Location> america = [];
+  List<Location> antarctica = [];
+  List<Location> arctic = [];
+  List<Location> asia = [];
+  List<Location> atlantic = [];
+  List<Location> australia = [];
+  List<Location> brazil = [];
+  List<Location> canada = [];
+  List<Location> chile = [];
+  List<Location> indian = [];
+  List<Location> mexico = [];
+  List<Location> pacific = [];
+  List<Location> us = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +83,7 @@ class _jadeguiState extends State<jadegui> {
                   color: Color.fromARGB(255, 169, 0, 255),
                 ),
                 label: Text(
-                  'Locale',
+                  'Location',
                   style: TextStyle(
                       color: Color.fromARGB(255, 169, 0, 255),
                       fontWeight: FontWeight.bold),
@@ -76,22 +100,6 @@ class _jadeguiState extends State<jadegui> {
                 ),
                 label: Text(
                   'Keymap',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              NavigationRailDestination(
-                icon: Icon(
-                  Icons.access_time,
-                  color: Color.fromARGB(255, 169, 0, 255),
-                ),
-                selectedIcon: Icon(
-                  Icons.access_time_filled,
-                  color: Color.fromARGB(255, 169, 0, 255),
-                ),
-                label: Text(
-                  'Timezone',
                   style: TextStyle(
                       color: Color.fromARGB(255, 169, 0, 255),
                       fontWeight: FontWeight.bold),
@@ -205,6 +213,21 @@ class _jadeguiState extends State<jadegui> {
     );
   }
 
+  bool loadnextpage(region) {
+    bool next = false;
+    print("here");
+    if (region != "") {
+      setState(() {
+        next = true;
+      });
+    } else {
+      setState(() {
+        next = true;
+      });
+    }
+    return next;
+  }
+
   Widget condition() {
     // other logic
     // Declare a widget variable,
@@ -218,17 +241,32 @@ class _jadeguiState extends State<jadegui> {
     // For simplicity I have used boolean contition
     switch (_selectedIndex) {
       case 0:
-        widget = welcome();
+        widget = welcome(() {
+          setState(() {
+            _selectedIndex = _selectedIndex + 1;
+          });
+        });
         break;
       case 1:
-        widget = const Text(
-          'Showing Locale screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
-        );
+        widget = locale(() {
+          setState(() {
+            _selectedIndex = _selectedIndex + 1;
+          });
+        }, () {
+          setState(() {
+            nextpage = true;
+          });
+        }, (region) {
+          if (region != "") {
+            setState(() {
+              nextpage = false;
+            });
+          } else {
+            setState(() {
+              nextpage = true;
+            });
+          }
+        }, nextpage, europe);
         break;
       case 2:
         widget = const Text(
@@ -324,4 +362,6 @@ class _jadeguiState extends State<jadegui> {
     // Finally returning a Widget
     return widget;
   }
+
+  void selectlocation(region) {}
 }

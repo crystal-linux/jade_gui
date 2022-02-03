@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jade_gui/main.dart';
 
-Widget welcome() {
+Widget welcome(next) {
   return Container(
     decoration: const BoxDecoration(
       image: DecorationImage(
@@ -46,13 +47,15 @@ Widget welcome() {
                 Column(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        next();
+                      },
                       child: const Text('Start'),
                       style: TextButton.styleFrom(
                         primary: Colors.white,
-                        backgroundColor: Color.fromARGB(255, 169, 0, 255),
-                        minimumSize: Size(80, 50),
-                        padding: EdgeInsets.all(10),
+                        backgroundColor: const Color.fromARGB(255, 169, 0, 255),
+                        minimumSize: const Size(80, 50),
+                        padding: const EdgeInsets.all(10),
                       ),
                     ),
                     const SizedBox(height: 10),
