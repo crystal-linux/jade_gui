@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import '../Locales/locales.dart';
+import '../classes/location.dart';
 
+Location choosenLocPack = Location();
 Widget locationTemplate(location, nextSlide) {
   return Container(
     padding: const EdgeInsets.all(8),
     child: ElevatedButton(
       onPressed: () {
         nextSlide();
+        choosenLocPack = location;
       },
       child: Column(
         children: [
@@ -204,4 +207,8 @@ List<Widget> options(region, locations, nextSlide) {
   }
   // Finally returning a Widget
   return widget;
+}
+
+Location getSelectedLocPack() {
+  return choosenLocPack;
 }
