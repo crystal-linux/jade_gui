@@ -29,11 +29,11 @@ class _JadeguiState extends State<Jadegui> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(0, 17, 17, 17),
+      backgroundColor: const Color.fromARGB(255, 23, 23, 23),
       body: Row(
         children: <Widget>[
           NavigationRail(
-            backgroundColor: const Color.fromARGB(0, 27, 27, 27),
+            backgroundColor: const Color.fromARGB(255, 27, 27, 27),
             selectedIndex: _selectedIndex,
             onDestinationSelected: (int index) {
               setState(() {

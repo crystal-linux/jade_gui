@@ -1,17 +1,17 @@
-import 'Africa.dart';
-import 'America.dart';
-import 'Antarctica.dart';
-import 'Asia.dart';
-import 'Atlantic.dart';
-import 'Australia.dart';
-import 'Brazil.dart';
-import 'Canada.dart';
-import 'Chile.dart';
-import 'Europe.dart';
-import 'Indian.dart';
-import 'Mexico.dart';
-import 'Pacific.dart';
-import 'US.dart';
+import 'africa.dart';
+import 'america.dart';
+import 'antarctica.dart';
+import 'asia.dart';
+import 'atlantic.dart';
+import 'australia.dart';
+import 'brazil.dart';
+import 'canada.dart';
+import 'chile.dart';
+import 'europe.dart';
+import 'indian.dart';
+import 'mexico.dart';
+import 'pacific.dart';
+import 'us.dart';
 import 'package:jade_gui/classes/location.dart';
 
 class Local {
