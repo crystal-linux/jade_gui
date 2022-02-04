@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'functions/welcome.dart';
 import 'functions/locale.dart';
-import 'classes/location.dart';
-import 'Locales/locales.dart';
+//import 'classes/location.dart';
+//import 'Locales/locales.dart';
 
 void main() => runApp(
-      MaterialApp(
+      const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: jadegui(),
+        home: Jadegui(),
       ),
     );
 
-class jadegui extends StatefulWidget {
-  const jadegui({Key? key}) : super(key: key);
+class Jadegui extends StatefulWidget {
+  const Jadegui({Key? key}) : super(key: key);
 
   @override
-  _jadeguiState createState() => _jadeguiState();
+  _JadeguiState createState() => _JadeguiState();
 }
 
-class _jadeguiState extends State<jadegui> {
+class _JadeguiState extends State<Jadegui> {
   int _selectedIndex = 0;
   bool nextpage = false;
   void nextslide() {
@@ -30,11 +30,11 @@ class _jadeguiState extends State<jadegui> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(0, 17, 17, 17),
+      backgroundColor: const Color.fromARGB(0, 17, 17, 17),
       body: Row(
         children: <Widget>[
           NavigationRail(
-            backgroundColor: Color.fromARGB(0, 27, 27, 27),
+            backgroundColor: const Color.fromARGB(0, 27, 27, 27),
             selectedIndex: _selectedIndex,
             onDestinationSelected: (int index) {
               setState(() {
@@ -252,7 +252,7 @@ class _jadeguiState extends State<jadegui> {
               nextpage = true;
             });
           }
-        }, nextpage, europe);
+        }, nextpage);
         break;
       case 2:
         widget = const Text(

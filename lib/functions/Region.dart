@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
 
 String selectedRegion = "";
-Widget region(next) {
+
+Widget locationTemplate(next, location) {
+  return Container(
+    padding: const EdgeInsets.all(8),
+    child: ElevatedButton(
+      onPressed: () {
+        next();
+        selectedRegion = location.name;
+      },
+      style: TextButton.styleFrom(
+        primary: Colors.white,
+        backgroundColor: const Color.fromARGB(100, 169, 0, 255),
+        padding: const EdgeInsets.all(10),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(location.name),
+        ],
+      ),
+    ),
+    //color: Color.fromARGB(255, 83, 83, 83),
+  );
+}
+
+Widget region(next, locations) {
   return SingleChildScrollView(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -27,59 +52,9 @@ Widget region(next) {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 3,
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                onPressed: () {
-                  next();
-                  selectedRegion = "Europe";
-                },
-                child: Text('Europe'),
-              ),
-              //color: Colors.teal[100],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('English'),
-              ),
-              //color: Colors.teal[100],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('English'),
-              ),
-              //color: Colors.teal[100],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('English'),
-              ),
-              //color: Colors.teal[100],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('English'),
-              ),
-              //color: Colors.teal[100],
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('English'),
-              ),
-              //color: Colors.teal[100],
-            ),
-          ],
+          children: locations
+              .map<Widget>((location) => locationTemplate(next, location))
+              .toList(),
         ),
       ],
     ),

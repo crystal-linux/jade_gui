@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
-import '../classes/location.dart';
+import '../Locales/locales.dart';
 
-Widget locationTemplate(location) {
+Widget locationTemplate(location, nextSlide) {
   return Container(
     padding: const EdgeInsets.all(8),
     child: ElevatedButton(
-      onPressed: () {},
-      child: Text(location),
+      onPressed: () {
+        nextSlide();
+      },
+      child: Column(
+        children: [
+          Image(
+            image: AssetImage(
+              '${location.image}',
+            ),
+            height: 300,
+            width: 300,
+          ),
+          Text(location.location,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              )),
+        ],
+      ),
     ),
     //color: Colors.teal[100],
   );
 }
 
-Widget location(region, europe) {
+Widget location(region, nextSlide) {
   return SingleChildScrollView(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -43,49 +59,134 @@ Widget location(region, europe) {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 3,
-          children: options(region, europe),
+          children: options(region, locations, nextSlide),
         ),
       ],
     ),
   );
 }
 
-List<Widget> options(region, europe) {
+List<Widget> options(region, locations, nextSlide) {
   List<Widget> widget;
 
   switch (region) {
-    case "Europe":
+    case "Africa":
       {
-        widget = europe
-            .map<Widget>((location) => locationTemplate(location.location))
+        widget = locations[0]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "America":
+      {
+        widget = locations[1]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "Antarctica":
+      {
+        widget = locations[2]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "Arctic":
+      {
+        widget = locations[3]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
             .toList();
         break;
       }
     case "Asia":
       {
-        widget = europe
-            .map<Widget>((location) => locationTemplate(location.location))
+        widget = locations[4]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
             .toList();
         break;
       }
-    case "Africa":
+    case "Atlantic":
       {
-        widget = europe
-            .map<Widget>((location) => locationTemplate(location.location))
+        widget = locations[5]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
             .toList();
         break;
       }
-    case "North America":
+    case "Australia":
       {
-        widget = europe
-            .map<Widget>((location) => locationTemplate(location.location))
+        widget = locations[6]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
             .toList();
         break;
       }
-    case "South America":
+    case "Brazil":
       {
-        widget = europe
-            .map<Widget>((location) => locationTemplate(location.location))
+        widget = locations[7]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "Canada":
+      {
+        widget = locations[8]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "Chile":
+      {
+        widget = locations[9]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "Europe":
+      {
+        widget = locations[10]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "Indian":
+      {
+        widget = locations[11]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "Mexico":
+      {
+        widget = locations[12]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "Pacific":
+      {
+        widget = locations[13]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
+            .toList();
+        break;
+      }
+    case "US":
+      {
+        widget = locations[14]
+            .location
+            .map<Widget>((location) => locationTemplate(location, nextSlide))
             .toList();
         break;
       }
