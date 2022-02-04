@@ -1,4 +1,4 @@
-import '../classes/location.dart';
+import 'package:jade_gui/classes/location.dart';
 
 List<Location> us = [
   Location(

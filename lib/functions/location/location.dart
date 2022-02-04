@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Locales/locales.dart';
-import '../classes/location.dart';
+import 'package:jade_gui/Locales/locales.dart';
+import 'package:jade_gui/classes/location.dart';
 
 Location choosenLocPack = Location();
 Widget locationTemplate(location, nextSlide) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jade_gui/main.dart';
 
 Widget welcome(next) {
   return Container(

@@ -12,7 +12,7 @@ import 'Indian.dart';
 import 'Mexico.dart';
 import 'Pacific.dart';
 import 'US.dart';
-import '../classes/location.dart';
+import 'package:jade_gui/classes/location.dart';
 
 class Local {
   List<Location> location = [Location()];

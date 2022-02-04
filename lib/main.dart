@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jade_gui/functions/Region.dart';
-import 'package:jade_gui/functions/location.dart';
+import 'package:jade_gui/functions/location/location.dart';
 import 'functions/welcome.dart';
 import 'functions/locale.dart';
-import 'classes/location.dart';
-//import 'Locales/locales.dart';
 
 void main() => runApp(
       const MaterialApp(
