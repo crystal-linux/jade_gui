@@ -6,6 +6,7 @@ List<Keymap> keymaps = [
     layout: "Afghanistan",
     backLayout: "Af",
     variant: [
+      "normal",
       "fa-olpc",
       "olpc-ps",
       "ps",
@@ -17,6 +18,7 @@ List<Keymap> keymaps = [
     layout: "Albania",
     backLayout: "al",
     variant: [
+      "normal",
       "plisi",
       "veqilharxhi",
     ],
@@ -25,6 +27,7 @@ List<Keymap> keymaps = [
     layout: "Armenia",
     backLayout: "am",
     variant: [
+      "normal",
       "eastern",
       "eastern-alt",
       "phonetic",
@@ -36,6 +39,7 @@ List<Keymap> keymaps = [
     layout: "Arabic",
     backLayout: "ara",
     variant: [
+      "normal",
       "azerty",
       "azerty_digits",
       "buckwalter",
@@ -50,6 +54,7 @@ List<Keymap> keymaps = [
     layout: "Austria",
     backLayout: "at",
     variant: [
+      "normal",
       "mac",
       "nodeadkeyrs",
     ],
@@ -58,6 +63,7 @@ List<Keymap> keymaps = [
     layout: "Australia",
     backLayout: "au",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -65,6 +71,7 @@ List<Keymap> keymaps = [
     layout: "Azerbaijan",
     backLayout: "az",
     variant: [
+      "normal",
       "cyrillic",
     ],
   ),
@@ -72,6 +79,7 @@ List<Keymap> keymaps = [
     layout: "Bosnia and Herzegovina",
     backLayout: "ba",
     variant: [
+      "normal",
       "alternatequotes",
       "unicode",
       "unicodeus",
@@ -82,6 +90,7 @@ List<Keymap> keymaps = [
     layout: "Bangladesh",
     backLayout: "bd",
     variant: [
+      "normal",
       "probhat",
     ],
   ),
@@ -89,6 +98,7 @@ List<Keymap> keymaps = [
     layout: "Belgium",
     backLayout: "be",
     variant: [
+      "normal",
       "iso-alternate",
       "nodeadkeys",
       "oss",
@@ -100,6 +110,7 @@ List<Keymap> keymaps = [
     layout: "Bulgaria",
     backLayout: "bg",
     variant: [
+      "normal",
       "bas_phonetic",
       "bekl",
       "phonetic",
@@ -109,6 +120,7 @@ List<Keymap> keymaps = [
     layout: "Brazil",
     backLayout: "br",
     variant: [
+      "normal",
       "dvorak",
       "nativo",
       "nativo-epo",
@@ -121,6 +133,7 @@ List<Keymap> keymaps = [
     layout: "Bhutan",
     backLayout: "bt",
     variant: [
+      "normal",
       "latin",
     ],
   ),
@@ -128,6 +141,7 @@ List<Keymap> keymaps = [
     layout: "Botswana",
     backLayout: "bw",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -135,6 +149,7 @@ List<Keymap> keymaps = [
     layout: "Belarus",
     backLayout: "by",
     variant: [
+      "normal",
       "intl",
       "latin",
       "legacy",
@@ -145,6 +160,7 @@ List<Keymap> keymaps = [
     layout: "Canada",
     backLayout: "ca",
     variant: [
+      "normal",
       "eng",
       "fr-dvorak",
       "fr-legacy",
@@ -158,6 +174,7 @@ List<Keymap> keymaps = [
     layout: "Democratic Republic of Congo",
     backLayout: "cd",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -165,6 +182,7 @@ List<Keymap> keymaps = [
     layout: "Switzerland",
     backLayout: "ch",
     variant: [
+      "normal",
       "de_mac",
       "de_nodeadkeys",
       "fr",
@@ -177,6 +195,7 @@ List<Keymap> keymaps = [
     layout: "Cameroon",
     backLayout: "cm",
     variant: [
+      "normal",
       "azerty",
       "dvorak",
       "french",
@@ -188,6 +207,7 @@ List<Keymap> keymaps = [
     layout: "China",
     backLayout: "cn",
     variant: [
+      "normal",
       "altgr-pinyin",
       "mon_manchu_galik",
       "mon_todo_galik",
@@ -205,6 +225,7 @@ List<Keymap> keymaps = [
     layout: "Czechia",
     backLayout: "cz",
     variant: [
+      "normal",
       "bksl",
       "dvorak-ucw",
       "qwerty",
@@ -218,6 +239,7 @@ List<Keymap> keymaps = [
     layout: "Germany",
     backLayout: "de",
     variant: [
+      "normal",
       "T3",
       "deadacute",
       "deadgraveacute",
@@ -243,6 +265,7 @@ List<Keymap> keymaps = [
     layout: "Denmark",
     backLayout: "dk",
     variant: [
+      "normal",
       "dvorak",
       "mac",
       "mac_nodeadkeys",
@@ -254,6 +277,7 @@ List<Keymap> keymaps = [
     layout: "Algeria",
     backLayout: "dz",
     variant: [
+      "normal",
       "ar",
       "azerty-deadkeys",
       "ber",
@@ -265,6 +289,7 @@ List<Keymap> keymaps = [
     layout: "Estonia",
     backLayout: "ee",
     variant: [
+      "normal",
       "dvorak",
       "nodeadkeys",
       "us",
@@ -274,6 +299,7 @@ List<Keymap> keymaps = [
     layout: "Spain",
     backLayout: "es",
     variant: [
+      "normal",
       "ast",
       "cat",
       "deadtilde",
@@ -287,14 +313,17 @@ List<Keymap> keymaps = [
     layout: "Ethiopia",
     backLayout: "et",
     variant: [
+      "normal",
       "",
     ],
   ),
   Keymap(
-    layout: "finland",
+    layout: "Finland",
     backLayout: "fi",
     variant: [
-      "classic",
+      "normal",
+      "normal"
+          "classic",
       "mac",
       "nodeadkeys",
       "smi",
@@ -305,6 +334,7 @@ List<Keymap> keymaps = [
     layout: "Faroe Islands",
     backLayout: "fo",
     variant: [
+      "normal",
       "nodeadkeys",
     ],
   ),
@@ -312,6 +342,7 @@ List<Keymap> keymaps = [
     layout: "France",
     backLayout: "fr",
     variant: [
+      "normal",
       "afnor",
       "azerty",
       "bepo",
@@ -335,6 +366,7 @@ List<Keymap> keymaps = [
     layout: "Great Britian",
     backLayout: "gb",
     variant: [
+      "normal",
       "colemak",
       "colemak_dh",
       "dvorak",
@@ -350,6 +382,7 @@ List<Keymap> keymaps = [
     layout: "Georgia",
     backLayout: "ge",
     variant: [
+      "normal",
       "ergonomic",
       "mess",
       "os",
@@ -360,6 +393,7 @@ List<Keymap> keymaps = [
     layout: "Ghana",
     backLayout: "gh",
     variant: [
+      "normal",
       "akan",
       "avn",
       "ewe",
@@ -374,6 +408,7 @@ List<Keymap> keymaps = [
     layout: "Guinea",
     backLayout: "gn",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -381,6 +416,7 @@ List<Keymap> keymaps = [
     layout: "Greece",
     backLayout: "gr",
     variant: [
+      "normal",
       "extended",
       "nodeadkeys",
       "polytonic",
@@ -391,6 +427,7 @@ List<Keymap> keymaps = [
     layout: "Croatia",
     backLayout: "hr",
     variant: [
+      "normal",
       "alternatequotes",
       "unicode",
       "unicodeus",
@@ -401,6 +438,7 @@ List<Keymap> keymaps = [
     layout: "Hungary",
     backLayout: "hu",
     variant: [
+      "normal",
       "101_qwerty_comma_dead",
       "101_qwerty_comma_nodead",
       "101_qwerty_dot_dead",
@@ -426,6 +464,7 @@ List<Keymap> keymaps = [
     layout: "Indonesia",
     backLayout: "id",
     variant: [
+      "normal",
       "phoneticx",
     ],
   ),
@@ -433,6 +472,7 @@ List<Keymap> keymaps = [
     layout: "Ireland",
     backLayout: "ie",
     variant: [
+      "normal",
       "CloGaelach",
       "UnicodeExpert",
       "ogam",
@@ -443,6 +483,7 @@ List<Keymap> keymaps = [
     layout: "Israel",
     backLayout: "il",
     variant: [
+      "normal",
       "biblical",
       "lyx",
       "phonetic",
@@ -452,6 +493,7 @@ List<Keymap> keymaps = [
     layout: "India",
     backLayout: "in",
     variant: [
+      "normal",
       "ben",
       "ben_baishakhi",
       "ben_bornona",
@@ -496,6 +538,7 @@ List<Keymap> keymaps = [
     layout: "Iraq",
     backLayout: "iq",
     variant: [
+      "normal",
       "ku",
       "ku_alt",
       "ku_ara",
@@ -506,6 +549,7 @@ List<Keymap> keymaps = [
     layout: "Iran",
     backLayout: "ir",
     variant: [
+      "normal",
       "ku",
       "ku_alt",
       "ku_ara",
@@ -517,6 +561,7 @@ List<Keymap> keymaps = [
     layout: "Iceland",
     backLayout: "is",
     variant: [
+      "normal",
       "ku",
       "ku_alt",
       "ku_ara",
@@ -528,6 +573,7 @@ List<Keymap> keymaps = [
     layout: "Italy",
     backLayout: "it",
     variant: [
+      "normal",
       "fur",
       "geo",
       "ibm",
@@ -543,6 +589,7 @@ List<Keymap> keymaps = [
     layout: "Japan",
     backLayout: "jp",
     variant: [
+      "normal",
       "OADG109A",
       "dvorak",
       "kana",
@@ -554,6 +601,7 @@ List<Keymap> keymaps = [
     layout: "Kenya",
     backLayout: "ke",
     variant: [
+      "normal",
       "kik",
     ],
   ),
@@ -561,6 +609,7 @@ List<Keymap> keymaps = [
     layout: "Kyrgyzstan",
     backLayout: "kg",
     variant: [
+      "normal",
       "phonetic",
     ],
   ),
@@ -568,6 +617,7 @@ List<Keymap> keymaps = [
     layout: "Cambodia",
     backLayout: "kh",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -575,6 +625,7 @@ List<Keymap> keymaps = [
     layout: "The Republic of Korea",
     backLayout: "kr",
     variant: [
+      "normal",
       "kr104",
     ],
   ),
@@ -582,6 +633,7 @@ List<Keymap> keymaps = [
     layout: "Kazakhstan",
     backLayout: "kz",
     variant: [
+      "normal",
       "ext",
       "kazrus",
       "latin",
@@ -592,6 +644,7 @@ List<Keymap> keymaps = [
     layout: "Laos",
     backLayout: "la",
     variant: [
+      "normal",
       "stea",
     ],
   ),
@@ -599,6 +652,7 @@ List<Keymap> keymaps = [
     layout: "Sri Lanka",
     backLayout: "lk",
     variant: [
+      "normal",
       "tam_TAB",
       "tam_unicode",
       "us",
@@ -608,6 +662,7 @@ List<Keymap> keymaps = [
     layout: "Lithuania",
     backLayout: "lt",
     variant: [
+      "normal",
       "ibm",
       "lekp",
       "lekpa",
@@ -621,6 +676,7 @@ List<Keymap> keymaps = [
     layout: "Lativa",
     backLayout: "lv",
     variant: [
+      "normal",
       "adapted",
       "apostrophe",
       "ergonomic",
@@ -633,6 +689,7 @@ List<Keymap> keymaps = [
     layout: "Morocco",
     backLayout: "ma",
     variant: [
+      "normal",
       "french",
       "tifinagh",
       "tifinagh-alt",
@@ -646,6 +703,7 @@ List<Keymap> keymaps = [
     layout: "Moldova",
     backLayout: "md",
     variant: [
+      "normal",
       "gag",
     ],
   ),
@@ -653,6 +711,7 @@ List<Keymap> keymaps = [
     layout: "Montenegro",
     backLayout: "me",
     variant: [
+      "normal",
       "cyrillic",
       "cyrillicalternatequotes",
       "cyrillicyz",
@@ -666,6 +725,7 @@ List<Keymap> keymaps = [
     layout: "Republic of North Macedonia",
     backLayout: "mk",
     variant: [
+      "normal",
       "nodeadkeys",
     ],
   ),
@@ -673,6 +733,7 @@ List<Keymap> keymaps = [
     layout: "Mali",
     backLayout: "ml",
     variant: [
+      "normal",
       "fr-oss",
       "us-intl",
       "us-mac",
@@ -682,6 +743,7 @@ List<Keymap> keymaps = [
     layout: "Myanmar",
     backLayout: "mm",
     variant: [
+      "normal",
       "zawgyi",
     ],
   ),
@@ -689,6 +751,7 @@ List<Keymap> keymaps = [
     layout: "Mongolia",
     backLayout: "mn",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -696,6 +759,7 @@ List<Keymap> keymaps = [
     layout: "Malta",
     backLayout: "mt",
     variant: [
+      "normal",
       "alt-gb",
       "alt-us",
       "us",
@@ -705,6 +769,7 @@ List<Keymap> keymaps = [
     layout: "Maldives",
     backLayout: "mv",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -712,6 +777,7 @@ List<Keymap> keymaps = [
     layout: "Malaysia",
     backLayout: "my",
     variant: [
+      "normal",
       "phonetic",
     ],
   ),
@@ -719,6 +785,7 @@ List<Keymap> keymaps = [
     layout: "Nigeria",
     backLayout: "ng",
     variant: [
+      "normal",
       "hausa",
       "igbo",
       "yoruba",
@@ -728,6 +795,7 @@ List<Keymap> keymaps = [
     layout: "Netherlands",
     backLayout: "nl",
     variant: [
+      "normal",
       "mac",
       "std",
       "us",
@@ -737,6 +805,7 @@ List<Keymap> keymaps = [
     layout: "Norway",
     backLayout: "no",
     variant: [
+      "normal",
       "colemak",
       "dvorak",
       "mac",
@@ -751,6 +820,7 @@ List<Keymap> keymaps = [
     layout: "Nepal",
     backLayout: "np",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -758,6 +828,7 @@ List<Keymap> keymaps = [
     layout: "Philippines",
     backLayout: "ph",
     variant: [
+      "normal",
       "capewell-dvorak",
       "capewell-dvorak-bay",
       "capewell-qwerf2k6",
@@ -773,6 +844,7 @@ List<Keymap> keymaps = [
     layout: "Pakistan",
     backLayout: "pk",
     variant: [
+      "normal",
       "ara",
       "snd",
       "urd-crulp",
@@ -783,6 +855,7 @@ List<Keymap> keymaps = [
     layout: "Poland",
     backLayout: "pl",
     variant: [
+      "normal",
       "csb",
       "dvorak",
       "dvorak_altquotes",
@@ -798,6 +871,7 @@ List<Keymap> keymaps = [
     layout: "Portugal",
     backLayout: "pt",
     variant: [
+      "normal",
       "mac",
       "mac_nodeadkeys",
       "nativo",
@@ -810,6 +884,7 @@ List<Keymap> keymaps = [
     layout: "Romania",
     backLayout: "ro",
     variant: [
+      "normal",
       "std",
       "winkeys",
     ],
@@ -818,6 +893,7 @@ List<Keymap> keymaps = [
     layout: "Serbia",
     backLayout: "rs",
     variant: [
+      "normal",
       "alternatequotes",
       "latin",
       "latinalternatequotes",
@@ -832,6 +908,7 @@ List<Keymap> keymaps = [
     layout: "Russia",
     backLayout: "ru",
     variant: [
+      "normal",
       "bak",
       "chm",
       "cv",
@@ -861,6 +938,7 @@ List<Keymap> keymaps = [
     layout: "Sweden",
     backLayout: "se",
     variant: [
+      "normal",
       "dvorak",
       "mac",
       "nodeadkeys",
@@ -877,6 +955,7 @@ List<Keymap> keymaps = [
     layout: "Slovenia",
     backLayout: "si",
     variant: [
+      "normal",
       "alternatequotes",
       "us",
     ],
@@ -885,6 +964,7 @@ List<Keymap> keymaps = [
     layout: "Slovakia",
     backLayout: "sk",
     variant: [
+      "normal",
       "bksl",
       "qwerty",
       "qwerty_bksl",
@@ -894,6 +974,7 @@ List<Keymap> keymaps = [
     layout: "Senegal",
     backLayout: "sn",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -901,6 +982,7 @@ List<Keymap> keymaps = [
     layout: "Sierra Leone",
     backLayout: "sl",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -908,6 +990,7 @@ List<Keymap> keymaps = [
     layout: "Syria",
     backLayout: "sy",
     variant: [
+      "normal",
       "ku",
       "ku_alt",
       "ku_f",
@@ -919,6 +1002,7 @@ List<Keymap> keymaps = [
     layout: "Togo",
     backLayout: "tg",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -926,6 +1010,7 @@ List<Keymap> keymaps = [
     layout: "Thailand",
     backLayout: "th",
     variant: [
+      "normal",
       "pat",
       "tis",
     ],
@@ -934,6 +1019,7 @@ List<Keymap> keymaps = [
     layout: "Tajikistan",
     backLayout: "tj",
     variant: [
+      "normal",
       "legacy",
     ],
   ),
@@ -941,6 +1027,7 @@ List<Keymap> keymaps = [
     layout: "Turkmenistan",
     backLayout: "tm",
     variant: [
+      "normal",
       "alt",
     ],
   ),
@@ -948,6 +1035,7 @@ List<Keymap> keymaps = [
     layout: "Turkey",
     backLayout: "tr",
     variant: [
+      "normal",
       "alt",
       "crh",
       "crh_alt",
@@ -967,6 +1055,7 @@ List<Keymap> keymaps = [
     layout: "Taiwan",
     backLayout: "tw",
     variant: [
+      "normal",
       "indigenous",
       "saisiyat",
     ],
@@ -975,6 +1064,7 @@ List<Keymap> keymaps = [
     layout: "Tanzania",
     backLayout: "tz",
     variant: [
+      "normal",
       "",
     ],
   ),
@@ -982,6 +1072,7 @@ List<Keymap> keymaps = [
     layout: "Ukraine",
     backLayout: "ua",
     variant: [
+      "normal",
       "homophonic",
       "legacy",
       "phonetic",
@@ -995,6 +1086,7 @@ List<Keymap> keymaps = [
     layout: "United States of America",
     backLayout: "us",
     variant: [
+      "normal",
       "alt-intl",
       "altgr-intl",
       "chr",
@@ -1026,6 +1118,7 @@ List<Keymap> keymaps = [
     layout: "Uzbekistan",
     backLayout: "uz",
     variant: [
+      "normal",
       "latin",
     ],
   ),
@@ -1033,6 +1126,7 @@ List<Keymap> keymaps = [
     layout: "Vietnam",
     backLayout: "vn",
     variant: [
+      "normal",
       "fr",
       "us",
     ],
@@ -1041,6 +1135,7 @@ List<Keymap> keymaps = [
     layout: "South Africa",
     backLayout: "za",
     variant: [
+      "normal",
       "",
     ],
   )

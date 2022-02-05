@@ -1,3 +1,5 @@
+import 'package:jade_gui/Locales/arctic.dart';
+
 import 'africa.dart';
 import 'america.dart';
 import 'antarctica.dart';
@@ -25,6 +27,7 @@ List<Local> locations = [
   Local(africa, "Africa"),
   Local(america, "America"),
   Local(antarctica, "Antarctica"),
+  Local(arctic, "Arctic"),
   Local(asia, "Asia"),
   Local(atlantic, "Atlantic"),
   Local(australia, "Australia"),

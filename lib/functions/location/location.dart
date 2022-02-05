@@ -6,33 +6,37 @@ Location choosenLocPack = Location();
 Widget locationTemplate(location, nextSlide) {
   return Container(
     padding: const EdgeInsets.all(8),
-    child: ElevatedButton(
-      onPressed: () {
-        nextSlide();
-        choosenLocPack = location;
-      },
-      style: TextButton.styleFrom(
-        primary: Colors.white,
-        backgroundColor: const Color.fromARGB(100, 169, 0, 255),
-        padding: const EdgeInsets.all(10),
-      ),
-      child: Column(
-        children: [
-          Image(
-            image: AssetImage(
-              '${location.image}',
+    color: const Color.fromARGB(100, 169, 0, 255),
+    child: Container(
+      padding: const EdgeInsets.all(8),
+      color: const Color.fromARGB(100, 169, 0, 255),
+      child: ElevatedButton(
+        onPressed: () {
+          nextSlide();
+          choosenLocPack = location;
+        },
+        style: TextButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: const Color.fromARGB(100, 169, 0, 255),
+          padding: const EdgeInsets.all(10),
+        ),
+        child: Column(
+          children: [
+            Image(
+              image: AssetImage(
+                '${location.image}',
+              ),
+              height: 300,
+              width: 300,
             ),
-            height: 300,
-            width: 300,
-          ),
-          Text(location.location,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              )),
-        ],
+            Text(location.location,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                )),
+          ],
+        ),
       ),
     ),
-    //color: Colors.teal[100],
   );
 }
 

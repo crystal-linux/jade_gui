@@ -3,6 +3,7 @@ import 'package:jade_gui/functions/location/location.dart';
 import 'package:jade_gui/functions/welcome.dart';
 import 'package:jade_gui/functions/locale.dart';
 import 'package:jade_gui/functions/keyboard.dart';
+import 'package:jade_gui/functions/keymap/variant.dart';
 
 void main() => runApp(
       const MaterialApp(
@@ -21,6 +22,7 @@ class Jadegui extends StatefulWidget {
 class _JadeguiState extends State<Jadegui> {
   int _selectedIndex = 0;
   bool nextpage = false;
+  bool choseLayout = false;
   void nextslide() {
     setState(() {
       _selectedIndex = _selectedIndex + 1;
@@ -262,9 +264,14 @@ class _JadeguiState extends State<Jadegui> {
           setState(() {
             _selectedIndex = _selectedIndex + 1;
           });
-        });
+        }, () {
+          setState(() {
+            choseLayout = true;
+          });
+        }, choseLayout);
         break;
       case 3:
+        print("${getChosenLayout()} - ${getChosenVariant()}");
         widget = const Text(
           'Showing Timezone screen',
           style: TextStyle(

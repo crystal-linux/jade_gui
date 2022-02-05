@@ -5,24 +5,28 @@ String selectedRegion = "";
 Widget locationTemplate(next, location) {
   return Container(
     padding: const EdgeInsets.all(8),
-    child: ElevatedButton(
-      onPressed: () {
-        next();
-        selectedRegion = location.name;
-      },
-      style: TextButton.styleFrom(
-        primary: Colors.white,
-        backgroundColor: const Color.fromARGB(100, 169, 0, 255),
-        padding: const EdgeInsets.all(10),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(location.name),
-        ],
+    color: const Color.fromARGB(100, 169, 0, 255),
+    child: Container(
+      padding: const EdgeInsets.all(8),
+      color: const Color.fromARGB(100, 169, 0, 255),
+      child: ElevatedButton(
+        onPressed: () {
+          next();
+          selectedRegion = location.name;
+        },
+        style: TextButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: const Color.fromARGB(100, 169, 0, 255),
+          padding: const EdgeInsets.all(10),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(location.name),
+          ],
+        ),
       ),
     ),
-    //color: Color.fromARGB(255, 83, 83, 83),
   );
 }
 
