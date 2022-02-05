@@ -11,6 +11,11 @@ Widget locationTemplate(location, nextSlide) {
         nextSlide();
         choosenLocPack = location;
       },
+      style: TextButton.styleFrom(
+        primary: Colors.white,
+        backgroundColor: const Color.fromARGB(100, 169, 0, 255),
+        padding: const EdgeInsets.all(10),
+      ),
       child: Column(
         children: [
           Image(

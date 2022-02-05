@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jade_gui/functions/location/location.dart';
-import 'functions/welcome.dart';
-import 'functions/locale.dart';
+import 'package:jade_gui/functions/welcome.dart';
+import 'package:jade_gui/functions/locale.dart';
+import 'package:jade_gui/functions/keyboard.dart';
 
 void main() => runApp(
       const MaterialApp(
@@ -257,14 +258,11 @@ class _JadeguiState extends State<Jadegui> {
         print(
             "${getSelectedLocPack().region}/${getSelectedLocPack().location}");
         print(getSelectedLocPack().locale);
-        widget = const Text(
-          'Showing Keymap screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
-        );
+        widget = keyboard(() {
+          setState(() {
+            _selectedIndex = _selectedIndex + 1;
+          });
+        });
         break;
       case 3:
         widget = const Text(
