@@ -4,6 +4,7 @@ import 'package:jade_gui/functions/welcome.dart';
 import 'package:jade_gui/functions/locale.dart';
 import 'package:jade_gui/functions/keyboard.dart';
 import 'package:jade_gui/functions/keymap/variant.dart';
+import 'package:jade_gui/functions/users.dart';
 
 void main() => runApp(
       const MaterialApp(
@@ -23,6 +24,10 @@ class _JadeguiState extends State<Jadegui> {
   int _selectedIndex = 0;
   bool nextpage = false;
   bool choseLayout = false;
+  bool enableRoot = false;
+  String password = "";
+  String confirmPassword = "";
+  String username = "";
   void nextslide() {
     setState(() {
       _selectedIndex = _selectedIndex + 1;
@@ -272,13 +277,42 @@ class _JadeguiState extends State<Jadegui> {
         break;
       case 3:
         print("${getChosenLayout()} - ${getChosenVariant()}");
-        widget = const Text(
-          'Showing Timezone screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
+        widget = users(
+          (value) {
+            setState(() {
+              enableRoot = value;
+            });
+          },
+          enableRoot,
+          (String? value) {
+            setState(() {
+              debugPrint(value);
+              if (value != null) {
+                password = value;
+              }
+            });
+            debugPrint("here");
+            debugPrint(password);
+            debugPrint(value);
+          },
+          (value) {
+            setState(() {
+              confirmPassword = value;
+            });
+          },
+          password,
+          confirmPassword,
+          (value) {
+            setState(() {
+              username = value;
+            });
+          },
+          username,
+          () {
+            setState(() {
+              _selectedIndex = _selectedIndex + 1;
+            });
+          },
         );
         break;
       case 4:
