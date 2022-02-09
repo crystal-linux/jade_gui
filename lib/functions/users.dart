@@ -2,8 +2,22 @@ import 'package:flutter/material.dart';
 
 final _formKey = GlobalKey<FormState>();
 RegExp userRegex = RegExp(r'^[a-z_]([a-z0-9_-]{0,31}|[a-z0-9_-]{0,30}\$)$');
-Widget users(setState, enableRoot, setPass, setConfirmPass, password,
-    confirmPassword, setUsername, username, next) {
+Widget users(
+    setState,
+    enableSudo,
+    setPass,
+    setConfirmPass,
+    password,
+    confirmPassword,
+    setUsername,
+    username,
+    setRootUser,
+    enableRoot,
+    setRootPass,
+    setConfirmRootPass,
+    rootPass,
+    confirmRootPass,
+    next) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -24,8 +38,8 @@ Widget users(setState, enableRoot, setPass, setConfirmPass, password,
           boxShadow: [
             BoxShadow(
               color: Colors.black,
-              blurRadius: 10,
-              offset: Offset(-5, 10),
+              blurRadius: 2,
+              offset: Offset(-2, 3),
             ),
           ],
         ),
@@ -54,8 +68,8 @@ Widget users(setState, enableRoot, setPass, setConfirmPass, password,
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black,
-                      blurRadius: 10,
-                      offset: Offset(-5, 10),
+                      blurRadius: 2,
+                      offset: Offset(-2, 3),
                     ),
                   ],
                 ),
@@ -157,9 +171,9 @@ Widget users(setState, enableRoot, setPass, setConfirmPass, password,
                           color: const Color.fromARGB(100, 30, 30, 30),
                         ),
                         child: CheckboxListTile(
-                          title: const Text('Enable root for user',
+                          title: const Text('Enable sudo for user',
                               style: TextStyle(color: Colors.white)),
-                          value: enableRoot,
+                          value: enableSudo,
                           onChanged: (bool? value) {
                             setState(value!);
                           },
@@ -180,6 +194,106 @@ Widget users(setState, enableRoot, setPass, setConfirmPass, password,
                           ),
                         ),
                       ),
+                      const SizedBox(height: 10),
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.black45),
+                          color: const Color.fromARGB(100, 30, 30, 30),
+                        ),
+                        child: CheckboxListTile(
+                          title: const Text('Enable root user',
+                              style: TextStyle(color: Colors.white)),
+                          value: enableRoot,
+                          onChanged: (bool? value) {
+                            setRootUser(value!);
+                          },
+                          secondary: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                            child: const Text(
+                              '#',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Visibility(
+                          child: const SizedBox(height: 10),
+                          visible: enableRoot),
+                      Visibility(
+                        visible: enableRoot,
+                        child: TextFormField(
+                          //obscureText: true,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Password for root user',
+                            labelStyle: TextStyle(color: Colors.white),
+                            hintText: 'Password for the root user',
+                            iconColor: Colors.white,
+                            focusColor: Color.fromARGB(100, 169, 0, 255),
+                            hoverColor: Colors.blue,
+                            prefixIconColor: Colors.white,
+                            suffixIconColor: Colors.white,
+                          ),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          onChanged: (String? value) {
+                            setRootPass(value);
+                            debugPrint(value);
+                            debugPrint("Root Password: $rootPass");
+                            debugPrint("Root Confirm: $confirmRootPass");
+                          },
+                        ),
+                      ),
+                      Visibility(
+                          child: const SizedBox(height: 10),
+                          visible: enableRoot),
+                      Visibility(
+                        visible: enableRoot,
+                        child: TextFormField(
+                          //obscureText: true,
+                          autovalidateMode: AutovalidateMode.always,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Repeat root password',
+                            labelStyle: TextStyle(color: Colors.white),
+                            hintText: 'Repeat root password',
+                            iconColor: Colors.white,
+                            focusColor: Color.fromARGB(100, 169, 0, 255),
+                            hoverColor: Colors.blue,
+                            prefixIconColor: Colors.white,
+                            suffixIconColor: Colors.white,
+                          ),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          onChanged: (String? value) {
+                            setConfirmRootPass(value);
+                            debugPrint(password);
+                            debugPrint(confirmPassword);
+                            debugPrint(value);
+                          },
+                          validator: (String? value) {
+                            debugPrint(value);
+                            debugPrint("Root Password: $rootPass");
+                            debugPrint("Root Confirm: $confirmRootPass");
+                            return (value != rootPass)
+                                ? 'Password does not match'
+                                : null;
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 ),
@@ -202,11 +316,13 @@ Widget users(setState, enableRoot, setPass, setConfirmPass, password,
                     onPressed: () {
                       next();
                     },
-                    child: const Text('Next'),
+                    child: const Text(
+                      'Next',
+                    ),
                     style: TextButton.styleFrom(
                       primary: Colors.white,
                       backgroundColor: const Color.fromARGB(255, 169, 0, 255),
-                      minimumSize: const Size(80, 50),
+                      minimumSize: const Size(100, 50),
                       padding: const EdgeInsets.all(10),
                     ),
                   ),

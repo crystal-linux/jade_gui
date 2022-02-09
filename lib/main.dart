@@ -3,8 +3,8 @@ import 'package:jade_gui/functions/location/location.dart';
 import 'package:jade_gui/functions/welcome.dart';
 import 'package:jade_gui/functions/locale.dart';
 import 'package:jade_gui/functions/keyboard.dart';
-import 'package:jade_gui/functions/keymap/variant.dart';
 import 'package:jade_gui/functions/users.dart';
+import 'package:jade_gui/classes/keymap.dart';
 
 void main() => runApp(
       const MaterialApp(
@@ -24,10 +24,14 @@ class _JadeguiState extends State<Jadegui> {
   int _selectedIndex = 0;
   bool nextpage = false;
   bool choseLayout = false;
+  Keymap chosenLayout = Keymap();
+  bool enableSudo = false;
   bool enableRoot = false;
   String password = "";
   String confirmPassword = "";
   String username = "";
+  String rootPass = "";
+  String confirmRootPass = "";
   void nextslide() {
     setState(() {
       _selectedIndex = _selectedIndex + 1;
@@ -265,25 +269,35 @@ class _JadeguiState extends State<Jadegui> {
         print(
             "${getSelectedLocPack().region}/${getSelectedLocPack().location}");
         print(getSelectedLocPack().locale);
-        widget = keyboard(() {
-          setState(() {
-            _selectedIndex = _selectedIndex + 1;
-          });
-        }, () {
-          setState(() {
-            choseLayout = true;
-          });
-        }, choseLayout);
+        widget = keyboard(
+          () {
+            setState(() {
+              _selectedIndex = _selectedIndex + 1;
+            });
+          },
+          () {
+            setState(() {
+              choseLayout = true;
+            });
+          },
+          choseLayout,
+          (layout) {
+            setState(() {
+              chosenLayout = layout;
+            });
+          },
+          chosenLayout,
+        );
         break;
       case 3:
         print("${getChosenLayout()} - ${getChosenVariant()}");
         widget = users(
           (value) {
             setState(() {
-              enableRoot = value;
+              enableSudo = value;
             });
           },
-          enableRoot,
+          enableSudo,
           (String? value) {
             setState(() {
               debugPrint(value);
@@ -291,9 +305,6 @@ class _JadeguiState extends State<Jadegui> {
                 password = value;
               }
             });
-            debugPrint("here");
-            debugPrint(password);
-            debugPrint(value);
           },
           (value) {
             setState(() {
@@ -308,6 +319,27 @@ class _JadeguiState extends State<Jadegui> {
             });
           },
           username,
+          (value) {
+            setState(() {
+              enableRoot = value;
+            });
+          },
+          enableRoot,
+          (String? value) {
+            setState(() {
+              debugPrint(value);
+              if (value != null) {
+                rootPass = value;
+              }
+            });
+          },
+          (value) {
+            setState(() {
+              confirmRootPass = value;
+            });
+          },
+          rootPass,
+          confirmRootPass,
           () {
             setState(() {
               _selectedIndex = _selectedIndex + 1;
@@ -316,6 +348,10 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 4:
+        print("Username: $username");
+        print("Password: $password");
+        print("Confirm Password: $confirmPassword");
+        print("Enable Root: $enableSudo");
         widget = const Text(
           'Showing Users screen',
           style: TextStyle(
