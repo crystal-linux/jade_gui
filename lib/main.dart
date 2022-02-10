@@ -4,7 +4,10 @@ import 'package:jade_gui/functions/welcome.dart';
 import 'package:jade_gui/functions/locale.dart';
 import 'package:jade_gui/functions/keyboard.dart';
 import 'package:jade_gui/functions/users.dart';
+import 'package:jade_gui/functions/desktop.dart';
 import 'package:jade_gui/classes/keymap.dart';
+import 'package:jade_gui/classes/desktop.dart';
+import 'package:jade_gui/desktops/desktops.dart';
 
 void main() => runApp(
       const MaterialApp(
@@ -32,6 +35,7 @@ class _JadeguiState extends State<Jadegui> {
   String username = "";
   String rootPass = "";
   String confirmRootPass = "";
+  Desktop currDesktop = desktops[0];
   void nextslide() {
     setState(() {
       _selectedIndex = _selectedIndex + 1;
@@ -352,16 +356,22 @@ class _JadeguiState extends State<Jadegui> {
         print("Password: $password");
         print("Confirm Password: $confirmPassword");
         print("Enable Root: $enableSudo");
-        widget = const Text(
-          'Showing Users screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
+        widget = desktopView(
+          currDesktop,
+          (selectedDesktop) {
+            setState(() {
+              currDesktop = selectedDesktop;
+            });
+          },
+          () {
+            setState(() {
+              _selectedIndex = _selectedIndex + 1;
+            });
+          },
         );
         break;
       case 5:
+        print("Desktop: ${currDesktop.name}");
         widget = const Text(
           'Showing Desktop screen',
           style: TextStyle(
