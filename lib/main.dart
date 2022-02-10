@@ -70,7 +70,7 @@ class _JadeguiState extends State<Jadegui> {
                 label: Text(
                   'Welcome',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -86,7 +86,7 @@ class _JadeguiState extends State<Jadegui> {
                 label: Text(
                   'Location',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -102,7 +102,7 @@ class _JadeguiState extends State<Jadegui> {
                 label: Text(
                   'Keymap',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -118,7 +118,7 @@ class _JadeguiState extends State<Jadegui> {
                 label: Text(
                   'Users',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -128,13 +128,13 @@ class _JadeguiState extends State<Jadegui> {
                   color: Color.fromARGB(255, 169, 0, 255),
                 ),
                 selectedIcon: Icon(
-                  Icons.desktop_windows_outlined,
+                  Icons.desktop_windows,
                   color: Color.fromARGB(255, 169, 0, 255),
                 ),
                 label: Text(
                   'Desktop',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -150,7 +150,7 @@ class _JadeguiState extends State<Jadegui> {
                 label: Text(
                   'Misc',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -166,7 +166,7 @@ class _JadeguiState extends State<Jadegui> {
                 label: Text(
                   'Partitioning',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -182,7 +182,7 @@ class _JadeguiState extends State<Jadegui> {
                 label: Text(
                   'Summary',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -198,7 +198,7 @@ class _JadeguiState extends State<Jadegui> {
                 label: Text(
                   'Installing',
                   style: TextStyle(
-                      color: Color.fromARGB(255, 169, 0, 255),
+                      color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
                 ),
               ),
