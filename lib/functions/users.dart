@@ -73,46 +73,169 @@ Widget users(
                     ),
                   ],
                 ),
-                child: Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        autovalidateMode: AutovalidateMode.always,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Username',
-                          labelStyle: TextStyle(color: Colors.white),
-                          hintText: 'Enter your username',
-                          iconColor: Colors.white,
-                          focusColor: Color.fromARGB(100, 169, 0, 255),
-                          hoverColor: Colors.blue,
-                          prefixIconColor: Colors.white,
-                          suffixIconColor: Colors.white,
-                        ),
-                        style: const TextStyle(color: Colors.white),
-                        onChanged: (String? value) {
-                          setUsername(value);
-                          debugPrint(value);
-                          debugPrint("Username: $username");
-                        },
-                        validator: (String? value) {
-                          return (value != "" &&
-                                  value != null &&
-                                  !userRegex.hasMatch(value))
-                              ? 'Bad username, may not contain spaces, uppercase, or special characters'
-                              : null;
-                        },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      autovalidateMode: AutovalidateMode.always,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Username',
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintText: 'Enter your username',
+                        iconColor: Colors.white,
+                        focusColor: Color.fromARGB(100, 169, 0, 255),
+                        hoverColor: Colors.blue,
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
                       ),
-                      const SizedBox(height: 10),
-                      TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      onChanged: (String? value) {
+                        setUsername(value);
+                        debugPrint(value);
+                        debugPrint("Username: $username");
+                      },
+                      validator: (String? value) {
+                        return (value != "" &&
+                                value != null &&
+                                !userRegex.hasMatch(value))
+                            ? 'Bad username, may not contain spaces, uppercase, or special characters'
+                            : null;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      //obscureText: true,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Password',
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintText: 'Enter your password',
+                        iconColor: Colors.white,
+                        focusColor: Color.fromARGB(100, 169, 0, 255),
+                        hoverColor: Colors.blue,
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                      ),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      onChanged: (String? value) {
+                        setPass(value);
+                        debugPrint(value);
+                        debugPrint("Password: $password");
+                        debugPrint("Confirm: $confirmPassword");
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      //obscureText: true,
+                      autovalidateMode: AutovalidateMode.always,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Repeat password',
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintText: 'Repeat your password',
+                        iconColor: Colors.white,
+                        focusColor: Color.fromARGB(100, 169, 0, 255),
+                        hoverColor: Colors.blue,
+                        prefixIconColor: Colors.white,
+                        suffixIconColor: Colors.white,
+                      ),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      onChanged: (String? value) {
+                        setConfirmPass(value);
+                        debugPrint(password);
+                        debugPrint(confirmPassword);
+                        debugPrint(value);
+                      },
+                      validator: (String? value) {
+                        debugPrint(value);
+                        debugPrint("Password: $password");
+                        debugPrint("Confirm: $confirmPassword");
+                        return (value != password)
+                            ? 'Password does not match'
+                            : null;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.black45),
+                        color: const Color.fromARGB(100, 30, 30, 30),
+                      ),
+                      child: CheckboxListTile(
+                        title: const Text('Enable sudo for user',
+                            style: TextStyle(color: Colors.white)),
+                        value: enableSudo,
+                        onChanged: (bool? value) {
+                          setState(value!);
+                        },
+                        secondary: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                          child: const Text(
+                            '#',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.black45),
+                        color: const Color.fromARGB(100, 30, 30, 30),
+                      ),
+                      child: CheckboxListTile(
+                        title: const Text('Enable root user',
+                            style: TextStyle(color: Colors.white)),
+                        value: enableRoot,
+                        onChanged: (bool? value) {
+                          setRootUser(value!);
+                        },
+                        secondary: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                          child: const Text(
+                            '#',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                        child: const SizedBox(height: 10), visible: enableRoot),
+                    Visibility(
+                      visible: enableRoot,
+                      child: TextFormField(
                         //obscureText: true,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Password',
+                          labelText: 'Password for root user',
                           labelStyle: TextStyle(color: Colors.white),
-                          hintText: 'Enter your password',
+                          hintText: 'Password for the root user',
                           iconColor: Colors.white,
                           focusColor: Color.fromARGB(100, 169, 0, 255),
                           hoverColor: Colors.blue,
@@ -123,21 +246,25 @@ Widget users(
                           color: Colors.white,
                         ),
                         onChanged: (String? value) {
-                          setPass(value);
+                          setRootPass(value);
                           debugPrint(value);
-                          debugPrint("Password: $password");
-                          debugPrint("Confirm: $confirmPassword");
+                          debugPrint("Root Password: $rootPass");
+                          debugPrint("Root Confirm: $confirmRootPass");
                         },
                       ),
-                      const SizedBox(height: 10),
-                      TextFormField(
+                    ),
+                    Visibility(
+                        child: const SizedBox(height: 10), visible: enableRoot),
+                    Visibility(
+                      visible: enableRoot,
+                      child: TextFormField(
                         //obscureText: true,
                         autovalidateMode: AutovalidateMode.always,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Repeat password',
+                          labelText: 'Repeat root password',
                           labelStyle: TextStyle(color: Colors.white),
-                          hintText: 'Repeat your password',
+                          hintText: 'Repeat root password',
                           iconColor: Colors.white,
                           focusColor: Color.fromARGB(100, 169, 0, 255),
                           hoverColor: Colors.blue,
@@ -148,154 +275,23 @@ Widget users(
                           color: Colors.white,
                         ),
                         onChanged: (String? value) {
-                          setConfirmPass(value);
+                          setConfirmRootPass(value);
                           debugPrint(password);
                           debugPrint(confirmPassword);
                           debugPrint(value);
                         },
                         validator: (String? value) {
                           debugPrint(value);
-                          debugPrint("Password: $password");
-                          debugPrint("Confirm: $confirmPassword");
-                          return (value != password)
+                          debugPrint("Root Password: $rootPass");
+                          debugPrint("Root Confirm: $confirmRootPass");
+                          return (value != rootPass)
                               ? 'Password does not match'
                               : null;
                         },
                       ),
-                      const SizedBox(height: 10),
-                      Container(
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.black45),
-                          color: const Color.fromARGB(100, 30, 30, 30),
-                        ),
-                        child: CheckboxListTile(
-                          title: const Text('Enable sudo for user',
-                              style: TextStyle(color: Colors.white)),
-                          value: enableSudo,
-                          onChanged: (bool? value) {
-                            setState(value!);
-                          },
-                          secondary: Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
-                            child: const Text(
-                              '#',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(color: Colors.black45),
-                          color: const Color.fromARGB(100, 30, 30, 30),
-                        ),
-                        child: CheckboxListTile(
-                          title: const Text('Enable root user',
-                              style: TextStyle(color: Colors.white)),
-                          value: enableRoot,
-                          onChanged: (bool? value) {
-                            setRootUser(value!);
-                          },
-                          secondary: Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
-                            child: const Text(
-                              '#',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                          child: const SizedBox(height: 10),
-                          visible: enableRoot),
-                      Visibility(
-                        visible: enableRoot,
-                        child: TextFormField(
-                          //obscureText: true,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Password for root user',
-                            labelStyle: TextStyle(color: Colors.white),
-                            hintText: 'Password for the root user',
-                            iconColor: Colors.white,
-                            focusColor: Color.fromARGB(100, 169, 0, 255),
-                            hoverColor: Colors.blue,
-                            prefixIconColor: Colors.white,
-                            suffixIconColor: Colors.white,
-                          ),
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
-                          onChanged: (String? value) {
-                            setRootPass(value);
-                            debugPrint(value);
-                            debugPrint("Root Password: $rootPass");
-                            debugPrint("Root Confirm: $confirmRootPass");
-                          },
-                        ),
-                      ),
-                      Visibility(
-                          child: const SizedBox(height: 10),
-                          visible: enableRoot),
-                      Visibility(
-                        visible: enableRoot,
-                        child: TextFormField(
-                          //obscureText: true,
-                          autovalidateMode: AutovalidateMode.always,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Repeat root password',
-                            labelStyle: TextStyle(color: Colors.white),
-                            hintText: 'Repeat root password',
-                            iconColor: Colors.white,
-                            focusColor: Color.fromARGB(100, 169, 0, 255),
-                            hoverColor: Colors.blue,
-                            prefixIconColor: Colors.white,
-                            suffixIconColor: Colors.white,
-                          ),
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
-                          onChanged: (String? value) {
-                            setConfirmRootPass(value);
-                            debugPrint(password);
-                            debugPrint(confirmPassword);
-                            debugPrint(value);
-                          },
-                          validator: (String? value) {
-                            debugPrint(value);
-                            debugPrint("Root Password: $rootPass");
-                            debugPrint("Root Confirm: $confirmRootPass");
-                            return (value != rootPass)
-                                ? 'Password does not match'
-                                : null;
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
                 ),
               ),
             ),

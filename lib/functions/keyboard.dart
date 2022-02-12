@@ -117,17 +117,15 @@ Widget keyboard(
                     ),
                   ],
                 ),
-                child: Expanded(
-                  child: SingleChildScrollView(
-                    primary: false,
-                    child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: keymaps
-                          .map<Widget>((keymap) =>
-                              layoutTemplate(keymap, setChosenLayout))
-                          .toList(),
-                    ),
+                child: SingleChildScrollView(
+                  primary: false,
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: keymaps
+                        .map<Widget>(
+                            (keymap) => layoutTemplate(keymap, setChosenLayout))
+                        .toList(),
                   ),
                 ),
               ),
@@ -149,17 +147,15 @@ Widget keyboard(
                     ),
                   ],
                 ),
-                child: Expanded(
-                  child: SingleChildScrollView(
-                    primary: false,
-                    child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: chosenLayout.variant
-                          .map<Widget>((map) =>
-                              variantTemplate(map, chosenLayout, nextPage))
-                          .toList(),
-                    ),
+                child: SingleChildScrollView(
+                  primary: false,
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: chosenLayout.variant
+                        .map<Widget>((map) =>
+                            variantTemplate(map, chosenLayout, nextPage))
+                        .toList(),
                   ),
                 ),
               ),

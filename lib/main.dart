@@ -370,7 +370,7 @@ class _JadeguiState extends State<Jadegui> {
           },
         );
         break;
-      case 5:
+      /*case 5:
         print("Desktop: ${currDesktop.name}");
         widget = const Text(
           'Showing Desktop screen',
@@ -380,8 +380,8 @@ class _JadeguiState extends State<Jadegui> {
             color: Color.fromARGB(255, 169, 0, 255),
           ),
         );
-        break;
-      case 6:
+        break;*/
+      case 5:
         widget = const Text(
           'Showing Misc screen',
           style: TextStyle(
@@ -391,7 +391,7 @@ class _JadeguiState extends State<Jadegui> {
           ),
         );
         break;
-      case 7:
+      case 6:
         widget = const Text(
           'Showing Partitioning screen',
           style: TextStyle(
@@ -401,7 +401,7 @@ class _JadeguiState extends State<Jadegui> {
           ),
         );
         break;
-      case 8:
+      case 7:
         widget = const Text(
           'Showing Summary screen',
           style: TextStyle(
@@ -411,7 +411,7 @@ class _JadeguiState extends State<Jadegui> {
           ),
         );
         break;
-      case 9:
+      case 8:
         widget = const Text(
           'Showing Installing screen',
           style: TextStyle(
