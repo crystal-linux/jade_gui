@@ -120,8 +120,6 @@ Widget keyboard(
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: keymaps
                         .map<Widget>(
                             (keymap) => layoutTemplate(keymap, setChosenLayout))
@@ -131,7 +129,6 @@ Widget keyboard(
               ),
             ),
             const SizedBox(width: 50),
-            //Expanded(child: layouts()),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(10),
@@ -150,8 +147,6 @@ Widget keyboard(
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: chosenLayout.variant
                         .map<Widget>((map) =>
                             variantTemplate(map, chosenLayout, nextPage))

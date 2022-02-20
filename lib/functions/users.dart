@@ -56,7 +56,7 @@ Widget users(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             SizedBox(
               width: 600,
               child: Container(

@@ -230,16 +230,8 @@ class _JadeguiState extends State<Jadegui> {
   }
 
   Widget condition() {
-    // other logic
-    // Declare a widget variable,
-    // it will be assigned later according
-    // to the condition
     Widget widget;
 
-    // Using switch statement to display desired
-    // widget if any certain condition is met
-    // You are free to use any condition
-    // For simplicity I have used boolean contition
     switch (_selectedIndex) {
       case 0:
         widget = welcome(() {
@@ -370,17 +362,6 @@ class _JadeguiState extends State<Jadegui> {
           },
         );
         break;
-      /*case 5:
-        print("Desktop: ${currDesktop.name}");
-        widget = const Text(
-          'Showing Desktop screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
-        );
-        break;*/
       case 5:
         widget = const Text(
           'Showing Misc screen',
@@ -423,7 +404,7 @@ class _JadeguiState extends State<Jadegui> {
         break;
       default:
         widget = const Text(
-          'You should not see this, report this at git.tar.black/crystal/jade_gui',
+          'You should not see this, report this at https://git.tar.black/crystal/jade_gui',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,

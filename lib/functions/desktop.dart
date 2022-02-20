@@ -71,8 +71,6 @@ Widget desktopView(currDesktop, setDesktop, next) {
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: desktops
                         .map<Widget>(
                             (desktop) => desktopTemplate(desktop, setDesktop))

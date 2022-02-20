@@ -1,71 +1,137 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 Widget welcome(next) {
   return Container(
-    decoration: const BoxDecoration(
-      image: DecorationImage(
-        fit: BoxFit.cover,
-        image: AssetImage('assets/welcome-bg-alt.png'),
-      ),
-    ),
+    //decoration: const BoxDecoration(
+    //  image: DecorationImage(
+    //    fit: BoxFit.cover,
+    //    image: AssetImage('assets/welcome-bg-alt.png'),
+    //  ),
+    //),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(height: 50),
+        const Text(
+          'Welcome to Crystal Linux',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 169, 0, 255),
+          ),
+        ),
         const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              'Welcome to Jade',
-              style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 169, 0, 255)),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              style: TextButton.styleFrom(
+                primary: const Color.fromARGB(0, 23, 23, 23),
+                backgroundColor: const Color.fromARGB(0, 23, 23, 23),
+                elevation: 0,
+                padding: EdgeInsets.zero,
+              ),
+              onPressed: () {
+                exit(0);
+              },
+              child: Container(
+                width: 500,
+                height: 500,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black),
+                  color: const Color.fromARGB(255, 30, 30, 30),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 2,
+                      offset: Offset(-2, 3),
+                    ),
+                  ],
+                ),
+                child: Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      SizedBox(height: 20),
+                      Text("Try Crystal Linux without installing",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      SizedBox(height: 5),
+                      Image(
+                        image: AssetImage(
+                          'assets/crystal-logo-minimal.png',
+                        ),
+                        height: 400,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              'Installing crystal made easy',
-              style: TextStyle(
-                fontSize: 40,
-                color: Color.fromARGB(255, 169, 0, 255),
+            const SizedBox(width: 20),
+            ElevatedButton(
+              style: TextButton.styleFrom(
+                primary: const Color.fromARGB(0, 23, 23, 23),
+                backgroundColor: const Color.fromARGB(0, 23, 23, 23),
+                elevation: 0,
+                padding: EdgeInsets.zero,
+              ),
+              onPressed: next,
+              child: Container(
+                width: 500,
+                height: 500,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black),
+                  color: const Color.fromARGB(255, 30, 30, 30),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 2,
+                      offset: Offset(-2, 3),
+                    ),
+                  ],
+                ),
+                child: Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      SizedBox(height: 20),
+                      Text("Start the installation",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      SizedBox(height: 5),
+                      Image(
+                        image: AssetImage(
+                          'assets/jade_logo.png',
+                        ),
+                        height: 400,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Column(
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        next();
-                      },
-                      child: const Text('Start'),
-                      style: TextButton.styleFrom(
-                        primary: Colors.white,
-                        backgroundColor: const Color.fromARGB(255, 169, 0, 255),
-                        minimumSize: const Size(80, 50),
-                        padding: const EdgeInsets.all(10),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
-                const SizedBox(width: 30),
-              ],
-            ),
-            const SizedBox(height: 7)
-          ],
-        ),
+        const SizedBox(height: 20),
+        const Text(
+            "Starting Crystal linux without installing will not change anything on your computer,",
+            style: TextStyle(fontSize: 20, color: Colors.white)),
+        const Text(
+            "it's recommended to try that first to see if everything works",
+            style: TextStyle(fontSize: 20, color: Colors.white))
       ],
     ),
   );
