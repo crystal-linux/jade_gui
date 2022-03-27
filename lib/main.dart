@@ -8,6 +8,7 @@ import 'package:jade_gui/functions/desktop.dart';
 import 'package:jade_gui/classes/keymap.dart';
 import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/desktops/desktops.dart';
+import 'package:jade_gui/functions/partition.dart';
 
 void main() => runApp(
       const MaterialApp(
@@ -35,6 +36,9 @@ class _JadeguiState extends State<Jadegui> {
   String username = "";
   String rootPass = "";
   String confirmRootPass = "";
+  String partitions = "";
+  String selectedPartition = "";
+  String partitionInfo = "";
   Desktop currDesktop = desktops[0];
   void nextslide() {
     setState(() {
@@ -373,14 +377,23 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 6:
-        widget = const Text(
-          'Showing Partitioning screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
-        );
+        widget = partitioning(partitions, (value) {
+          setState(() {
+            partitions = value;
+          });
+        }, (value) {
+          setState(() {
+            selectedPartition = value;
+          });
+        }, () {
+          setState(() {
+            _selectedIndex = _selectedIndex + 1;
+          });
+        }, (value) {
+          setState(() {
+            partitionInfo = value;
+          });
+        }, selectedPartition, partitionInfo);
         break;
       case 7:
         widget = const Text(
