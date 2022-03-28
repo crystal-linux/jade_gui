@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jade_gui/classes/keymap.dart';
 import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/classes/location.dart';
 import 'dart:io';

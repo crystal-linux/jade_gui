@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:jade_gui/classes/keymap.dart';
 
 List<Keymap> keymaps = [
