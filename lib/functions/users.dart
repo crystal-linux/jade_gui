@@ -84,6 +84,7 @@ Widget users(
                         labelText: 'Username',
                         labelStyle: TextStyle(color: Colors.white),
                         hintText: 'Enter your username',
+                        hintStyle: TextStyle(color: Colors.white),
                         iconColor: Colors.white,
                         focusColor: Color.fromARGB(100, 169, 0, 255),
                         hoverColor: Colors.blue,
@@ -93,8 +94,6 @@ Widget users(
                       style: const TextStyle(color: Colors.white),
                       onChanged: (String? value) {
                         setUsername(value);
-                        debugPrint(value);
-                        debugPrint("Username: $username");
                       },
                       validator: (String? value) {
                         return (value != "" &&
@@ -112,6 +111,7 @@ Widget users(
                         labelText: 'Password',
                         labelStyle: TextStyle(color: Colors.white),
                         hintText: 'Enter your password',
+                        hintStyle: TextStyle(color: Colors.white),
                         iconColor: Colors.white,
                         focusColor: Color.fromARGB(100, 169, 0, 255),
                         hoverColor: Colors.blue,
@@ -123,9 +123,6 @@ Widget users(
                       ),
                       onChanged: (String? value) {
                         setPass(value);
-                        debugPrint(value);
-                        debugPrint("Password: $password");
-                        debugPrint("Confirm: $confirmPassword");
                       },
                     ),
                     const SizedBox(height: 10),
@@ -137,6 +134,7 @@ Widget users(
                         labelText: 'Repeat password',
                         labelStyle: TextStyle(color: Colors.white),
                         hintText: 'Repeat your password',
+                        hintStyle: TextStyle(color: Colors.white),
                         iconColor: Colors.white,
                         focusColor: Color.fromARGB(100, 169, 0, 255),
                         hoverColor: Colors.blue,
@@ -148,14 +146,8 @@ Widget users(
                       ),
                       onChanged: (String? value) {
                         setConfirmPass(value);
-                        debugPrint(password);
-                        debugPrint(confirmPassword);
-                        debugPrint(value);
                       },
                       validator: (String? value) {
-                        debugPrint(value);
-                        debugPrint("Password: $password");
-                        debugPrint("Confirm: $confirmPassword");
                         return (value != password)
                             ? 'Password does not match'
                             : null;
@@ -236,6 +228,7 @@ Widget users(
                           labelText: 'Password for root user',
                           labelStyle: TextStyle(color: Colors.white),
                           hintText: 'Password for the root user',
+                          hintStyle: TextStyle(color: Colors.white),
                           iconColor: Colors.white,
                           focusColor: Color.fromARGB(100, 169, 0, 255),
                           hoverColor: Colors.blue,
@@ -247,9 +240,6 @@ Widget users(
                         ),
                         onChanged: (String? value) {
                           setRootPass(value);
-                          debugPrint(value);
-                          debugPrint("Root Password: $rootPass");
-                          debugPrint("Root Confirm: $confirmRootPass");
                         },
                       ),
                     ),
@@ -265,6 +255,7 @@ Widget users(
                           labelText: 'Repeat root password',
                           labelStyle: TextStyle(color: Colors.white),
                           hintText: 'Repeat root password',
+                          hintStyle: TextStyle(color: Colors.white),
                           iconColor: Colors.white,
                           focusColor: Color.fromARGB(100, 169, 0, 255),
                           hoverColor: Colors.blue,
@@ -276,14 +267,8 @@ Widget users(
                         ),
                         onChanged: (String? value) {
                           setConfirmRootPass(value);
-                          debugPrint(password);
-                          debugPrint(confirmPassword);
-                          debugPrint(value);
                         },
                         validator: (String? value) {
-                          debugPrint(value);
-                          debugPrint("Root Password: $rootPass");
-                          debugPrint("Root Confirm: $confirmRootPass");
                           return (value != rootPass)
                               ? 'Password does not match'
                               : null;

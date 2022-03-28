@@ -30,4 +30,5 @@ package() {
 
     mkdir -p ${pkgdir}/opt/jade_gui/scripts/
     mv ${srcdir}/scripts/* ${pkgdir}/opt/jade_gui/scripts/.
+    chmod +x ${pkgdir}/opt/jade_gui/scripts/*
 }

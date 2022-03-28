@@ -5,10 +5,11 @@ import 'package:jade_gui/functions/locale.dart';
 import 'package:jade_gui/functions/keyboard.dart';
 import 'package:jade_gui/functions/users.dart';
 import 'package:jade_gui/functions/desktop.dart';
+import 'package:jade_gui/functions/partition.dart';
+import 'package:jade_gui/functions/summary.dart';
 import 'package:jade_gui/classes/keymap.dart';
 import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/desktops/desktops.dart';
-import 'package:jade_gui/functions/partition.dart';
 
 void main() => runApp(
       const MaterialApp(
@@ -36,15 +37,11 @@ class _JadeguiState extends State<Jadegui> {
   String username = "";
   String rootPass = "";
   String confirmRootPass = "";
-  String partitions = "";
-  String selectedPartition = "";
+  String disks = "";
+  String selectedDisk = "";
   String partitionInfo = "";
+  String _diskType = "";
   Desktop currDesktop = desktops[0];
-  void nextslide() {
-    setState(() {
-      _selectedIndex = _selectedIndex + 1;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,22 +141,6 @@ class _JadeguiState extends State<Jadegui> {
               ),
               NavigationRailDestination(
                 icon: Icon(
-                  Icons.miscellaneous_services_outlined,
-                  color: Color.fromARGB(255, 169, 0, 255),
-                ),
-                selectedIcon: Icon(
-                  Icons.miscellaneous_services,
-                  color: Color.fromARGB(255, 169, 0, 255),
-                ),
-                label: Text(
-                  'Misc',
-                  style: TextStyle(
-                      color: Color.fromARGB(100, 255, 255, 255),
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              NavigationRailDestination(
-                icon: Icon(
                   Icons.pie_chart_outline,
                   color: Color.fromARGB(255, 169, 0, 255),
                 ),
@@ -212,7 +193,7 @@ class _JadeguiState extends State<Jadegui> {
           // This is the main content.
           Expanded(
             child: condition(),
-          )
+          ),
         ],
       ),
     );
@@ -220,7 +201,6 @@ class _JadeguiState extends State<Jadegui> {
 
   bool loadnextpage(region) {
     bool next = false;
-    print("here");
     if (region != "") {
       setState(() {
         next = true;
@@ -266,9 +246,6 @@ class _JadeguiState extends State<Jadegui> {
         }, nextpage);
         break;
       case 2:
-        print(
-            "${getSelectedLocPack().region}/${getSelectedLocPack().location}");
-        print(getSelectedLocPack().locale);
         widget = keyboard(
           () {
             setState(() {
@@ -290,7 +267,6 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 3:
-        print("${getChosenLayout()} - ${getChosenVariant()}");
         widget = users(
           (value) {
             setState(() {
@@ -300,7 +276,6 @@ class _JadeguiState extends State<Jadegui> {
           enableSudo,
           (String? value) {
             setState(() {
-              debugPrint(value);
               if (value != null) {
                 password = value;
               }
@@ -327,7 +302,6 @@ class _JadeguiState extends State<Jadegui> {
           enableRoot,
           (String? value) {
             setState(() {
-              debugPrint(value);
               if (value != null) {
                 rootPass = value;
               }
@@ -348,10 +322,6 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 4:
-        print("Username: $username");
-        print("Password: $password");
-        print("Confirm Password: $confirmPassword");
-        print("Enable Root: $enableSudo");
         widget = desktopView(
           currDesktop,
           (selectedDesktop) {
@@ -367,23 +337,13 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 5:
-        widget = const Text(
-          'Showing Misc screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
-        );
-        break;
-      case 6:
-        widget = partitioning(partitions, (value) {
+        widget = partitioning(disks, (value) {
           setState(() {
-            partitions = value;
+            disks = value;
           });
         }, (value) {
           setState(() {
-            selectedPartition = value;
+            selectedDisk = value;
           });
         }, () {
           setState(() {
@@ -393,19 +353,33 @@ class _JadeguiState extends State<Jadegui> {
           setState(() {
             partitionInfo = value;
           });
-        }, selectedPartition, partitionInfo);
+        }, selectedDisk, partitionInfo);
         break;
-      case 7:
-        widget = const Text(
-          'Showing Summary screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
+      case 6:
+        widget = summary(
+          getChosenLayout(),
+          getChosenVariant(),
+          enableSudo,
+          enableRoot,
+          username,
+          selectedDisk,
+          partitionInfo,
+          currDesktop,
+          getSelectedLocPack(),
+          () {
+            setState(() {
+              _selectedIndex = _selectedIndex + 1;
+            });
+          },
+          (value) {
+            setState(() {
+              _diskType = value;
+            });
+          },
+          _diskType,
         );
         break;
-      case 8:
+      case 7:
         widget = const Text(
           'Showing Installing screen',
           style: TextStyle(

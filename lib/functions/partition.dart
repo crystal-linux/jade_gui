@@ -21,39 +21,43 @@ Future<void> getPartitions(setState) async {
 }
 
 Widget partitionTemplate(partition, setPartition, setPartitionInfo) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      Container(
-        padding: const EdgeInsets.all(2),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: Colors.black45),
-          color: const Color.fromARGB(255, 30, 30, 30),
-        ),
-        child: ElevatedButton(
-          onPressed: () {
-            setPartition(partition);
-            getPartitionInfo(partition, setPartitionInfo);
-          },
-          style: TextButton.styleFrom(
-            primary: Colors.white,
-            backgroundColor: const Color.fromARGB(0, 169, 0, 255),
-            shadowColor: const Color.fromARGB(0, 169, 0, 255),
-            padding: const EdgeInsets.all(10),
+  if (partition != "") {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black45),
+            color: const Color.fromARGB(255, 30, 30, 30),
           ),
-          child: Text(
-            partition,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
+          child: ElevatedButton(
+            onPressed: () {
+              setPartition(partition);
+              getPartitionInfo(partition, setPartitionInfo);
+            },
+            style: TextButton.styleFrom(
+              primary: Colors.white,
+              backgroundColor: const Color.fromARGB(0, 169, 0, 255),
+              shadowColor: const Color.fromARGB(0, 169, 0, 255),
+              padding: const EdgeInsets.all(10),
+            ),
+            child: Text(
+              partition,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
-      ),
-      const SizedBox(height: 10),
-    ],
-  );
+        const SizedBox(height: 10),
+      ],
+    );
+  } else {
+    return SizedBox(height: 0);
+  }
 }
 
 Widget partitioning(partitions, setState, setPartition, next, setPartitionInfo,
