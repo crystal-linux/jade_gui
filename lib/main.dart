@@ -60,6 +60,7 @@ class _JadeguiState extends State<Jadegui> {
   String partitionInfo = "";
   String _diskType = "";
   String hostname = "";
+  String output = "";
   Desktop currDesktop = desktops[0];
   Keymap chosenLayout = Keymap();
 
@@ -470,12 +471,18 @@ class _JadeguiState extends State<Jadegui> {
           enableSudo,
           rootPass,
           currDesktop,
-          disks,
+          selectedDisk,
           isEfi,
-          "grub-efi",
+          isEfi ? "grub-efi" : "grub-legacy",
           hostname,
           ipv6,
           enableTimeshift,
+          (value) {
+            setState(() {
+              output = output + "\n" + value;
+            });
+          },
+          output,
         );
         break;
       default:

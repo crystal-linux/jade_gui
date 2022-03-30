@@ -3,6 +3,12 @@ import 'package:jade_gui/classes/installPrefs.dart';
 import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/classes/location.dart';
 import 'dart:convert';
+import 'dart:io';
+
+test(setOutput) async {
+  var process = await Process.start('./scripts/jadeemu.sh', []);
+  process.stdout.transform(utf8.decoder).forEach(setOutput);
+}
 
 Widget install(
   Location locale,
@@ -19,7 +25,10 @@ Widget install(
   String hostname,
   bool ipv6,
   bool enableTimeshift,
+  setOutput,
+  output,
 ) {
+  test(setOutput);
   installPrefs prefs = installPrefs(
     locale: locale,
     keymap: keymap,
@@ -49,6 +58,12 @@ Widget install(
       ),
       const SizedBox(
         height: 20,
+      ),
+      SingleChildScrollView(
+        child: Text(output,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 169, 0, 255),
+            )),
       ),
     ],
   );
