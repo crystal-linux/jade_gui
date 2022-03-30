@@ -7,9 +7,24 @@ import 'package:jade_gui/functions/users.dart';
 import 'package:jade_gui/functions/desktop.dart';
 import 'package:jade_gui/functions/partition.dart';
 import 'package:jade_gui/functions/summary.dart';
+import 'package:jade_gui/functions/install.dart';
 import 'package:jade_gui/classes/keymap.dart';
 import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/desktops/desktops.dart';
+
+import 'dart:io';
+
+Future<void> checkIsEfi(setState) async {
+  final String scriptOutput =
+      await Process.run("/opt/jade_gui/scripts/checkEfi.sh", [])
+          .then((ProcessResult result) {
+    return result.stdout;
+  });
+  bool isEfi = scriptOutput == "UEFI" ? false : true;
+  debugPrint(isEfi.toString());
+  debugPrint(scriptOutput);
+  setState(isEfi);
+}
 
 void main() => runApp(
       const MaterialApp(
@@ -29,9 +44,9 @@ class _JadeguiState extends State<Jadegui> {
   int _selectedIndex = 0;
   bool nextpage = false;
   bool choseLayout = false;
-  Keymap chosenLayout = Keymap();
   bool enableSudo = false;
   bool enableRoot = false;
+  bool isEfi = false;
   String password = "";
   String confirmPassword = "";
   String username = "";
@@ -42,6 +57,8 @@ class _JadeguiState extends State<Jadegui> {
   String partitionInfo = "";
   String _diskType = "";
   Desktop currDesktop = desktops[0];
+
+  Keymap chosenLayout = Keymap();
 
   @override
   Widget build(BuildContext context) {
@@ -337,25 +354,38 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 5:
-        widget = partitioning(disks, (value) {
-          setState(() {
-            disks = value;
-          });
-        }, (value) {
-          setState(() {
-            selectedDisk = value;
-          });
-        }, () {
-          setState(() {
-            _selectedIndex = _selectedIndex + 1;
-          });
-        }, (value) {
-          setState(() {
-            partitionInfo = value;
-          });
-        }, selectedDisk, partitionInfo);
+        widget = partitioning(
+          disks,
+          (value) {
+            setState(() {
+              disks = value;
+            });
+          },
+          (value) {
+            setState(() {
+              selectedDisk = value;
+            });
+          },
+          () {
+            setState(() {
+              _selectedIndex = _selectedIndex + 1;
+            });
+          },
+          (value) {
+            setState(() {
+              partitionInfo = value;
+            });
+          },
+          selectedDisk,
+          partitionInfo,
+        );
         break;
       case 6:
+        checkIsEfi((value) {
+          setState(() {
+            isEfi = value;
+          });
+        });
         widget = summary(
           getChosenLayout(),
           getChosenVariant(),
@@ -377,16 +407,19 @@ class _JadeguiState extends State<Jadegui> {
             });
           },
           _diskType,
+          isEfi,
         );
         break;
       case 7:
-        widget = const Text(
-          'Showing Installing screen',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255),
-          ),
+        widget = install(
+          getChosenLayout(),
+          getChosenVariant(),
+          enableSudo,
+          enableRoot,
+          username,
+          selectedDisk,
+          currDesktop,
+          getSelectedLocPack(),
         );
         break;
       default:

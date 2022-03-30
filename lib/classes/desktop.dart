@@ -1,10 +1,10 @@
 class Desktop {
-  String name = "";
-  String displayManager = "";
-  List<String> packages = [];
-  String imageurl = "";
+  final String name;
+  final String displayManager;
+  final List<String> packages;
+  final String imageurl;
 
-  Desktop({
+  const Desktop({
     this.name = "",
     this.displayManager = "",
     this.packages = const [""],

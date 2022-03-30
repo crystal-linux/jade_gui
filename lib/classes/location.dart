@@ -1,10 +1,10 @@
 class Location {
-  String region = "";
-  String location = "";
-  String locale = "";
-  String image = "";
+  final String region;
+  final String location;
+  final String locale;
+  final String image;
 
-  Location({
+  const Location({
     this.region = "",
     this.location = "",
     this.locale = "",

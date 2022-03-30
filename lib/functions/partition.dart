@@ -56,7 +56,7 @@ Widget partitionTemplate(partition, setPartition, setPartitionInfo) {
       ],
     );
   } else {
-    return SizedBox(height: 0);
+    return const SizedBox(height: 0);
   }
 }
 
@@ -155,7 +155,8 @@ Widget partitioning(partitions, setState, setPartition, next, setPartitionInfo,
                             ),
                           ),
                           const SizedBox(height: 5),
-                          Image(image: AssetImage('assets/jade_logo.png')),
+                          const Image(
+                              image: AssetImage('assets/jade_logo.png')),
                         ],
                       ),
                     ),

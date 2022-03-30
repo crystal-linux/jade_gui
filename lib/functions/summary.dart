@@ -50,6 +50,7 @@ Widget summary(
   nextPage,
   setDiskType,
   String rotational,
+  bool isEfi,
 ) {
   getDiskType(setDiskType, disk);
   return Column(
@@ -242,6 +243,8 @@ Widget summary(
                   infoTextTemplate("Disk Size", diskSize),
                   const SizedBox(height: 10),
                   infoTextTemplate("Disk Type", diskType(disk, rotational)),
+                  const SizedBox(height: 10),
+                  infoTextTemplate("Boot Type", isEfi ? "UEFI" : "Legacy")
                 ],
               ),
             ),
