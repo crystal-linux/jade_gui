@@ -38,20 +38,23 @@ String diskType(String disk, String diskType) {
 }
 
 Widget summary(
-  String keymap,
-  String layout,
-  bool enableSudo,
-  bool enableRoot,
-  String username,
-  String disk,
-  String diskSize,
-  Desktop currDesktop,
-  Location locale,
-  nextPage,
-  setDiskType,
-  String rotational,
-  bool isEfi,
-) {
+    Location locale,
+    String keymap,
+    String layout,
+    String username,
+    bool enableSudo,
+    bool enableRoot,
+    Desktop desktop,
+    String disk,
+    bool isEfi,
+    String bootloader,
+    String hostname,
+    bool ipv6,
+    bool enableTimeshift,
+    String rotational,
+    String diskSize,
+    setDiskType,
+    nextPage) {
   getDiskType(setDiskType, disk);
   return Column(
     children: [
@@ -201,7 +204,7 @@ Widget summary(
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    currDesktop.name,
+                    desktop.name,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -211,7 +214,7 @@ Widget summary(
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            //const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -245,6 +248,42 @@ Widget summary(
                   infoTextTemplate("Disk Type", diskType(disk, rotational)),
                   const SizedBox(height: 10),
                   infoTextTemplate("Boot Type", isEfi ? "UEFI" : "Legacy")
+                ],
+              ),
+            ),
+            //const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black),
+                color: const Color.fromARGB(255, 30, 30, 30),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 2,
+                    offset: Offset(-2, 3),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Misc:",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 169, 0, 255),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  infoTextTemplate("Hostname", hostname),
+                  const SizedBox(height: 10),
+                  infoTextTemplate("Enable IPv6", ipv6.toString()),
+                  const SizedBox(height: 10),
+                  infoTextTemplate(
+                      "Enable timeshift", enableTimeshift.toString()),
                 ],
               ),
             ),

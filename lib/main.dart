@@ -433,41 +433,50 @@ class _JadeguiState extends State<Jadegui> {
           });
         });
         widget = summary(
+          getSelectedLocPack(),
           getChosenLayout(),
           getChosenVariant(),
+          username,
           enableSudo,
           enableRoot,
-          username,
-          selectedDisk,
-          partitionInfo,
           currDesktop,
-          getSelectedLocPack(),
-          () {
-            setState(() {
-              _selectedIndex = _selectedIndex + 1;
-            });
-          },
+          selectedDisk,
+          isEfi,
+          "grub-efi",
+          hostname,
+          ipv6,
+          enableTimeshift,
+          _diskType,
+          partitionInfo,
           (value) {
             setState(() {
               _diskType = value;
             });
           },
-          _diskType,
-          isEfi,
+          () {
+            setState(() {
+              _selectedIndex = _selectedIndex + 1;
+            });
+          },
         );
         break;
       case 8:
-        /*widget = install(
+        widget = install(
+          getSelectedLocPack(),
           getChosenLayout(),
           getChosenVariant(),
-          enableSudo,
-          enableRoot,
           username,
-          selectedDisk,
+          password,
+          enableSudo,
+          rootPass,
           currDesktop,
-          getSelectedLocPack(),
-        );*/
-        widget = Text("Install");
+          disks,
+          isEfi,
+          "grub-efi",
+          hostname,
+          ipv6,
+          enableTimeshift,
+        );
         break;
       default:
         widget = const Text(
