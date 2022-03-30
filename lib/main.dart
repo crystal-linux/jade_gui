@@ -7,6 +7,7 @@ import 'package:jade_gui/functions/users.dart';
 import 'package:jade_gui/functions/desktop.dart';
 import 'package:jade_gui/functions/partition.dart';
 import 'package:jade_gui/functions/summary.dart';
+import 'package:jade_gui/functions/misc.dart';
 import 'package:jade_gui/functions/install.dart';
 import 'package:jade_gui/classes/keymap.dart';
 import 'package:jade_gui/classes/desktop.dart';
@@ -47,6 +48,8 @@ class _JadeguiState extends State<Jadegui> {
   bool enableSudo = false;
   bool enableRoot = false;
   bool isEfi = false;
+  bool ipv6 = false;
+  bool enableTimeshift = true;
   String password = "";
   String confirmPassword = "";
   String username = "";
@@ -56,8 +59,8 @@ class _JadeguiState extends State<Jadegui> {
   String selectedDisk = "";
   String partitionInfo = "";
   String _diskType = "";
+  String hostname = "";
   Desktop currDesktop = desktops[0];
-
   Keymap chosenLayout = Keymap();
 
   @override
@@ -151,6 +154,22 @@ class _JadeguiState extends State<Jadegui> {
                 ),
                 label: Text(
                   'Desktop',
+                  style: TextStyle(
+                      color: Color.fromARGB(100, 255, 255, 255),
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.miscellaneous_services_outlined,
+                  color: Color.fromARGB(255, 169, 0, 255),
+                ),
+                selectedIcon: Icon(
+                  Icons.miscellaneous_services,
+                  color: Color.fromARGB(255, 169, 0, 255),
+                ),
+                label: Text(
+                  'Misc',
                   style: TextStyle(
                       color: Color.fromARGB(100, 255, 255, 255),
                       fontWeight: FontWeight.bold),
@@ -354,6 +373,33 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 5:
+        widget = misc(
+          (value) {
+            setState(() {
+              ipv6 = value;
+            });
+          },
+          (value) {
+            setState(() {
+              hostname = value;
+            });
+          },
+          (value) {
+            setState(() {
+              enableTimeshift = value;
+            });
+          },
+          ipv6,
+          hostname,
+          enableTimeshift,
+          () {
+            setState(() {
+              _selectedIndex = _selectedIndex + 1;
+            });
+          },
+        );
+        break;
+      case 6:
         widget = partitioning(
           disks,
           (value) {
@@ -380,7 +426,7 @@ class _JadeguiState extends State<Jadegui> {
           partitionInfo,
         );
         break;
-      case 6:
+      case 7:
         checkIsEfi((value) {
           setState(() {
             isEfi = value;
@@ -410,8 +456,8 @@ class _JadeguiState extends State<Jadegui> {
           isEfi,
         );
         break;
-      case 7:
-        widget = install(
+      case 8:
+        /*widget = install(
           getChosenLayout(),
           getChosenVariant(),
           enableSudo,
@@ -420,7 +466,8 @@ class _JadeguiState extends State<Jadegui> {
           selectedDisk,
           currDesktop,
           getSelectedLocPack(),
-        );
+        );*/
+        widget = Text("Install");
         break;
       default:
         widget = const Text(
