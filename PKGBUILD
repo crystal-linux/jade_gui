@@ -31,4 +31,7 @@ package() {
     mkdir -p ${pkgdir}/opt/jade_gui/scripts/
     mv ${srcdir}/gui/scripts/* ${pkgdir}/opt/jade_gui/scripts/.
     chmod +x ${pkgdir}/opt/jade_gui/scripts/*
+
+    mkdir -p ${pkgdir}/usr/share/applications/
+    cp ${srcdir}/gui/jade_gui.desktop ${pkgdir}/usr/share/applications/jade_gui.desktop
 }
