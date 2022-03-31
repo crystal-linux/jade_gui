@@ -66,7 +66,7 @@ class installPrefs {
         "rootpass": rootPass,
         "desktop": desktop.name,
         "timeshift": enableTimeshift,
-        "extra_package": [
+        "extra_packages": [
           "firefox",
         ]
       };

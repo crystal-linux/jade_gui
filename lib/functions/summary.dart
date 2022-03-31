@@ -32,6 +32,8 @@ String diskType(String disk, String diskType) {
     return 'NVME SSD';
   } else if (disk.contains("nvme") && diskType.contains("1")) {
     return 'NVME HDD';
+  } else if (disk.contains("vd")) {
+    return 'Virtual Disk';
   } else {
     return 'Unknown, report at https://git.tar.black/crystal/jade-gui';
   }
