@@ -118,6 +118,7 @@ Widget users(
                         prefixIconColor: Colors.white,
                         suffixIconColor: Colors.white,
                       ),
+                      obscureText: true,
                       style: const TextStyle(
                         color: Colors.white,
                       ),
@@ -141,6 +142,8 @@ Widget users(
                         prefixIconColor: Colors.white,
                         suffixIconColor: Colors.white,
                       ),
+                      obscureText: true,
+
                       style: const TextStyle(
                         color: Colors.white,
                       ),
@@ -238,6 +241,8 @@ Widget users(
                         style: const TextStyle(
                           color: Colors.white,
                         ),
+                        obscureText: true,
+
                         onChanged: (String? value) {
                           setRootPass(value);
                         },
@@ -265,6 +270,8 @@ Widget users(
                         style: const TextStyle(
                           color: Colors.white,
                         ),
+                        obscureText: true,
+
                         onChanged: (String? value) {
                           setConfirmRootPass(value);
                         },
