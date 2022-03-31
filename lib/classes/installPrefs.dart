@@ -14,6 +14,7 @@ class installPrefs {
   final String disk;
   final bool isEfi;
   final String bootloader;
+  final String bootloaderLocation;
   final String hostname;
   final bool ipv6;
   final bool enableTimeshift;
@@ -30,6 +31,7 @@ class installPrefs {
     this.disk = "",
     this.isEfi = false,
     this.bootloader = "",
+    this.bootloaderLocation = "",
     this.hostname = "",
     this.ipv6 = false,
     this.enableTimeshift = false,
@@ -43,7 +45,7 @@ class installPrefs {
         },
         "bootloader": {
           "type": bootloader,
-          "location": "/boot/efi",
+          "location": bootloaderLocation,
         },
         "locale": {
           "locale": [

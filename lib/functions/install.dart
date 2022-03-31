@@ -48,6 +48,7 @@ Widget install(
     disk: disk.replaceAll("/dev/", ""),
     isEfi: isEfi,
     bootloader: bootloader,
+    bootloaderLocation: isEfi ? "/boot/efi" : disk,
     hostname: hostname,
     ipv6: ipv6,
     enableTimeshift: enableTimeshift,
