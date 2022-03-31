@@ -45,7 +45,7 @@ Widget install(
     enableSudo: enableSudo,
     rootPass: rootPass,
     desktop: desktop,
-    disk: disk,
+    disk: disk.replaceAll("/dev/", ""),
     isEfi: isEfi,
     bootloader: bootloader,
     hostname: hostname,
