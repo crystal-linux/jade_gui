@@ -50,6 +50,7 @@ class _JadeguiState extends State<Jadegui> {
   bool isEfi = false;
   bool ipv6 = false;
   bool enableTimeshift = true;
+  bool running = false;
   String password = "";
   String confirmPassword = "";
   String username = "";
@@ -463,27 +464,32 @@ class _JadeguiState extends State<Jadegui> {
         break;
       case 8:
         widget = install(
-          getSelectedLocPack(),
-          getChosenLayout(),
-          getChosenVariant(),
-          username,
-          password,
-          enableSudo,
-          rootPass,
-          currDesktop,
-          selectedDisk,
-          isEfi,
-          isEfi ? "grub-efi" : "grub-legacy",
-          hostname,
-          ipv6,
-          enableTimeshift,
-          (value) {
-            setState(() {
-              output = output + "\n" + value;
+            getSelectedLocPack(),
+            getChosenLayout(),
+            getChosenVariant(),
+            username,
+            password,
+            enableSudo,
+            rootPass,
+            currDesktop,
+            selectedDisk,
+            isEfi,
+            isEfi ? "grub-efi" : "grub-legacy",
+            hostname,
+            ipv6,
+            enableTimeshift,
+            (value) {
+              setState(() {
+                output = output + "\n" + value;
+              });
+            },
+            output,
+            running,
+            (value) {
+              setState(() {
+                running = value;
+              });
             });
-          },
-          output,
-        );
         break;
       default:
         widget = const Text(
