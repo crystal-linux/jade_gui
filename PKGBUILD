@@ -34,4 +34,7 @@ package() {
 
     mkdir -p ${pkgdir}/usr/share/applications/
     cp ${srcdir}/gui/Jade.desktop ${pkgdir}/usr/share/applications/Jade.desktop
+
+    mkdir -p ${pkgdir}/usr/share/icons/
+    cp ${srcdir}/gui/assets/jade_logo.png /usr/share/icons/jade-logo
 }
