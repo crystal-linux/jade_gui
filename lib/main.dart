@@ -21,7 +21,7 @@ Future<void> checkIsEfi(setState) async {
           .then((ProcessResult result) {
     return result.stdout;
   });
-  bool isEfi = scriptOutput == "UEFI" ? true : false;
+  bool isEfi = scriptOutput == "UEFI\n" ? true : false;
   debugPrint(isEfi.toString());
   debugPrint(scriptOutput);
   setState(isEfi);
