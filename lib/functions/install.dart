@@ -58,9 +58,11 @@ Widget install(
   test(setOutput, running, setRunning, jsonPrefs);
   return Column(
     children: [
-      const Text(
-        'Installing...',
-        style: TextStyle(
+      Text(
+        output.toString().contains("Installation finished! You may reboot now!")
+            ? "Installed!"
+            : "Installing...",
+        style: const TextStyle(
             fontSize: 50,
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 169, 0, 255)),
@@ -101,16 +103,20 @@ Widget install(
       ),
       const SizedBox(height: 20),
       Text(
-        "This may take a while...",
-        style: TextStyle(
+        output.toString().contains("Installation finished! You may reboot now!")
+            ? "Installation finished! You may reboot now!"
+            : "This may take a while...",
+        style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Color.fromARGB(255, 169, 0, 255),
         ),
       ),
       Text(
-        "Please do not close this window until the installation is finished.",
-        style: TextStyle(
+        output.toString().contains("Installation finished! You may reboot now!")
+            ? "You can now close this window and reboot your computer."
+            : "Please do not close this window until the installation is finished.",
+        style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Color.fromARGB(255, 169, 0, 255),

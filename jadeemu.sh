@@ -7,3 +7,4 @@ echo "[LOG]"
 sleep 0.1
 echo "[ERROR]"
 sleep 1
+echo "Installation finished! You may reboot now!"
