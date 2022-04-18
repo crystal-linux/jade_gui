@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jade_gui/desktops/desktops.dart';
 
-Widget desktopTemplate(desktop, setDesktop) {
+Widget desktopTemplate(desktop, setDesktop, currDesktop) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -19,8 +19,12 @@ Widget desktopTemplate(desktop, setDesktop) {
           },
           style: TextButton.styleFrom(
             primary: Colors.white,
-            backgroundColor: const Color.fromARGB(0, 169, 0, 255),
-            shadowColor: const Color.fromARGB(0, 169, 0, 255),
+            backgroundColor: currDesktop.name == desktop.name
+                ? Color.fromARGB(100, 170, 40, 255)
+                : Color.fromARGB(0, 170, 0, 255),
+            shadowColor: currDesktop.name == desktop.name
+                ? Color.fromARGB(100, 170, 0, 255)
+                : Color.fromARGB(0, 170, 0, 255),
             padding: const EdgeInsets.all(10),
           ),
           child: Text(
@@ -72,8 +76,8 @@ Widget desktopView(currDesktop, setDesktop, next) {
                   primary: false,
                   child: Column(
                     children: desktops
-                        .map<Widget>(
-                            (desktop) => desktopTemplate(desktop, setDesktop))
+                        .map<Widget>((desktop) =>
+                            desktopTemplate(desktop, setDesktop, currDesktop))
                         .toList(),
                   ),
                 ),
