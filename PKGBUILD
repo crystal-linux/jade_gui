@@ -23,7 +23,7 @@ build() {
 package() {
     mkdir -p ${pkgdir}/opt/jade_gui/
     install -dm755 ${pkgdir}/opt
-    mv ${srcdir}/gui/build/linux/x64/release/bundle ${pkgdir}/opt/jade_gui
+    mv ${srcdir}/gui/build/linux/x64/release/bundle ${pkgdir}/opt/jade_gui/.
 
     install -dm755 ${pkgdir}/usr/bin
     ln -s ${pkgdir}/opt/jade_gui/bundle/jade_gui ${pkgdir}/usr/bin/jade_gui
