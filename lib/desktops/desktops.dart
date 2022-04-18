@@ -1,8 +1,8 @@
 import 'package:jade_gui/classes/desktop.dart';
 
-List<Desktop> desktops = [
+List<Desktop> desktops = const [
   Desktop(
-    name: "onyx",
+    name: "Onyx",
     displayManager: "lightdm",
     packages: [
       "onyx",
