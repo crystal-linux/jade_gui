@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc="Flutter GUI for installing crystal"
 arch=('any')
 url="https://git.tar.black/crystal/programs/jade_gui"
-depends=('gtk3' 'jade')
+depends=('gtk3' 'jade' 'openssl')
 makedepends=('clang' 'ninja' 'cmake' 'git' 'unzip' 'flutter' 'flutter-group-pacman-hook')
 
 source=("gui::git+${url}.git")

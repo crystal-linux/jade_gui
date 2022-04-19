@@ -27,12 +27,24 @@ Future<void> checkIsEfi(setState) async {
   setState(isEfi);
 }
 
+void writeToLog() {}
+
 void main() => runApp(
       const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Jadegui(),
       ),
     );
+
+Future<void> setPassword(clearPass, setState) async {
+  final String password =
+      await Process.run("openssl", ["passwd", "-1", clearPass])
+          .then((ProcessResult result) {
+    return result.stdout;
+  });
+  debugPrint(password);
+  setState(password);
+}
 
 class Jadegui extends StatefulWidget {
   const Jadegui({Key? key}) : super(key: key);
@@ -51,6 +63,7 @@ class _JadeguiState extends State<Jadegui> {
   bool ipv6 = false;
   bool enableTimeshift = true;
   bool running = false;
+  String clearPass = "";
   String password = "";
   String confirmPassword = "";
   String username = "";
@@ -315,7 +328,12 @@ class _JadeguiState extends State<Jadegui> {
           (String? value) {
             setState(() {
               if (value != null) {
-                password = value;
+                setPassword(value, (String encPass) {
+                  setState(() {
+                    password = encPass;
+                    clearPass = value;
+                  });
+                });
               }
             });
           },
@@ -324,7 +342,7 @@ class _JadeguiState extends State<Jadegui> {
               confirmPassword = value;
             });
           },
-          password,
+          clearPass,
           confirmPassword,
           (value) {
             setState(() {
@@ -360,6 +378,7 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 4:
+        debugPrint(password);
         widget = desktopView(
           currDesktop,
           (selectedDesktop) {

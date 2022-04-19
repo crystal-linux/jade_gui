@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 final _formKey = GlobalKey<FormState>();
 RegExp userRegex = RegExp(r'^[a-z_]([a-z0-9_-]{0,31}|[a-z0-9_-]{0,30}\$)$');
@@ -7,7 +8,7 @@ Widget users(
     enableSudo,
     setPass,
     setConfirmPass,
-    password,
+    clearPass,
     confirmPassword,
     setUsername,
     username,
@@ -151,7 +152,7 @@ Widget users(
                         setConfirmPass(value);
                       },
                       validator: (String? value) {
-                        return (value != password)
+                        return (value != clearPass)
                             ? 'Password does not match'
                             : null;
                       },
