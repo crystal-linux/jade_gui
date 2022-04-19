@@ -20,11 +20,11 @@ Widget desktopTemplate(desktop, setDesktop, currDesktop) {
           style: TextButton.styleFrom(
             primary: Colors.white,
             backgroundColor: currDesktop.name == desktop.name
-                ? Color.fromARGB(100, 170, 40, 255)
-                : Color.fromARGB(0, 170, 0, 255),
+                ? const Color.fromARGB(100, 170, 40, 255)
+                : const Color.fromARGB(0, 170, 0, 255),
             shadowColor: currDesktop.name == desktop.name
-                ? Color.fromARGB(100, 170, 0, 255)
-                : Color.fromARGB(0, 170, 0, 255),
+                ? const Color.fromARGB(100, 170, 0, 255)
+                : const Color.fromARGB(0, 170, 0, 255),
             padding: const EdgeInsets.all(10),
           ),
           child: Text(

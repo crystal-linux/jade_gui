@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jade_gui/Locales/locales.dart';
+import 'package:jade_gui/locales/locales.dart';
 import 'package:jade_gui/classes/location.dart';
 
-Location choosenLocPack = Location();
+Location choosenLocPack = const Location();
 Widget locationTemplate(location, nextSlide) {
   return Container(
     padding: const EdgeInsets.all(8),

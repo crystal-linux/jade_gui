@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jade_gui/classes/installPrefs.dart';
+import 'package:jade_gui/classes/install_prefs.dart';
 import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/classes/location.dart';
 import 'dart:convert';
@@ -8,7 +8,7 @@ import 'dart:io';
 test(setOutput, running, setRunning, config) async {
   if (!running) {
     const filename = "/tmp/jade.json";
-    var file = await File(filename).writeAsString(config);
+    await File(filename).writeAsString(config);
     var process =
         await Process.start('pkexec', ['jade', 'config', '/tmp/jade.json']);
     process.stdout.transform(utf8.decoder).forEach(setOutput);
@@ -36,7 +36,7 @@ Widget install(
   running,
   setRunning,
 ) {
-  installPrefs prefs = installPrefs(
+  InstallPrefs prefs = InstallPrefs(
     locale: locale,
     keymap: keymap,
     layout: layout,
@@ -78,7 +78,7 @@ Widget install(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.black),
-          color: Color.fromARGB(255, 15, 15, 15),
+          color: const Color.fromARGB(255, 15, 15, 15),
           //color: Colors.black,
           /*boxShadow: const [
             BoxShadow(
