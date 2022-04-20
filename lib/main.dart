@@ -36,8 +36,8 @@ Future<void> checkIsEfi(
 }
 
 Future<void> writeToLog(String message) async {
-  await File('/var/log/jade_log.txt').readAsString().then((String contents) {
-    File("/var/log/jade_log.txt").writeAsString(contents + "\n" + message);
+  await File('jade_log.txt').readAsString().then((String contents) {
+    File("jade_log.txt").writeAsString(contents + "\n" + message);
   });
 }
 
