@@ -15,19 +15,31 @@ import 'package:jade_gui/desktops/desktops.dart';
 
 import 'dart:io';
 
-Future<void> checkIsEfi(setState) async {
-  final String scriptOutput =
-      await Process.run("/opt/jade_gui/scripts/checkEfi.sh", [])
-          .then((ProcessResult result) {
-    return result.stdout;
-  });
-  bool isEfi = scriptOutput == "UEFI\n" ? true : false;
-  debugPrint(isEfi.toString());
-  debugPrint(scriptOutput);
-  setState(isEfi);
+Future<void> checkIsEfi(
+  setState,
+  runningEfi,
+  setRunningEfi,
+) async {
+  if (!runningEfi) {
+    final String scriptOutput =
+        await Process.run("/opt/jade_gui/scripts/checkEfi.sh", [])
+            .then((ProcessResult result) {
+      return result.stdout;
+    });
+    bool isEfi = scriptOutput == "UEFI\n" ? true : false;
+    debugPrint(isEfi.toString());
+    debugPrint(scriptOutput);
+
+    setState(isEfi);
+    setRunningEfi();
+  }
 }
 
-void writeToLog() {}
+Future<void> writeToLog(String message) async {
+  await File('/var/log/jade_log.txt').readAsString().then((String contents) {
+    File("/var/log/jade_log.txt").writeAsString(contents + "\n" + message);
+  });
+}
 
 void main() => runApp(
       const MaterialApp(
@@ -54,6 +66,7 @@ class Jadegui extends StatefulWidget {
 }
 
 class _JadeguiState extends State<Jadegui> {
+  var file = File("jade_log.txt").writeAsString("");
   int _selectedIndex = 0;
   bool nextpage = false;
   bool choseLayout = false;
@@ -63,6 +76,10 @@ class _JadeguiState extends State<Jadegui> {
   bool ipv6 = false;
   bool enableTimeshift = true;
   bool running = false;
+  bool runningInfo = false;
+  bool runningPart = false;
+  bool runningSum = false;
+  bool runningEfi = false;
   String clearPass = "";
   String password = "";
   String confirmPassword = "";
@@ -276,25 +293,35 @@ class _JadeguiState extends State<Jadegui> {
         });
         break;
       case 1:
-        widget = locale(() {
-          setState(() {
-            _selectedIndex = _selectedIndex + 1;
-          });
-        }, () {
-          setState(() {
-            nextpage = true;
-          });
-        }, (region) {
-          if (region != "") {
+        widget = locale(
+          () {
             setState(() {
-              nextpage = false;
+              _selectedIndex = _selectedIndex + 1;
             });
-          } else {
+          },
+          () {
             setState(() {
               nextpage = true;
             });
-          }
-        }, nextpage);
+          },
+          (region) {
+            if (region != "") {
+              setState(() {
+                nextpage = false;
+              });
+            } else {
+              setState(() {
+                nextpage = true;
+              });
+            }
+          },
+          nextpage,
+          (value) {
+            writeToLog(value);
+          },
+        );
+        //writeToLog("locale: $region");
+
         break;
       case 2:
         widget = keyboard(
@@ -315,6 +342,9 @@ class _JadeguiState extends State<Jadegui> {
             });
           },
           chosenLayout,
+          (value) {
+            writeToLog(value);
+          },
         );
         break;
       case 3:
@@ -322,6 +352,7 @@ class _JadeguiState extends State<Jadegui> {
           (value) {
             setState(() {
               enableSudo = value;
+              writeToLog("Enable sudo: $enableSudo");
             });
           },
           enableSudo,
@@ -347,12 +378,14 @@ class _JadeguiState extends State<Jadegui> {
           (value) {
             setState(() {
               username = value;
+              writeToLog("Username: $username");
             });
           },
           username,
           (value) {
             setState(() {
               enableRoot = value;
+              writeToLog("Enable root: $enableRoot");
             });
           },
           enableRoot,
@@ -376,6 +409,7 @@ class _JadeguiState extends State<Jadegui> {
             });
           },
         );
+
         break;
       case 4:
         debugPrint(password);
@@ -384,6 +418,7 @@ class _JadeguiState extends State<Jadegui> {
           (selectedDesktop) {
             setState(() {
               currDesktop = selectedDesktop;
+              writeToLog("Desktop: ${selectedDesktop.name}");
             });
           },
           () {
@@ -398,16 +433,19 @@ class _JadeguiState extends State<Jadegui> {
           (value) {
             setState(() {
               ipv6 = value;
+              writeToLog("IPv6: $ipv6");
             });
           },
           (value) {
             setState(() {
               hostname = value;
+              writeToLog("Hostname: $hostname");
             });
           },
           (value) {
             setState(() {
               enableTimeshift = value;
+              writeToLog("Enable timeshift: $enableTimeshift");
             });
           },
           ipv6,
@@ -426,11 +464,13 @@ class _JadeguiState extends State<Jadegui> {
           (value) {
             setState(() {
               disks = value;
+              writeToLog("Disks: $disks");
             });
           },
           (value) {
             setState(() {
               selectedDisk = value;
+              writeToLog("Selected disk: $selectedDisk");
             });
           },
           () {
@@ -441,18 +481,39 @@ class _JadeguiState extends State<Jadegui> {
           (value) {
             setState(() {
               partitionInfo = value;
+              writeToLog("Partition info: $partitionInfo");
             });
           },
           selectedDisk,
           partitionInfo,
+          runningPart,
+          () {
+            setState(() {
+              runningPart = true;
+            });
+          },
+          runningInfo,
+          () {
+            setState(() {
+              runningInfo = true;
+            });
+          },
         );
         break;
       case 7:
-        checkIsEfi((value) {
-          setState(() {
-            isEfi = value;
-          });
-        });
+        checkIsEfi(
+            (value) {
+              setState(() {
+                isEfi = value;
+              });
+              writeToLog("Is efi: $isEfi");
+            },
+            runningEfi,
+            () {
+              setState(() {
+                runningEfi = true;
+              });
+            });
         widget = summary(
           getSelectedLocPack(),
           getChosenLayout(),
@@ -472,6 +533,7 @@ class _JadeguiState extends State<Jadegui> {
           (value) {
             setState(() {
               _diskType = value;
+              //writeToLog("diskType: $_diskType");
             });
           },
           () {
@@ -479,36 +541,47 @@ class _JadeguiState extends State<Jadegui> {
               _selectedIndex = _selectedIndex + 1;
             });
           },
+          runningSum,
+          () {
+            setState(() {
+              runningSum = true;
+            });
+          },
         );
         break;
       case 8:
         widget = install(
-            getSelectedLocPack(),
-            getChosenLayout(),
-            getChosenVariant(),
-            username,
-            password,
-            enableSudo,
-            rootPass,
-            currDesktop,
-            selectedDisk,
-            isEfi,
-            isEfi ? "grub-efi" : "grub-legacy",
-            hostname,
-            ipv6,
-            enableTimeshift,
-            (value) {
-              setState(() {
-                output = output + "\n" + value;
-              });
-            },
-            output,
-            running,
-            (value) {
-              setState(() {
-                running = value;
-              });
+          getSelectedLocPack(),
+          getChosenLayout(),
+          getChosenVariant(),
+          username,
+          password,
+          enableSudo,
+          rootPass,
+          currDesktop,
+          selectedDisk,
+          isEfi,
+          isEfi ? "grub-efi" : "grub-legacy",
+          hostname,
+          ipv6,
+          enableTimeshift,
+          (value) {
+            setState(() {
+              if (value.compareTo(output) == 1) {
+                writeToLog(value.replaceAll(output, ""));
+              }
+              output = output + "\n" + value;
             });
+          },
+          output,
+          running,
+          (value) {
+            setState(() {
+              running = value;
+            });
+          },
+          writeToLog,
+        );
         break;
       default:
         widget = const Text(
@@ -524,6 +597,4 @@ class _JadeguiState extends State<Jadegui> {
     // Finally returning a Widget
     return widget;
   }
-
-  void selectlocation(region) {}
 }

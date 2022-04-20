@@ -2,25 +2,33 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-Future<void> getPartitionInfo(currPartition, setState) async {
-  final String partitionInfo = await Process.run(
-          "/opt/jade_gui/scripts/getPartitionInfo.sh", ['$currPartition'])
-      .then((ProcessResult results) {
-    return results.stdout;
-  });
-  setState(partitionInfo);
+Future<void> getPartitionInfo(
+    currPartition, setState, runningInfo, setRunningInfo) async {
+  if (!runningInfo) {
+    final String partitionInfo = await Process.run(
+            "/opt/jade_gui/scripts/getPartitionInfo.sh", ['$currPartition'])
+        .then((ProcessResult results) {
+      return results.stdout;
+    });
+    setState(partitionInfo);
+    setRunningInfo();
+  }
 }
 
-Future<void> getPartitions(setState) async {
-  final String partitions =
-      await Process.run("/opt/jade_gui/scripts/getPartitions.sh", [])
-          .then((ProcessResult result) {
-    return result.stdout;
-  });
-  setState(partitions);
+Future<void> getPartitions(setState, runningPart, setRunningPart) async {
+  if (!runningPart) {
+    final String partitions =
+        await Process.run("/opt/jade_gui/scripts/getPartitions.sh", [])
+            .then((ProcessResult result) {
+      return result.stdout;
+    });
+    setState(partitions);
+    setRunningPart();
+  }
 }
 
-Widget partitionTemplate(partition, setPartition, setPartitionInfo) {
+Widget partitionTemplate(
+    partition, setPartition, setPartitionInfo, runningInfo, setRunningInfo) {
   if (partition != "") {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -36,7 +44,8 @@ Widget partitionTemplate(partition, setPartition, setPartitionInfo) {
           child: ElevatedButton(
             onPressed: () {
               setPartition(partition);
-              getPartitionInfo(partition, setPartitionInfo);
+              getPartitionInfo(
+                  partition, setPartitionInfo, runningInfo, setRunningInfo);
             },
             style: TextButton.styleFrom(
               primary: Colors.white,
@@ -60,10 +69,20 @@ Widget partitionTemplate(partition, setPartition, setPartitionInfo) {
   }
 }
 
-Widget partitioning(partitions, setState, setPartition, next, setPartitionInfo,
-    selectedPartition, partitionInfo) {
+Widget partitioning(
+    partitions,
+    setState,
+    setPartition,
+    next,
+    setPartitionInfo,
+    selectedPartition,
+    partitionInfo,
+    runningPart,
+    setRunningPart,
+    runningInfo,
+    setRunningInfo) {
   return FutureBuilder(
-    future: getPartitions(setState),
+    future: getPartitions(setState, runningPart, setRunningPart),
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,8 +120,14 @@ Widget partitioning(partitions, setState, setPartition, next, setPartitionInfo,
                       child: Column(
                         children: partitions
                             .split('\n')
-                            .map<Widget>((partition) => partitionTemplate(
-                                partition, setPartition, setPartitionInfo))
+                            .map<Widget>(
+                              (partition) => partitionTemplate(
+                                  partition,
+                                  setPartition,
+                                  setPartitionInfo,
+                                  runningInfo,
+                                  setRunningInfo),
+                            )
                             .toList(),
                       ),
                     ),

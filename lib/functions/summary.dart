@@ -14,13 +14,16 @@ Widget infoTextTemplate(infoSection, infoText) {
   );
 }
 
-Future<void> getDiskType(setState, disk) async {
-  final String partitions =
-      await Process.run("/opt/jade_gui/scripts/getDiskType.sh", [disk])
-          .then((ProcessResult result) {
-    return result.stdout;
-  });
-  setState(partitions);
+Future<void> getDiskType(setState, disk, running, setRunning) async {
+  if (!running) {
+    final String partitions =
+        await Process.run("/opt/jade_gui/scripts/getDiskType.sh", [disk])
+            .then((ProcessResult result) {
+      return result.stdout;
+    });
+    setState(partitions);
+    setRunning();
+  }
 }
 
 String diskType(String disk, String diskType) {
@@ -40,24 +43,27 @@ String diskType(String disk, String diskType) {
 }
 
 Widget summary(
-    Location locale,
-    String keymap,
-    String layout,
-    String username,
-    bool enableSudo,
-    bool enableRoot,
-    Desktop desktop,
-    String disk,
-    bool isEfi,
-    String bootloader,
-    String hostname,
-    bool ipv6,
-    bool enableTimeshift,
-    String rotational,
-    String diskSize,
-    setDiskType,
-    nextPage) {
-  getDiskType(setDiskType, disk);
+  Location locale,
+  String keymap,
+  String layout,
+  String username,
+  bool enableSudo,
+  bool enableRoot,
+  Desktop desktop,
+  String disk,
+  bool isEfi,
+  String bootloader,
+  String hostname,
+  bool ipv6,
+  bool enableTimeshift,
+  String rotational,
+  String diskSize,
+  setDiskType,
+  nextPage,
+  running,
+  setRunning,
+) {
+  getDiskType(setDiskType, disk, running, setRunning);
   return Column(
     children: [
       const Text(

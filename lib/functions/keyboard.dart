@@ -13,7 +13,7 @@ String getChosenLayout() {
   return chosenLayout.backLayout;
 }
 
-Widget variantTemplate(variant, chosenLayout, nextPage) {
+Widget variantTemplate(variant, chosenLayout, nextPage, writeToLog) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,6 +28,7 @@ Widget variantTemplate(variant, chosenLayout, nextPage) {
         child: ElevatedButton(
           onPressed: () {
             chosenVariant = variant;
+            writeToLog("Chosen variant: $chosenVariant");
             nextPage();
           },
           style: TextButton.styleFrom(
@@ -49,7 +50,7 @@ Widget variantTemplate(variant, chosenLayout, nextPage) {
   );
 }
 
-Widget layoutTemplate(keymap, setChosenLayout) {
+Widget layoutTemplate(keymap, setChosenLayout, writeToLog) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -64,6 +65,7 @@ Widget layoutTemplate(keymap, setChosenLayout) {
         child: ElevatedButton(
           onPressed: () {
             setChosenLayout(keymap);
+            writeToLog("Chosen layout: ${keymap.backLayout}");
           },
           style: TextButton.styleFrom(
             primary: Colors.white,
@@ -84,8 +86,8 @@ Widget layoutTemplate(keymap, setChosenLayout) {
   );
 }
 
-Widget keyboard(
-    nextPage, showVariant, choseLayout, setChosenLayout, chosenLayout) {
+Widget keyboard(nextPage, showVariant, choseLayout, setChosenLayout,
+    chosenLayout, writeToLog) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -121,8 +123,8 @@ Widget keyboard(
                   primary: false,
                   child: Column(
                     children: keymaps
-                        .map<Widget>(
-                            (keymap) => layoutTemplate(keymap, setChosenLayout))
+                        .map<Widget>((keymap) =>
+                            layoutTemplate(keymap, setChosenLayout, writeToLog))
                         .toList(),
                   ),
                 ),
@@ -148,8 +150,8 @@ Widget keyboard(
                   primary: false,
                   child: Column(
                     children: chosenLayout.variant
-                        .map<Widget>((map) =>
-                            variantTemplate(map, chosenLayout, nextPage))
+                        .map<Widget>((map) => variantTemplate(
+                            map, chosenLayout, nextPage, writeToLog))
                         .toList(),
                   ),
                 ),

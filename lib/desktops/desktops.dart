@@ -24,7 +24,7 @@ List<Desktop> desktops = const [
     //imageurl: '',
   ),
   Desktop(
-    name: "KDE Plasma",
+    name: "Kde",
     displayManager: "sddm",
     packages: [
       "plasma",

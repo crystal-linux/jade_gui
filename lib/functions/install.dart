@@ -5,12 +5,14 @@ import 'package:jade_gui/classes/location.dart';
 import 'dart:convert';
 import 'dart:io';
 
-test(setOutput, running, setRunning, config) async {
+test(setOutput, running, setRunning, config, writeToLog) async {
   if (!running) {
     const filename = "/tmp/jade.json";
     await File(filename).writeAsString(config);
+    writeToLog("Json config: $config");
     var process =
-        await Process.start('pkexec', ['jade', 'config', '/tmp/jade.json']);
+        //await Process.start('pkexec', ['jade', 'config', '/tmp/jade.json']);
+        await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
     process.stdout.transform(utf8.decoder).forEach(setOutput);
     setRunning(true);
   }
@@ -35,6 +37,7 @@ Widget install(
   output,
   running,
   setRunning,
+  writeToLog,
 ) {
   InstallPrefs prefs = InstallPrefs(
     locale: locale,
@@ -55,7 +58,7 @@ Widget install(
   );
   String jsonPrefs = jsonEncode(prefs.toJson());
   //writeConfig(jsonPrefs);
-  test(setOutput, running, setRunning, jsonPrefs);
+  test(setOutput, running, setRunning, jsonPrefs, writeToLog);
   return Column(
     children: [
       Text(

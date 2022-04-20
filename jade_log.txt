@@ -1,0 +1,24 @@
+
+Chosen layout: at
+Chosen variant: normal
+Username: s
+Enable sudo: true
+Desktop: KDE Plasma
+Hostname: n
+Disks: /dev/sda
+/dev/nvme0n1
+
+Selected disk: /dev/nvme0n1
+Partition info: 476.9G
+
+Is efi: true
+Json config: {"partition":{"device":"nvme0n1","mode":"auto","efi":true},"bootloader":{"type":"grub-efi","location":"/boot/efi"},"locale":{"locale":["en_US.UTF-8 UTF-8"],"keymap":"Af","timezone":"America"},"networking":{"hostname":"n","ipv6":false},"users":[{"name":"s","password":"$1$KRz8vYrK$mTO2iNwmZnkHTpevyAcHN0\n","hasroot":true}],"rootpass":"","desktop":"KDE Plasma","timeshift":true,"extra_packages":["firefox"]}
+[LOG] doing thing
+
+[ERROR] failed doing thing
+
+[LOG]
+
+[ERROR]
+
+Installation finished! You may reboot now!
