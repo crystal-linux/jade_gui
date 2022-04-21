@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jade_gui/functions/location/location.dart';
 import 'package:jade_gui/functions/welcome.dart';
 import 'package:jade_gui/functions/locale.dart';
 import 'package:jade_gui/functions/keyboard.dart';
@@ -14,6 +13,8 @@ import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/desktops/desktops.dart';
 
 import 'dart:io';
+
+Map env = Platform.environment;
 
 Future<void> checkIsEfi(
   setState,
@@ -36,7 +37,9 @@ Future<void> checkIsEfi(
 }
 
 Future<void> writeToLog(String message) async {
-  await File('jade_log.txt').readAsString().then((String contents) {
+  await File('${env["HOME"]}/jade_log.txt')
+      .readAsString()
+      .then((String contents) {
     File("jade_log.txt").writeAsString(contents + "\n" + message);
   });
 }
@@ -55,7 +58,7 @@ Future<void> setPassword(clearPass, setState) async {
     return result.stdout;
   });
   debugPrint(password);
-  setState(password);
+  setState(password.replaceAll("\n", ""));
 }
 
 class Jadegui extends StatefulWidget {
@@ -405,7 +408,6 @@ class _JadeguiState extends State<Jadegui> {
             });
           },
         );
-
         break;
       case 4:
         debugPrint(password);

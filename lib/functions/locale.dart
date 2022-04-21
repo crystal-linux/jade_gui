@@ -5,6 +5,14 @@ import 'package:jade_gui/classes/location.dart';
 Local chosenLocation = locations[0];
 Location chosenRegion = locations[0].location[0];
 
+String getChosenLocation() {
+  return chosenLocation.name;
+}
+
+Location getSelectedLocPack() {
+  return chosenRegion;
+}
+
 Widget regionTemplate(variant, chosenLayout, nextPage, writeToLog) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

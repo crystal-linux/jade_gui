@@ -12,7 +12,7 @@ test(setOutput, running, setRunning, config, writeToLog) async {
     writeToLog("Json config: $config");
     var process =
         await Process.start('pkexec', ['jade', 'config', '/tmp/jade.json']);
-        //await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
+    //await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
     process.stdout.transform(utf8.decoder).forEach(setOutput);
     setRunning(true);
   }
