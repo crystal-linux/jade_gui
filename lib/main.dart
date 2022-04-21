@@ -70,6 +70,7 @@ class _JadeguiState extends State<Jadegui> {
   int _selectedIndex = 0;
   bool nextpage = false;
   bool choseLayout = false;
+  bool choseRegion = false;
   bool enableSudo = false;
   bool enableRoot = false;
   bool isEfi = false;
@@ -301,21 +302,16 @@ class _JadeguiState extends State<Jadegui> {
           },
           () {
             setState(() {
-              nextpage = true;
+              choseRegion = true;
             });
           },
-          (region) {
-            if (region != "") {
-              setState(() {
-                nextpage = false;
-              });
-            } else {
-              setState(() {
-                nextpage = true;
-              });
-            }
+          choseRegion,
+          (location) {
+            setState(() {
+              chosenLocation = location;
+            });
           },
-          nextpage,
+          chosenLocation,
           (value) {
             writeToLog(value);
           },

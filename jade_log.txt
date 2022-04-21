@@ -1,21 +1,3 @@
 
-Chosen layout: us
-Chosen variant: colemak
-Username: u
-Username: us
-Username: use
-Username: user
-Enable sudo: true
-Enable root: true
-Hostname: h
-Hostname: ho
-Hostname: hos
-Hostname: host
-Disks: /dev/sda
-/dev/nvme0n1
-
-Selected disk: /dev/sda
-Partition info: 238.5G
-
-Selected disk: /dev/nvme0n1
-Is efi: true
+Chosen location: Africa
+Chosen Region: Johannesburg
