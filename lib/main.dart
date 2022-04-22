@@ -53,7 +53,7 @@ void main() => runApp(
 
 Future<void> setPassword(clearPass, setState) async {
   final String password =
-      await Process.run("openssl", ["passwd", "-1", clearPass])
+      await Process.run("openssl", ["passwd", "-crypt", clearPass])
           .then((ProcessResult result) {
     return result.stdout;
   });
