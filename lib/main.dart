@@ -37,6 +37,18 @@ Future<void> checkIsEfi(
   }
 }
 
+Future<void> checkConnected(
+  setState,
+) async {
+  final String scriptOutput =
+      await Process.run("/opt/jade_gui/scripts/checkNetwork.sh", [])
+          .then((ProcessResult result) {
+    return result.stdout;
+  });
+  bool connected = scriptOutput.contains("disconnected") ? false : true;
+  setState(connected);
+}
+
 Future<void> writeToLog(String message) async {
   await File('${env["HOME"]}/jade_log.txt')
       .readAsString()
@@ -85,6 +97,7 @@ class _JadeguiState extends State<Jadegui> {
   bool isEfi = false;
   bool ipv6 = false;
   bool enableTimeshift = true;
+  bool connected = false;
   bool running = false;
   bool runningInfo = false;
   bool runningPart = false;
@@ -108,6 +121,13 @@ class _JadeguiState extends State<Jadegui> {
   @override
   Widget build(BuildContext context) {
     setWindowSize();
+    checkConnected(
+      (value) {
+        setState(() {
+          connected = value;
+        });
+      },
+    );
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 23, 23, 23),
       body: Row(
@@ -305,11 +325,14 @@ class _JadeguiState extends State<Jadegui> {
             child: SizedBox(
               width: logicWidth,
               height: logicHeight,
-              child: welcome(() {
-                setState(() {
-                  _selectedIndex = _selectedIndex + 1;
-                });
-              }),
+              child: welcome(
+                () {
+                  setState(() {
+                    _selectedIndex = _selectedIndex + 1;
+                  });
+                },
+                connected,
+              ),
             ),
           ),
         );

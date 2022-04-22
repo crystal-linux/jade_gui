@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 
-Widget welcome(next) {
+Widget welcome(next, connected) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
@@ -74,7 +74,7 @@ Widget welcome(next) {
               elevation: 0,
               padding: EdgeInsets.zero,
             ),
-            onPressed: next,
+            onPressed: connected ? next : null,
             child: Container(
               width: 500,
               height: 500,
@@ -93,20 +93,30 @@ Widget welcome(next) {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  SizedBox(height: 20),
-                  Text("Start the installation",
+                children: [
+                  const SizedBox(height: 20),
+                  const Text("Start the installation",
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white)),
-                  SizedBox(height: 5),
-                  Image(
+                  const SizedBox(height: 5),
+                  const Image(
                     image: AssetImage(
                       'assets/jade_logo.png',
                     ),
                     height: 400,
                     fit: BoxFit.scaleDown,
+                  ),
+                  Visibility(
+                    visible: !connected,
+                    child: const Text(
+                      "You are not connected to the internet!",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    ),
                   ),
                 ],
               ),
