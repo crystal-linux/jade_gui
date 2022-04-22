@@ -1,9 +1,2 @@
 
-Chosen location: Asia
-Chosen Region: Aqtau
-Chosen layout: at
-Chosen variant: normal
-Username: e
-Username: 
-Username: u
-Enable sudo: true
+Desktop: gnome

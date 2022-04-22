@@ -11,6 +11,7 @@ import 'package:jade_gui/functions/install.dart';
 import 'package:jade_gui/classes/keymap.dart';
 import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/desktops/desktops.dart';
+import 'package:window_size/window_size.dart';
 
 import 'dart:io';
 
@@ -44,6 +45,11 @@ Future<void> writeToLog(String message) async {
   });
 }
 
+void setWindowSize() {
+  setWindowMinSize(Size(0, 0));
+  setWindowMaxSize(Size(1300, 870));
+}
+
 void main() => runApp(
       const MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -69,7 +75,7 @@ class Jadegui extends StatefulWidget {
 }
 
 class _JadeguiState extends State<Jadegui> {
-  var file = File("jade_log.txt").writeAsString("");
+  var file = File('${env["HOME"]}/jade_log.txt').writeAsString("");
   int _selectedIndex = 0;
   bool nextpage = false;
   bool choseLayout = false;
@@ -101,6 +107,7 @@ class _JadeguiState extends State<Jadegui> {
 
   @override
   Widget build(BuildContext context) {
+    setWindowSize();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 23, 23, 23),
       body: Row(
@@ -287,14 +294,25 @@ class _JadeguiState extends State<Jadegui> {
 
   Widget condition() {
     Widget widget;
-
+    double logicWidth = 1300;
+    double logicHeight = 870;
     switch (_selectedIndex) {
       case 0:
-        widget = welcome(() {
-          setState(() {
-            _selectedIndex = _selectedIndex + 1;
-          });
-        });
+        widget = SizedBox(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: logicWidth,
+              height: logicHeight,
+              child: welcome(() {
+                setState(() {
+                  _selectedIndex = _selectedIndex + 1;
+                });
+              }),
+            ),
+          ),
+        );
         break;
       case 1:
         widget = locale(
@@ -323,179 +341,228 @@ class _JadeguiState extends State<Jadegui> {
 
         break;
       case 2:
-        widget = keyboard(
-          () {
-            setState(() {
-              _selectedIndex = _selectedIndex + 1;
-            });
-          },
-          () {
-            setState(() {
-              choseLayout = true;
-            });
-          },
-          choseLayout,
-          (layout) {
-            setState(() {
-              chosenLayout = layout;
-            });
-          },
-          chosenLayout,
-          (value) {
-            writeToLog(value);
-          },
+        widget = SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: logicWidth,
+              height: logicHeight,
+              child: keyboard(
+                () {
+                  setState(() {
+                    _selectedIndex = _selectedIndex + 1;
+                  });
+                },
+                () {
+                  setState(() {
+                    choseLayout = true;
+                  });
+                },
+                choseLayout,
+                (layout) {
+                  setState(() {
+                    chosenLayout = layout;
+                  });
+                },
+                chosenLayout,
+                (value) {
+                  writeToLog(value);
+                },
+              ),
+            ),
+          ),
         );
         break;
       case 3:
-        widget = users(
-          (value) {
-            setState(() {
-              enableSudo = value;
-              writeToLog("Enable sudo: $enableSudo");
-            });
-          },
-          enableSudo,
-          (String? value) {
-            setState(() {
-              if (value != null) {
-                setPassword(value, (String encPass) {
+        widget = SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: logicWidth,
+              height: logicHeight,
+              child: users(
+                (value) {
                   setState(() {
-                    password = encPass;
-                    clearPass = value;
+                    enableSudo = value;
+                    writeToLog("Enable sudo: $enableSudo");
                   });
-                });
-              }
-            });
-          },
-          (value) {
-            setState(() {
-              confirmPassword = value;
-            });
-          },
-          clearPass,
-          confirmPassword,
-          (value) {
-            setState(() {
-              username = value;
-              writeToLog("Username: $username");
-            });
-          },
-          username,
-          (value) {
-            setState(() {
-              enableRoot = value;
-              writeToLog("Enable root: $enableRoot");
-            });
-          },
-          enableRoot,
-          (String? value) {
-            setState(() {
-              if (value != null) {
-                rootPass = value;
-              }
-            });
-          },
-          (value) {
-            setState(() {
-              confirmRootPass = value;
-            });
-          },
-          rootPass,
-          confirmRootPass,
-          () {
-            setState(() {
-              _selectedIndex = _selectedIndex + 1;
-            });
-          },
+                },
+                enableSudo,
+                (String? value) {
+                  setState(() {
+                    if (value != null) {
+                      setPassword(value, (String encPass) {
+                        setState(() {
+                          password = encPass;
+                          clearPass = value;
+                        });
+                      });
+                    }
+                  });
+                },
+                (value) {
+                  setState(() {
+                    confirmPassword = value;
+                  });
+                },
+                clearPass,
+                confirmPassword,
+                (value) {
+                  setState(() {
+                    username = value;
+                    writeToLog("Username: $username");
+                  });
+                },
+                username,
+                (value) {
+                  setState(() {
+                    enableRoot = value;
+                    writeToLog("Enable root: $enableRoot");
+                  });
+                },
+                enableRoot,
+                (String? value) {
+                  setState(() {
+                    if (value != null) {
+                      rootPass = value;
+                    }
+                  });
+                },
+                (value) {
+                  setState(() {
+                    confirmRootPass = value;
+                  });
+                },
+                rootPass,
+                confirmRootPass,
+                () {
+                  setState(() {
+                    _selectedIndex = _selectedIndex + 1;
+                  });
+                },
+              ),
+            ),
+          ),
         );
         break;
       case 4:
-        debugPrint(password);
-        widget = desktopView(
-          currDesktop,
-          (selectedDesktop) {
-            setState(() {
-              currDesktop = selectedDesktop;
-              writeToLog("Desktop: ${selectedDesktop.name}");
-            });
-          },
-          () {
-            setState(() {
-              _selectedIndex = _selectedIndex + 1;
-            });
-          },
+        widget = SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: logicWidth,
+              height: logicHeight,
+              child: desktopView(
+                currDesktop,
+                (selectedDesktop) {
+                  setState(() {
+                    currDesktop = selectedDesktop;
+                    writeToLog("Desktop: ${selectedDesktop.name}");
+                  });
+                },
+                () {
+                  setState(() {
+                    _selectedIndex = _selectedIndex + 1;
+                  });
+                },
+              ),
+            ),
+          ),
         );
         break;
       case 5:
-        widget = misc(
-          (value) {
-            setState(() {
-              ipv6 = value;
-              writeToLog("IPv6: $ipv6");
-            });
-          },
-          (value) {
-            setState(() {
-              hostname = value;
-              writeToLog("Hostname: $hostname");
-            });
-          },
-          (value) {
-            setState(() {
-              enableTimeshift = value;
-              writeToLog("Enable timeshift: $enableTimeshift");
-            });
-          },
-          ipv6,
-          hostname,
-          enableTimeshift,
-          () {
-            setState(() {
-              _selectedIndex = _selectedIndex + 1;
-            });
-          },
+        widget = SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: logicWidth,
+              height: logicHeight,
+              child: misc(
+                (value) {
+                  setState(() {
+                    ipv6 = value;
+                    writeToLog("IPv6: $ipv6");
+                  });
+                },
+                (value) {
+                  setState(() {
+                    hostname = value;
+                    writeToLog("Hostname: $hostname");
+                  });
+                },
+                (value) {
+                  setState(() {
+                    enableTimeshift = value;
+                    writeToLog("Enable timeshift: $enableTimeshift");
+                  });
+                },
+                ipv6,
+                hostname,
+                enableTimeshift,
+                () {
+                  setState(() {
+                    _selectedIndex = _selectedIndex + 1;
+                  });
+                },
+              ),
+            ),
+          ),
         );
         break;
       case 6:
-        widget = partitioning(
-          disks,
-          (value) {
-            setState(() {
-              disks = value;
-              writeToLog("Disks: $disks");
-            });
-          },
-          (value) {
-            setState(() {
-              selectedDisk = value;
-              writeToLog("Selected disk: $selectedDisk");
-            });
-          },
-          () {
-            setState(() {
-              _selectedIndex = _selectedIndex + 1;
-            });
-          },
-          (value) {
-            setState(() {
-              partitionInfo = value;
-              writeToLog("Partition info: $partitionInfo");
-            });
-          },
-          selectedDisk,
-          partitionInfo,
-          runningPart,
-          () {
-            setState(() {
-              runningPart = true;
-            });
-          },
-          runningInfo,
-          () {
-            setState(() {
-              runningInfo = true;
-            });
-          },
+        widget = SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: logicWidth,
+              height: logicHeight,
+              child: partitioning(
+                disks,
+                (value) {
+                  setState(() {
+                    disks = value;
+                    writeToLog("Disks:widget $disks");
+                  });
+                },
+                (value) {
+                  setState(() {
+                    selectedDisk = value;
+                    writeToLog("Selected disk: $selectedDisk");
+                  });
+                },
+                () {
+                  setState(() {
+                    _selectedIndex = _selectedIndex + 1;
+                  });
+                },
+                (value) {
+                  setState(() {
+                    partitionInfo = value;
+                    writeToLog("Partition info: $partitionInfo");
+                  });
+                },
+                selectedDisk,
+                partitionInfo,
+                runningPart,
+                () {
+                  setState(() {
+                    runningPart = true;
+                  });
+                },
+                runningInfo,
+                () {
+                  setState(() {
+                    runningInfo = true;
+                  });
+                },
+              ),
+            ),
+          ),
         );
         break;
       case 7:
@@ -512,73 +579,93 @@ class _JadeguiState extends State<Jadegui> {
                 runningEfi = true;
               });
             });
-        widget = summary(
-          getSelectedLocPack(),
-          getChosenLayout(),
-          getChosenVariant(),
-          username,
-          enableSudo,
-          enableRoot,
-          currDesktop,
-          selectedDisk,
-          isEfi,
-          "grub-efi",
-          hostname,
-          ipv6,
-          enableTimeshift,
-          _diskType,
-          partitionInfo,
-          (value) {
-            setState(() {
-              _diskType = value;
-              //writeToLog("diskType: $_diskType");
-            });
-          },
-          () {
-            setState(() {
-              _selectedIndex = _selectedIndex + 1;
-            });
-          },
-          runningSum,
-          () {
-            setState(() {
-              runningSum = true;
-            });
-          },
+        widget = SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: logicWidth,
+              height: logicHeight,
+              child: summary(
+                getSelectedLocPack(),
+                getChosenLayout(),
+                getChosenVariant(),
+                username,
+                enableSudo,
+                enableRoot,
+                currDesktop,
+                selectedDisk,
+                isEfi,
+                "grub-efi",
+                hostname,
+                ipv6,
+                enableTimeshift,
+                _diskType,
+                partitionInfo,
+                (value) {
+                  setState(() {
+                    _diskType = value;
+                    //writeToLog("diskType: $_diskType");
+                  });
+                },
+                () {
+                  setState(() {
+                    _selectedIndex = _selectedIndex + 1;
+                  });
+                },
+                runningSum,
+                () {
+                  setState(() {
+                    runningSum = true;
+                  });
+                },
+              ),
+            ),
+          ),
         );
         break;
       case 8:
-        widget = install(
-          getSelectedLocPack(),
-          getChosenLayout(),
-          getChosenVariant(),
-          username,
-          password,
-          enableSudo,
-          rootPass,
-          currDesktop,
-          selectedDisk,
-          isEfi,
-          isEfi ? "grub-efi" : "grub-legacy",
-          hostname,
-          ipv6,
-          enableTimeshift,
-          (value) {
-            setState(() {
-              if (value.compareTo(output) == 1) {
-                writeToLog(value.replaceAll(output, ""));
-              }
-              output = output + "\n" + value;
-            });
-          },
-          output,
-          running,
-          (value) {
-            setState(() {
-              running = value;
-            });
-          },
-          writeToLog,
+        widget = SizedBox.expand(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: logicWidth,
+              height: logicHeight,
+              child: install(
+                getSelectedLocPack(),
+                getChosenLayout(),
+                getChosenVariant(),
+                username,
+                password,
+                enableSudo,
+                rootPass,
+                currDesktop,
+                selectedDisk,
+                isEfi,
+                isEfi ? "grub-efi" : "grub-legacy",
+                hostname,
+                ipv6,
+                enableTimeshift,
+                (value) {
+                  setState(() {
+                    if (value.compareTo(output) == 1) {
+                      writeToLog(value.replaceAll(output, ""));
+                    }
+                    output = output + "\n" + value;
+                  });
+                },
+                output,
+                running,
+                (value) {
+                  setState(() {
+                    running = value;
+                  });
+                },
+                writeToLog,
+              ),
+            ),
+          ),
         );
         break;
       default:
