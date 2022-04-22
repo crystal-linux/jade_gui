@@ -1,2 +1,2 @@
 
-Is efi: true
+Chosen variant: normal
