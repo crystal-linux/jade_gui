@@ -80,7 +80,7 @@ class _JadeguiState extends State<Jadegui> {
   bool nextpage = false;
   bool choseLayout = false;
   bool choseRegion = false;
-  bool enableSudo = false;
+  bool enableSudo = true;
   bool enableRoot = false;
   bool isEfi = false;
   bool ipv6 = false;
