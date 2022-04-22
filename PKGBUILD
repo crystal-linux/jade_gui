@@ -1,6 +1,6 @@
 # Maintainer: Matt C <matt[at]getcryst[dot]al>
 pkgname=jade_gui
-pkgver=1.0.5
+pkgver=1.0.7
 pkgrel=1
 pkgdesc="Flutter GUI for installing crystal"
 arch=('any')
@@ -36,5 +36,5 @@ package() {
     cp ${srcdir}/gui/Jade.desktop ${pkgdir}/usr/share/applications/Jade.desktop
 
     mkdir -p ${pkgdir}/usr/share/icons/
-    cp ${srcdir}/gui/assets/jade_logo.png ${pkgdir}/usr/share/icons/jade-logo
+    cp ${srcdir}/gui/assets/jade_logo.png ${pkgdir}/usr/share/icons/jade-logo.png
 }
