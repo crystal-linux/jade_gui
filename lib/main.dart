@@ -416,27 +416,6 @@ class _JadeguiState extends State<Jadegui> {
                   });
                 },
                 username,
-                (value) {
-                  setState(() {
-                    enableRoot = value;
-                    writeToLog("Enable root: $enableRoot");
-                  });
-                },
-                enableRoot,
-                (String? value) {
-                  setState(() {
-                    if (value != null) {
-                      rootPass = value;
-                    }
-                  });
-                },
-                (value) {
-                  setState(() {
-                    confirmRootPass = value;
-                  });
-                },
-                rootPass,
-                confirmRootPass,
                 () {
                   setState(() {
                     _selectedIndex = _selectedIndex + 1;
@@ -503,6 +482,27 @@ class _JadeguiState extends State<Jadegui> {
                 ipv6,
                 hostname,
                 enableTimeshift,
+                (value) {
+                  setState(() {
+                    enableRoot = value;
+                    writeToLog("Enable root: $enableRoot");
+                  });
+                },
+                enableRoot,
+                (String? value) {
+                  setState(() {
+                    if (value != null) {
+                      rootPass = value;
+                    }
+                  });
+                },
+                (value) {
+                  setState(() {
+                    confirmRootPass = value;
+                  });
+                },
+                rootPass,
+                confirmRootPass,
                 () {
                   setState(() {
                     _selectedIndex = _selectedIndex + 1;
