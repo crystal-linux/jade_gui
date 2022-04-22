@@ -1,2 +1,2 @@
 
-Hostname: host
+Is efi: true

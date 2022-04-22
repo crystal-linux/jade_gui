@@ -151,25 +151,29 @@ Widget users(setState, enableSudo, setPass, setConfirmPass, clearPass,
                         border: Border.all(color: Colors.black45),
                         color: const Color.fromARGB(100, 30, 30, 30),
                       ),
-                      child: CheckboxListTile(
-                        title: const Text('Enable sudo for user',
-                            style: TextStyle(color: Colors.white)),
-                        value: enableSudo,
-                        onChanged: (bool? value) {
-                          setState(value!);
-                        },
-                        secondary: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
-                          child: const Text(
-                            '#',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                      child: Tooltip(
+                        message:
+                            'Allows the user to gain root access using sudo',
+                        child: CheckboxListTile(
+                          title: const Text('Enable sudo for user',
+                              style: TextStyle(color: Colors.white)),
+                          value: enableSudo,
+                          onChanged: (bool? value) {
+                            setState(value!);
+                          },
+                          secondary: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                            child: const Text(
+                              '#',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),

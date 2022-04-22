@@ -91,25 +91,29 @@ Widget misc(
                         border: Border.all(color: Colors.black45),
                         color: const Color.fromARGB(100, 30, 30, 30),
                       ),
-                      child: CheckboxListTile(
-                        title: const Text('Enable root user',
-                            style: TextStyle(color: Colors.white)),
-                        value: enableRoot,
-                        onChanged: (bool? value) {
-                          setRootUser(value!);
-                        },
-                        secondary: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
-                          child: const Text(
-                            '#',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                      child: Tooltip(
+                        message:
+                            "Enables the root user, who has access to everything in the system",
+                        child: CheckboxListTile(
+                          title: const Text('Enable root user',
+                              style: TextStyle(color: Colors.white)),
+                          value: enableRoot,
+                          onChanged: (bool? value) {
+                            setRootUser(value!);
+                          },
+                          secondary: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                            child: const Text(
+                              '#',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
@@ -185,25 +189,28 @@ Widget misc(
                         border: Border.all(color: Colors.black45),
                         color: const Color.fromARGB(100, 30, 30, 30),
                       ),
-                      child: CheckboxListTile(
-                        title: const Text('Enable ipv6',
-                            style: TextStyle(color: Colors.white)),
-                        value: ipv6,
-                        onChanged: (bool? value) {
-                          setIpv6(value!);
-                        },
-                        secondary: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
-                          child: const Text(
-                            'v6',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                      child: Tooltip(
+                        message: "Enables ipv6",
+                        child: CheckboxListTile(
+                          title: const Text('Enable ipv6',
+                              style: TextStyle(color: Colors.white)),
+                          value: ipv6,
+                          onChanged: (bool? value) {
+                            setIpv6(value!);
+                          },
+                          secondary: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                            child: const Text(
+                              'v6',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
@@ -217,20 +224,25 @@ Widget misc(
                         border: Border.all(color: Colors.black45),
                         color: const Color.fromARGB(100, 30, 30, 30),
                       ),
-                      child: CheckboxListTile(
-                        title: const Text('Enable timeshift',
-                            style: TextStyle(color: Colors.white)),
-                        value: timeshift,
-                        onChanged: (bool? value) {
-                          setTimeshift(value!);
-                        },
-                        secondary: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
+                      child: Tooltip(
+                        message:
+                            "Enables timeshift to automatically make backups",
+                        child: CheckboxListTile(
+                          title: const Text('Enable timeshift',
+                              style: TextStyle(color: Colors.white)),
+                          value: timeshift,
+                          onChanged: (bool? value) {
+                            setTimeshift(value!);
+                          },
+                          secondary: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                            child:
+                                const Icon(Icons.restore, color: Colors.black),
                           ),
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
-                          child: const Icon(Icons.restore, color: Colors.black),
                         ),
                       ),
                     ),
