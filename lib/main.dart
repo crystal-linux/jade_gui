@@ -38,6 +38,24 @@ Future<void> checkIsEfi(
   }
 }
 
+Future<void> getPartition(setState, runningPart, setRunningPart) async {
+  if (!runningPart) {
+    final String partitions =
+        await Process.run("/opt/jade_gui/scripts/getPartitions.sh", [])
+            .then((ProcessResult result) {
+      return result.stdout;
+    });
+    var parts = <Partition>[];
+    for (int i = 0; i < partitions.split("\n").length; i++) {
+      if (partitions.split("\n")[i] != "") {
+        parts.add(Partition(partition: partitions.split("\n")[i]));
+      }
+    }
+    setState(parts);
+    setRunningPart(true);
+  }
+}
+
 Future<void> checkConnected(
   setState,
 ) async {
@@ -125,6 +143,18 @@ class _JadeguiState extends State<Jadegui> {
 
   @override
   Widget build(BuildContext context) {
+    getPartition(
+        (value) {
+          setState(() {
+            partitions = value;
+          });
+        },
+        runningPart,
+        (value) {
+          setState(() {
+            runningPart = value;
+          });
+        });
     setWindowSize();
     checkConnected(
       (value) {

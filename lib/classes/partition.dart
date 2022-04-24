@@ -1,5 +1,5 @@
 class Partition {
-  final String partition;
+  String partition;
   String mountpoint;
   String filesystem;
 
