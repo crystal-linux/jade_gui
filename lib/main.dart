@@ -11,6 +11,7 @@ import 'package:jade_gui/functions/install.dart';
 import 'package:jade_gui/classes/keymap.dart';
 import 'package:jade_gui/classes/desktop.dart';
 import 'package:jade_gui/desktops/desktops.dart';
+import 'package:jade_gui/classes/partition.dart';
 import 'package:window_size/window_size.dart';
 
 import 'dart:io';
@@ -98,9 +99,12 @@ class _JadeguiState extends State<Jadegui> {
   bool ipv6 = false;
   bool enableTimeshift = true;
   bool connected = false;
+  bool manualPartitioning = false;
   bool running = false;
   bool runningInfo = false;
   bool runningPart = false;
+  bool runningInfoMan = false;
+  bool runningPartMan = false;
   bool runningSum = false;
   bool runningEfi = false;
   String clearPass = "";
@@ -111,12 +115,13 @@ class _JadeguiState extends State<Jadegui> {
   String confirmRootPass = "";
   String disks = "";
   String selectedDisk = "";
-  String partitionInfo = "";
+  String diskInfo = "";
   String _diskType = "";
   String hostname = "";
   String output = "";
   Desktop currDesktop = desktops[0];
   Keymap chosenLayout = Keymap();
+  List<Partition> partitions = [];
 
   @override
   Widget build(BuildContext context) {
@@ -565,22 +570,60 @@ class _JadeguiState extends State<Jadegui> {
                 },
                 (value) {
                   setState(() {
-                    partitionInfo = value;
-                    writeToLog("Partition info: $partitionInfo");
+                    diskInfo = value;
+                    writeToLog("Partition info: $diskInfo");
                   });
                 },
                 selectedDisk,
-                partitionInfo,
+                diskInfo,
                 runningPart,
-                () {
+                (value) {
                   setState(() {
-                    runningPart = true;
+                    runningPart = value;
                   });
                 },
                 runningInfo,
-                () {
+                (value) {
                   setState(() {
-                    runningInfo = true;
+                    runningInfo = value;
+                  });
+                },
+                manualPartitioning,
+                (value) {
+                  setState(() {
+                    manualPartitioning = value;
+                  });
+                },
+                runningInfoMan,
+                runningPartMan,
+                (value) {
+                  setState(() {
+                    runningPartMan = value;
+                  });
+                },
+                (value) {
+                  setState(() {
+                    runningInfoMan = value;
+                  });
+                },
+                (value) {
+                  setState(() {
+                    partitions = value;
+                  });
+                },
+                partitions,
+                (partition, value) {
+                  setState(() {
+                    /*for (int i = 0; i < partitions.length; i++) {
+                      if (partitions[i].partition == partition.partition) {
+                        partitions[i].mountpoint = value;
+                        print("moutnpoint: ${partitions[i].mountpoint}");
+                        print("partition: ${partitions[i].partition}");
+                      }
+                    }*/
+                    partition.mountpoint = value;
+                    print("moutnpoint: ${partition.mountpoint}");
+                    print("partition: ${partition.partition}");
                   });
                 },
               ),
@@ -624,11 +667,10 @@ class _JadeguiState extends State<Jadegui> {
                 ipv6,
                 enableTimeshift,
                 _diskType,
-                partitionInfo,
+                diskInfo,
                 (value) {
                   setState(() {
                     _diskType = value;
-                    //writeToLog("diskType: $_diskType");
                   });
                 },
                 () {

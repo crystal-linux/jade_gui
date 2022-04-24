@@ -1,2 +1,3 @@
 
-Chosen variant: normal
+Disks:widget /dev/sda
+/dev/nvme0n1
