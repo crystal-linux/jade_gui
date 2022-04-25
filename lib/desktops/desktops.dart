@@ -2,7 +2,7 @@ import 'package:jade_gui/classes/desktop.dart';
 
 List<Desktop> desktops = const [
   Desktop(
-    name: "onyx",
+    name: "Onyx",
     displayManager: "lightdm",
     packages: [
       "onyx",
@@ -13,7 +13,7 @@ List<Desktop> desktops = const [
     imageurl: 'assets/jade_logo.png',
   ),
   Desktop(
-    name: "gnome",
+    name: "Gnome",
     displayManager: "gdm",
     packages: [
       "gnome",
@@ -24,7 +24,7 @@ List<Desktop> desktops = const [
     //imageurl: '',
   ),
   Desktop(
-    name: "kde",
+    name: "Kde",
     displayManager: "sddm",
     packages: [
       "plasma",
@@ -34,7 +34,7 @@ List<Desktop> desktops = const [
     ],
   ),
   Desktop(
-    name: "budgie",
+    name: "Budgie",
     displayManager: "lightdm",
     packages: [
       "budgie-desktop",
@@ -44,7 +44,7 @@ List<Desktop> desktops = const [
     //imageurl: "",
   ),
   Desktop(
-    name: "mate",
+    name: "Mate",
     displayManager: "lightdm",
     packages: [
       "mate",
@@ -58,7 +58,7 @@ List<Desktop> desktops = const [
     //imageurl: "",
   ),
   Desktop(
-    name: "enlightenment",
+    name: "Enlightenment",
     displayManager: "",
     packages: [
       "enlightenment",
@@ -67,7 +67,7 @@ List<Desktop> desktops = const [
     //imageurl: "",
   ),
   Desktop(
-    name: "xfce",
+    name: "Xfce",
     displayManager: "lightdm",
     packages: [
       "xfce4",
