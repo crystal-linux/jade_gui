@@ -219,7 +219,7 @@ Widget manualPartitioning(
                         ),
                       ),
                       Visibility(
-                        visible: efi,
+                        visible: !efi,
                         child: const Text(
                           'Bootloader Device:',
                           style: TextStyle(
@@ -231,7 +231,7 @@ Widget manualPartitioning(
                       ),
                       const SizedBox(height: 6),
                       Visibility(
-                        visible: efi,
+                        visible: !efi,
                         child: Container(
                           padding: const EdgeInsets.fromLTRB(5, 2, 2, 5),
                           decoration: BoxDecoration(

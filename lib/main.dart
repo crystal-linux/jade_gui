@@ -647,6 +647,9 @@ class _JadeguiState extends State<Jadegui> {
                       partition.mountpoint = value;
                       print("moutnpoint: ${partition.mountpoint}");
                       print("partition: ${partition.partition}");
+                      if (value == "/boot/efi") {
+                        partition.type = "vfat";
+                      }
                     });
                   },
                   (partition, value) {
