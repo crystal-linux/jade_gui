@@ -4,6 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:jade_gui/classes/partition.dart';
 import 'package:jade_gui/functions/partitioning/auto.dart';
 
+Future<void> launchGparted() async {
+  await Process.start('pkexec', ['/usr/bin/gparted']);
+}
+
+Future<void> launchShell() async {
+  await Process.start('gnome-terminal', ['--', 'bash']);
+}
+
 Widget partitionTemplate(partition, runningInfo, setRunningInfo, mountpoints,
     setPartitionMountpoint, filesystems, setFilesystem, efi) {
   if (partition().partition != "") {
@@ -268,7 +276,59 @@ Widget manualPartitioning(
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const Image(image: AssetImage('assets/jade_logo.png')),
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.black45),
+                          color: const Color.fromARGB(255, 30, 30, 30),
+                        ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            launchShell();
+                          },
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor:
+                                const Color.fromARGB(0, 169, 0, 255),
+                            shadowColor: const Color.fromARGB(0, 169, 0, 255),
+                            padding: const EdgeInsets.all(10),
+                          ),
+                          child: const Text(
+                            "Launch terminal",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.black45),
+                          color: const Color.fromARGB(255, 30, 30, 30),
+                        ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            launchGparted();
+                          },
+                          style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor:
+                                const Color.fromARGB(0, 169, 0, 255),
+                            shadowColor: const Color.fromARGB(0, 169, 0, 255),
+                            padding: const EdgeInsets.all(10),
+                          ),
+                          child: const Text(
+                            "Launch gParted",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
                       const SizedBox(height: 10),
                       Container(
                         padding: const EdgeInsets.all(2),
