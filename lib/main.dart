@@ -580,83 +580,83 @@ class _JadeguiState extends State<Jadegui> {
               width: logicWidth,
               height: logicHeight,
               child: partitioning(
-                disks,
-                (value) {
-                  setState(() {
-                    disks = value;
-                    writeToLog("Disks:widget $disks");
-                  });
-                },
-                (value) {
-                  setState(() {
-                    selectedDisk = value;
-                    writeToLog("Selected disk: $selectedDisk");
-                  });
-                },
-                () {
-                  setState(() {
-                    _selectedIndex = _selectedIndex + 1;
-                  });
-                },
-                (value) {
-                  setState(() {
-                    diskInfo = value;
-                    writeToLog("Partition info: $diskInfo");
-                  });
-                },
-                selectedDisk,
-                diskInfo,
-                runningPart,
-                (value) {
-                  setState(() {
-                    runningPart = value;
-                  });
-                },
-                runningInfo,
-                (value) {
-                  setState(() {
-                    runningInfo = value;
-                  });
-                },
-                manualPartitioning,
-                (value) {
-                  setState(() {
-                    manualPartitioning = value;
-                  });
-                },
-                runningInfoMan,
-                runningPartMan,
-                (value) {
-                  setState(() {
-                    runningPartMan = value;
-                  });
-                },
-                (value) {
-                  setState(() {
-                    runningInfoMan = value;
-                  });
-                },
-                (value) {
-                  setState(() {
-                    partitions = value;
-                  });
-                },
-                partitions,
-                (partition, value) {
-                  setState(() {
-                    partition.mountpoint = value;
-                    print("moutnpoint: ${partition.mountpoint}");
-                    print("partition: ${partition.partition}");
-                  });
-                },
-                (partition, value) {
-                  setState(() {
-                    partition.filesystem = value;
-                    print("filesystem: ${partition.filesystem}");
-                    print("partition: ${partition.partition}");
-                  });
-                },
-              ),
+                  disks,
+                  (value) {
+                    setState(() {
+                      disks = value;
+                      writeToLog("Disks:widget $disks");
+                    });
+                  },
+                  (value) {
+                    setState(() {
+                      selectedDisk = value;
+                      writeToLog("Selected disk: $selectedDisk");
+                    });
+                  },
+                  () {
+                    setState(() {
+                      _selectedIndex = _selectedIndex + 1;
+                    });
+                  },
+                  (value) {
+                    setState(() {
+                      diskInfo = value;
+                      writeToLog("Partition info: $diskInfo");
+                    });
+                  },
+                  selectedDisk,
+                  diskInfo,
+                  runningPart,
+                  (value) {
+                    setState(() {
+                      runningPart = value;
+                    });
+                  },
+                  runningInfo,
+                  (value) {
+                    setState(() {
+                      runningInfo = value;
+                    });
+                  },
+                  manualPartitioning,
+                  (value) {
+                    setState(() {
+                      manualPartitioning = value;
+                    });
+                  },
+                  runningInfoMan,
+                  runningPartMan,
+                  (value) {
+                    setState(() {
+                      runningPartMan = value;
+                    });
+                  },
+                  (value) {
+                    setState(() {
+                      runningInfoMan = value;
+                    });
+                  },
+                  (value) {
+                    setState(() {
+                      partitions = value;
+                    });
+                  },
+                  partitions,
+                  (partition, value) {
+                    setState(() {
+                      partition.mountpoint = value;
+                      print("moutnpoint: ${partition.mountpoint}");
+                      print("partition: ${partition.partition}");
+                    });
+                  },
+                  (partition, value) {
+                    setState(() {
+                      partition.filesystem = value;
+                      print("filesystem: ${partition.filesystem}");
+                      print("partition: ${partition.partition}");
+                    });
+                  },
+                  isEfi),
             ),
           ),
         );

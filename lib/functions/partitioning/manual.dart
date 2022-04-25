@@ -2,9 +2,10 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:jade_gui/classes/partition.dart';
+import 'package:jade_gui/functions/partitioning/auto.dart';
 
 Widget partitionTemplate(partition, runningInfo, setRunningInfo, mountpoints,
-    setPartitionMountpoint, filesystems, setFilesystem) {
+    setPartitionMountpoint, filesystems, setFilesystem, efi) {
   if (partition().partition != "") {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -99,7 +100,14 @@ Widget manualPartitioning(
     setPartitionMountpoint,
     setManual,
     next,
-    setFilesystem) {
+    setFilesystem,
+    efi,
+    disk,
+    disks,
+    setDisks,
+    runningDisk,
+    setRunningDisk,
+    setPartition) {
   var mountpoints = <String>[
     "none",
     "/",
@@ -125,6 +133,7 @@ Widget manualPartitioning(
     "minix",
     "vfat"
   ];
+  getDisk(setDisks, runningDisk, setRunningDisk);
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -159,21 +168,24 @@ Widget manualPartitioning(
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
-                    children: partitions
-                        .map<Widget>(
-                          (partition) => partitionTemplate(
-                            () {
-                              return partition;
-                            },
-                            runningInfo,
-                            setRunningInfo,
-                            mountpoints,
-                            setPartitionMountpoint,
-                            filesystems,
-                            setFilesystem,
-                          ),
-                        )
-                        .toList(),
+                    children: [
+                      Column(
+                        children: partitions
+                            .map<Widget>(
+                              (partition) => partitionTemplate(() {
+                                return partition;
+                              },
+                                  runningInfo,
+                                  setRunningInfo,
+                                  mountpoints,
+                                  setPartitionMountpoint,
+                                  filesystems,
+                                  setFilesystem,
+                                  efi),
+                            )
+                            .toList(),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -206,23 +218,56 @@ Widget manualPartitioning(
                           color: Color.fromARGB(255, 169, 0, 255),
                         ),
                       ),
-                      const Text(
-                        'to format',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 169, 0, 255),
+                      Visibility(
+                        visible: efi,
+                        child: const Text(
+                          'Bootloader Device:',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 169, 0, 255),
+                          ),
                         ),
                       ),
-                      const Text(
-                        'and mount',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 169, 0, 255),
+                      const SizedBox(height: 6),
+                      Visibility(
+                        visible: efi,
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(5, 2, 2, 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Colors.black45),
+                            color: const Color.fromARGB(255, 30, 30, 30),
+                          ),
+                          child: DropdownButton<String>(
+                            value: disk,
+                            icon: const Icon(Icons.arrow_downward),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.deepPurple),
+                            dropdownColor:
+                                const Color.fromARGB(255, 23, 23, 23),
+                            underline: Container(
+                              height: 2,
+                              color: Colors.deepPurpleAccent,
+                            ),
+                            onChanged: (String? newValue) {
+                              setPartition(newValue!);
+                              print(disk);
+                            },
+                            items: disks
+                                .split('\n')
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value,
+                                    style:
+                                        const TextStyle(color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 10),
                       const Image(image: AssetImage('assets/jade_logo.png')),
                       const SizedBox(height: 10),
                       Container(

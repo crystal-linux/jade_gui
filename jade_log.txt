@@ -1,2 +1,2 @@
 
-[LOG]
+Selected disk: /dev/nvme0n1
