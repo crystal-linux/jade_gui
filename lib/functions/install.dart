@@ -11,34 +11,44 @@ test(setOutput, running, setRunning, config, writeToLog) async {
     await File(filename).writeAsString(config);
     writeToLog("Json config: $config");
     var process =
-        await Process.start('pkexec', ['/opt/jade_gui/scripts/jadewrapper.sh']);
-    //await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
+        //await Process.start('pkexec', ['/opt/jade_gui/scripts/jadewrapper.sh']);
+        await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
     process.stdout.transform(utf8.decoder).forEach(setOutput);
     setRunning(true);
   }
 }
 
 Widget install(
-  Location locale,
-  String keymap,
-  String layout,
-  String username,
-  String password,
-  bool enableSudo,
-  String rootPass,
-  Desktop desktop,
-  String disk,
-  bool isEfi,
-  String bootloader,
-  String hostname,
-  bool ipv6,
-  bool enableTimeshift,
-  setOutput,
-  output,
-  running,
-  setRunning,
-  writeToLog,
-) {
+    Location locale,
+    String keymap,
+    String layout,
+    String username,
+    String password,
+    bool enableSudo,
+    String rootPass,
+    Desktop desktop,
+    String disk,
+    bool isEfi,
+    String bootloader,
+    String hostname,
+    bool ipv6,
+    bool enableTimeshift,
+    setOutput,
+    output,
+    running,
+    setRunning,
+    writeToLog,
+    partitions,
+    manual) {
+  List<String> partsParsed = <String>[];
+
+  for (var part in partitions) {
+    if (part.mountpoint != "none" && part.filesystem != "none") {
+      partsParsed
+          .add("${part.mountpoint}:${part.partition}:${part.filesystem}");
+    }
+  }
+
   InstallPrefs prefs = InstallPrefs(
     locale: locale,
     keymap: keymap,
@@ -49,6 +59,8 @@ Widget install(
     rootPass: rootPass,
     desktop: desktop,
     disk: disk.replaceAll("/dev/", ""),
+    manualPartitioning: manual,
+    partitions: partsParsed,
     isEfi: isEfi,
     bootloader: bootloader,
     bootloaderLocation: isEfi ? "/boot/efi" : disk,

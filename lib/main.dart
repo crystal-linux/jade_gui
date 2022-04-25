@@ -644,15 +644,15 @@ class _JadeguiState extends State<Jadegui> {
                 partitions,
                 (partition, value) {
                   setState(() {
-                    /*for (int i = 0; i < partitions.length; i++) {
-                      if (partitions[i].partition == partition.partition) {
-                        partitions[i].mountpoint = value;
-                        print("moutnpoint: ${partitions[i].mountpoint}");
-                        print("partition: ${partitions[i].partition}");
-                      }
-                    }*/
                     partition.mountpoint = value;
                     print("moutnpoint: ${partition.mountpoint}");
+                    print("partition: ${partition.partition}");
+                  });
+                },
+                (partition, value) {
+                  setState(() {
+                    partition.filesystem = value;
+                    print("filesystem: ${partition.filesystem}");
                     print("partition: ${partition.partition}");
                   });
                 },
@@ -714,6 +714,7 @@ class _JadeguiState extends State<Jadegui> {
                     runningSum = true;
                   });
                 },
+                partitions,
               ),
             ),
           ),
@@ -758,6 +759,8 @@ class _JadeguiState extends State<Jadegui> {
                   });
                 },
                 writeToLog,
+                partitions,
+                manualPartitioning,
               ),
             ),
           ),

@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jade_gui/classes/partition.dart';
 
 Widget partitionTemplate(partition, runningInfo, setRunningInfo, mountpoints,
-    setPartitionMountpoint) {
-  String mount = "none";
+    setPartitionMountpoint, filesystems, setFilesystem) {
   if (partition().partition != "") {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -33,6 +32,7 @@ Widget partitionTemplate(partition, runningInfo, setRunningInfo, mountpoints,
                   icon: const Icon(Icons.arrow_downward),
                   elevation: 16,
                   style: const TextStyle(color: Colors.deepPurple),
+                  dropdownColor: const Color.fromARGB(255, 23, 23, 23),
                   underline: Container(
                     height: 2,
                     color: Colors.deepPurpleAccent,
@@ -40,14 +40,39 @@ Widget partitionTemplate(partition, runningInfo, setRunningInfo, mountpoints,
                   onChanged: (String? newValue) {
                     setPartitionMountpoint(
                         partition(), newValue == "" ? "none" : newValue);
-                    mount = newValue == "" ? "none" : newValue!;
                     print(partition().mountpoint);
                   },
                   items:
                       mountpoints.map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value),
+                      child: Text(value,
+                          style: const TextStyle(color: Colors.white)),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(width: 10),
+                DropdownButton<String>(
+                  value: partition().filesystem,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  dropdownColor: const Color.fromARGB(255, 23, 23, 23),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (String? newValue) {
+                    setFilesystem(
+                        partition(), newValue == "" ? "none" : newValue);
+                    print(partition().filesystem);
+                  },
+                  items:
+                      filesystems.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value,
+                          style: const TextStyle(color: Colors.white)),
                     );
                   }).toList(),
                 ),
@@ -61,8 +86,20 @@ Widget partitionTemplate(partition, runningInfo, setRunningInfo, mountpoints,
   }
 }
 
-Widget manualPartitioning(partitions, setState, runningPart, setRunningPart,
-    runningInfo, setRunningInfo, setPartitionMountpoint, setManual, next) {
+/*mkfs.bfs mkfs.cramfs mkfs.ext3  mkfs.fat mkfs.msdos  mkfs.xfs
+mkfs.btrfs mkfs.ext2  mkfs.ext4  mkfs.minix mkfs.vfat */
+
+Widget manualPartitioning(
+    partitions,
+    setState,
+    runningPart,
+    setRunningPart,
+    runningInfo,
+    setRunningInfo,
+    setPartitionMountpoint,
+    setManual,
+    next,
+    setFilesystem) {
   var mountpoints = <String>[
     "none",
     "/",
@@ -73,6 +110,20 @@ Widget manualPartitioning(partitions, setState, runningPart, setRunningPart,
     "/tmp",
     "/usr",
     "/var"
+  ];
+  var filesystems = <String>[
+    "don't format",
+    "bfs",
+    "cramfs",
+    "ext3",
+    "fat",
+    "msdos",
+    "xfs",
+    "btrfs",
+    "ext2",
+    "ext4",
+    "minix",
+    "vfat"
   ];
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,6 +169,8 @@ Widget manualPartitioning(partitions, setState, runningPart, setRunningPart,
                             setRunningInfo,
                             mountpoints,
                             setPartitionMountpoint,
+                            filesystems,
+                            setFilesystem,
                           ),
                         )
                         .toList(),
@@ -146,25 +199,23 @@ Widget manualPartitioning(partitions, setState, runningPart, setRunningPart,
                   child: Column(
                     children: [
                       const Text(
-                        'Currently chosen Disk: ',
+                        'Select partitions',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 169, 0, 255),
                         ),
                       ),
-                      const SizedBox(height: 10),
                       const Text(
-                        "selectedPartition",
+                        'to format',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 169, 0, 255),
                         ),
                       ),
-                      const SizedBox(height: 5),
                       const Text(
-                        'Size: diskInfo',
+                        'and mount',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

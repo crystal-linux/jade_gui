@@ -62,6 +62,7 @@ Widget summary(
   nextPage,
   running,
   setRunning,
+  partitions,
 ) {
   getDiskType(setDiskType, disk, running, setRunning);
   return Column(

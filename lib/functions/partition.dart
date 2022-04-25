@@ -23,6 +23,7 @@ Widget partitioning(
   setPartitions,
   partitions,
   setPartitionMountPoint,
+  setFilesystem,
 ) {
   if (doManualPartitioning) {
     setRunningInfoMan(false);
@@ -36,6 +37,7 @@ Widget partitioning(
       setPartitionMountPoint,
       setManual,
       next,
+      setFilesystem,
     );
   } else {
     setRunningInfo(false);

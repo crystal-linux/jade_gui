@@ -17,6 +17,8 @@ class InstallPrefs {
   final String hostname;
   final bool ipv6;
   final bool enableTimeshift;
+  final bool manualPartitioning;
+  final List<String> partitions;
 
   InstallPrefs({
     this.locale = const Location(),
@@ -34,13 +36,16 @@ class InstallPrefs {
     this.hostname = "",
     this.ipv6 = false,
     this.enableTimeshift = false,
+    this.manualPartitioning = false,
+    this.partitions = const [],
   });
 
   Map toJson() => {
         "partition": {
           "device": disk,
-          "mode": "auto",
+          "mode": manualPartitioning ? "manual" : "auto",
           "efi": isEfi,
+          "partitions": partitions,
         },
         "bootloader": {
           "type": bootloader,

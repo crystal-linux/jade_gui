@@ -6,6 +6,6 @@ class Partition {
   Partition({
     this.partition = "",
     this.mountpoint = "none",
-    this.filesystem = "",
+    this.filesystem = "don't format",
   });
 }
