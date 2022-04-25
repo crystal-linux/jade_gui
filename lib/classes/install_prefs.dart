@@ -43,7 +43,7 @@ class InstallPrefs {
   Map toJson() => {
         "partition": {
           "device": disk,
-          "mode": manualPartitioning ? "manual" : "auto",
+          "mode": manualPartitioning ? "Manual" : "Auto",
           "efi": isEfi,
           "partitions": partitions,
         },
