@@ -11,8 +11,8 @@ test(setOutput, running, setRunning, config, writeToLog) async {
     await File(filename).writeAsString(config);
     writeToLog("Json config: $config");
     var process =
-        //await Process.start('pkexec', ['/opt/jade_gui/scripts/jadewrapper.sh']);
-        await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
+        await Process.start('pkexec', ['/opt/jade_gui/scripts/jadewrapper.sh']);
+    //await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
     process.stdout.transform(utf8.decoder).forEach(setOutput);
     setRunning(true);
   }
