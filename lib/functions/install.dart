@@ -45,7 +45,7 @@ Widget install(
   for (var part in partitions) {
     if (part.mountpoint != "none" && part.filesystem != "none") {
       partsParsed
-          .add("${part.mountpoint}:${part.partition}:${part.filesystem}");
+          .add("/mnt${part.mountpoint}:${part.partition}:${part.filesystem}");
     }
   }
 
