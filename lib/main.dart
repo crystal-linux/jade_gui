@@ -572,6 +572,19 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 6:
+        checkIsEfi(
+            (value) {
+              setState(() {
+                isEfi = value;
+              });
+              writeToLog("Is efi: $isEfi");
+            },
+            runningEfi,
+            () {
+              setState(() {
+                runningEfi = true;
+              });
+            });
         widget = SizedBox.expand(
           child: FittedBox(
             fit: BoxFit.contain,
@@ -665,19 +678,6 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 7:
-        checkIsEfi(
-            (value) {
-              setState(() {
-                isEfi = value;
-              });
-              writeToLog("Is efi: $isEfi");
-            },
-            runningEfi,
-            () {
-              setState(() {
-                runningEfi = true;
-              });
-            });
         widget = SizedBox.expand(
           child: FittedBox(
             fit: BoxFit.contain,
