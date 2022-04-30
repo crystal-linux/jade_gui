@@ -17,9 +17,10 @@ Future<void> getDiskInfo(
 
 Future<void> getDisk(setState, runningDisk, setRunningDisk) async {
   if (!runningDisk) {
-    final String disks =
-        await Process.run("/opt/jade_gui/scripts/getDisks.sh", [])
-            .then((ProcessResult result) {
+    final String disks = await Process.run(
+            "/opt/jade_gui/scripts/getDisks.sh", [],
+            runInShell: true)
+        .then((ProcessResult result) {
       return result.stdout;
     });
     setState(disks);
@@ -175,8 +176,7 @@ Widget autoPartitioning(
                             ),
                           ),
                           const SizedBox(height: 5),
-                          const Image(
-                              image: AssetImage('assets/jade_logo.png')),
+                          const Image(image: AssetImage('assets/disk.png')),
                           const SizedBox(height: 10),
                           Container(
                             padding: const EdgeInsets.all(2),

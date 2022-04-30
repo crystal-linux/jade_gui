@@ -24,9 +24,10 @@ Future<void> checkIsEfi(
   setRunningEfi,
 ) async {
   if (!runningEfi) {
-    final String scriptOutput =
-        await Process.run("/opt/jade_gui/scripts/checkEfi.sh", [])
-            .then((ProcessResult result) {
+    final String scriptOutput = await Process.run(
+            "/opt/jade_gui/scripts/checkEfi.sh", [],
+            runInShell: true)
+        .then((ProcessResult result) {
       return result.stdout;
     });
     bool isEfi = scriptOutput == "UEFI\n" ? true : false;
@@ -40,9 +41,10 @@ Future<void> checkIsEfi(
 
 Future<void> getPartition(setState, runningPart, setRunningPart) async {
   if (!runningPart) {
-    final String partitions =
-        await Process.run("/opt/jade_gui/scripts/getPartitions.sh", [])
-            .then((ProcessResult result) {
+    final String partitions = await Process.run(
+            "/opt/jade_gui/scripts/getPartitions.sh", [],
+            runInShell: true)
+        .then((ProcessResult result) {
       return result.stdout;
     });
     var parts = <Partition>[];
@@ -59,9 +61,11 @@ Future<void> getPartition(setState, runningPart, setRunningPart) async {
 Future<void> checkConnected(
   setState,
 ) async {
-  final String scriptOutput =
-      await Process.run("/opt/jade_gui/scripts/checkNetwork.sh", [])
-          .then((ProcessResult result) {
+  final String scriptOutput = await Process.run(
+    "/opt/jade_gui/scripts/checkNetwork.sh",
+    [],
+    runInShell: true,
+  ).then((ProcessResult result) {
     return result.stdout;
   });
   bool connected = scriptOutput.contains("disconnected") ? false : true;

@@ -85,29 +85,52 @@ Widget desktopView(currDesktop, setDesktop, next) {
             ),
             const SizedBox(width: 100),
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  children: [
-                    const Text(
-                      'Currently chosen Desktop: ',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 169, 0, 255),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.black),
+                    color: const Color.fromARGB(255, 30, 30, 30),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 2,
+                        offset: Offset(-2, 3),
                       ),
-                    ),
-                    Text(
-                      currDesktop.name,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 169, 0, 255),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Currently chosen Desktop: ',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 169, 0, 255),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            currDesktop.name,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 169, 0, 255),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Image(image: AssetImage(currDesktop.imageurl)),
+                          const SizedBox(height: 10),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    Image(image: AssetImage(currDesktop.imageurl)),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -10,7 +10,7 @@ List<Desktop> desktops = const [
       "budgie-desktop",
       "gnome",
     ],
-    imageurl: 'assets/jade_logo.png',
+    imageurl: 'assets/crystal-logo-minimal.png',
   ),
   Desktop(
     name: "Gnome",
@@ -21,7 +21,7 @@ List<Desktop> desktops = const [
       "gnome-extra",
       "chrome-gnome-shell",
     ],
-    //imageurl: '',
+    imageurl: 'assets/desktops/gnome.png',
   ),
   Desktop(
     name: "Kde",
@@ -32,6 +32,7 @@ List<Desktop> desktops = const [
       "kde-applications",
       "sddm",
     ],
+    imageurl: 'assets/desktops/kde.png',
   ),
   Desktop(
     name: "Budgie",
@@ -41,7 +42,7 @@ List<Desktop> desktops = const [
       "xorg",
       "gnome",
     ],
-    //imageurl: "",
+    imageurl: "assets/desktops/budgie.png",
   ),
   Desktop(
     name: "Mate",
@@ -55,7 +56,7 @@ List<Desktop> desktops = const [
       "mate-extra",
       "mate-desktop",
     ],
-    //imageurl: "",
+    imageurl: "assets/desktops/mate.png",
   ),
   Desktop(
     name: "Enlightenment",
@@ -64,7 +65,7 @@ List<Desktop> desktops = const [
       "enlightenment",
       "terminology",
     ],
-    //imageurl: "",
+    imageurl: "assets/desktops/enlightenment.png",
   ),
   Desktop(
     name: "Xfce",
@@ -73,12 +74,11 @@ List<Desktop> desktops = const [
       "xfce4",
       "xfce4-goodies",
     ],
-    //imageurl: "",
+    imageurl: "assets/desktops/xfce.png",
   ),
   Desktop(
     name: "None/DIY",
     displayManager: "",
     packages: [],
-    //imageurl: "",
   ),
 ];
