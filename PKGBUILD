@@ -1,7 +1,7 @@
 # Maintainer: Matt C <matt[at]getcryst[dot]al>
 pkgname=jade_gui
-pkgver=1.0.9
-pkgrel=2
+pkgver=1.1.0
+pkgrel=1
 pkgdesc="Flutter GUI for installing crystal"
 arch=('any')
 url="https://git.tar.black/crystal/programs/jade_gui"
