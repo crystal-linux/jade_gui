@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:jade_gui/classes/partition.dart';
 import 'package:jade_gui/functions/partitioning/auto.dart';
 
 Future<void> launchGparted() async {
@@ -49,7 +48,6 @@ Widget partitionTemplate(partition, runningInfo, setRunningInfo, mountpoints,
                   onChanged: (String? newValue) {
                     setPartitionMountpoint(
                         partition(), newValue == "" ? "none" : newValue);
-                    print(partition().mountpoint);
                   },
                   items:
                       mountpoints.map<DropdownMenuItem<String>>((String value) {
@@ -74,7 +72,6 @@ Widget partitionTemplate(partition, runningInfo, setRunningInfo, mountpoints,
                   onChanged: (String? newValue) {
                     setFilesystem(
                         partition(), newValue == "" ? "none" : newValue);
-                    print(partition().filesystem);
                   },
                   items:
                       filesystems.map<DropdownMenuItem<String>>((String value) {
@@ -260,7 +257,6 @@ Widget manualPartitioning(
                             ),
                             onChanged: (String? newValue) {
                               setPartition(newValue!);
-                              print(disk);
                             },
                             items: disks
                                 .split('\n')

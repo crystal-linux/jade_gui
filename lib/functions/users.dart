@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 final _formKey = GlobalKey<FormState>();
 RegExp userRegex = RegExp(r'^[a-z_]([a-z0-9_-]{0,31}|[a-z0-9_-]{0,30}\$)$');
