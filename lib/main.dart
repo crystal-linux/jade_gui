@@ -81,8 +81,8 @@ Future<void> writeToLog(String message) async {
 }
 
 void setWindowSize() {
-  setWindowMinSize(Size(0, 0));
-  setWindowMaxSize(Size(1300, 870));
+  setWindowMinSize(const Size(0, 0));
+  setWindowMaxSize(const Size(1300, 870));
 }
 
 void main() => runApp(
@@ -662,8 +662,6 @@ class _JadeguiState extends State<Jadegui> {
                   (partition, value) {
                     setState(() {
                       partition.mountpoint = value;
-                      print("moutnpoint: ${partition.mountpoint}");
-                      print("partition: ${partition.partition}");
                       if (value == "/boot/efi") {
                         partition.format = "vfat";
                       }
@@ -672,8 +670,6 @@ class _JadeguiState extends State<Jadegui> {
                   (partition, value) {
                     setState(() {
                       partition.filesystem = value;
-                      print("filesystem: ${partition.filesystem}");
-                      print("partition: ${partition.partition}");
                     });
                   },
                   isEfi),
