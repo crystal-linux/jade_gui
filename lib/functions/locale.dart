@@ -28,7 +28,8 @@ Widget regionTemplate(variant, chosenLayout, nextPage, writeToLog) {
         child: ElevatedButton(
           onPressed: () {
             chosenRegion = variant;
-            writeToLog("Chosen Region: ${chosenRegion.location}");
+            writeToLog(
+                "Chosen Region: ${chosenRegion.location.replaceAll("_", " ")}");
             nextPage();
           },
           style: TextButton.styleFrom(
@@ -38,7 +39,7 @@ Widget regionTemplate(variant, chosenLayout, nextPage, writeToLog) {
             padding: const EdgeInsets.all(10),
           ),
           child: Text(
-            variant.location,
+            variant.location.replaceAll("_", " "),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
@@ -65,7 +66,8 @@ Widget locationTemplate(location, setChosenLocation, writeToLog) {
         child: ElevatedButton(
           onPressed: () {
             setChosenLocation(location);
-            writeToLog("Chosen location: ${location.name}");
+            writeToLog(
+                "Chosen location: ${location.name.replaceAll("_", " ")}");
           },
           style: TextButton.styleFrom(
             primary: Colors.white,
@@ -74,7 +76,7 @@ Widget locationTemplate(location, setChosenLocation, writeToLog) {
             padding: const EdgeInsets.all(10),
           ),
           child: Text(
-            location.name,
+            location.name.replaceAll("_", " "),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
