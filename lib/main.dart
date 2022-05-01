@@ -489,6 +489,7 @@ class _JadeguiState extends State<Jadegui> {
         );
         break;
       case 4:
+        clearPass = "";
         widget = SizedBox.expand(
           child: FittedBox(
             fit: BoxFit.contain,
