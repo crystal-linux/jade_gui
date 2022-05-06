@@ -247,6 +247,32 @@ Widget misc(
                       ),
                     ),
                     const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.black45),
+                        color: const Color.fromARGB(100, 30, 30, 30),
+                      ),
+                      child: Tooltip(
+                        message: "Installs flatpak and enables flathub",
+                        child: CheckboxListTile(
+                          title: const Text('Enable flatpak',
+                          style: TextStyle(color: Colors.white)),
+                          value: flatpak,
+                          onChanged: () {},
+                          secondary: Container(
+                            decoration: const BlxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                            child: const Icon(Icons.box, color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
