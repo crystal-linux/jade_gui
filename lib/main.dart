@@ -120,6 +120,7 @@ class _JadeguiState extends State<Jadegui> {
   bool isEfi = false;
   bool ipv6 = false;
   bool enableTimeshift = true;
+  bool enableFlatpak = true;
   bool connected = false;
   bool manualPartitioning = false;
   bool running = false;
@@ -571,6 +572,13 @@ class _JadeguiState extends State<Jadegui> {
                     _selectedIndex = _selectedIndex + 1;
                   });
                 },
+                enableFlatpak,
+                (value) {
+                  setState(() {
+                    enableFlatpak = value;
+                    writeToLog("Enable flatpak: $enableFlatpak");
+                  });
+                },
               ),
             ),
           ),
@@ -700,6 +708,7 @@ class _JadeguiState extends State<Jadegui> {
                 hostname,
                 ipv6,
                 enableTimeshift,
+                enableFlatpak,
                 _diskType,
                 diskInfo,
                 (value) {
@@ -747,6 +756,7 @@ class _JadeguiState extends State<Jadegui> {
                 hostname,
                 ipv6,
                 enableTimeshift,
+                enableFlatpak,
                 (value) {
                   setState(() {
                     if (value.compareTo(output) == 1) {

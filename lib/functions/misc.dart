@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:adwaita_icons/adwaita_icons.dart';
 
 final _formKey = GlobalKey<FormState>();
 RegExp hostnameRegex = RegExp(
@@ -16,7 +17,10 @@ Widget misc(
     setConfirmRootPass,
     rootPass,
     confirmRootPass,
+    enableFlatpak,
+    setFlatpak,
     next) {
+  bool flatpak = true;
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -258,16 +262,21 @@ Widget misc(
                         message: "Installs flatpak and enables flathub",
                         child: CheckboxListTile(
                           title: const Text('Enable flatpak',
-                          style: TextStyle(color: Colors.white)),
-                          value: flatpak,
-                          onChanged: () {},
+                              style: TextStyle(color: Colors.white)),
+                          value: enableFlatpak,
+                          onChanged: (bool? value) {
+                            setFlatpak(value!);
+                          },
                           secondary: Container(
-                            decoration: const BlxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.white,
                             ),
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
-                            child: const Icon(Icons.box, color: Colors.black),
+                            child: const AdwaitaIcon(
+                              AdwaitaIcons.package_x_generic,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),

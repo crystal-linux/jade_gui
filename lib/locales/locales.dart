@@ -12,7 +12,6 @@ import 'package:jade_gui/locales/europe.dart';
 import 'package:jade_gui/locales/indian.dart';
 import 'package:jade_gui/locales/mexico.dart';
 import 'package:jade_gui/locales/pacific.dart';
-import 'package:jade_gui/locales/us.dart';
 import 'package:jade_gui/classes/location.dart';
 
 class Local {
@@ -37,5 +36,4 @@ List<Local> locations = [
   Local(indian, "Indian"),
   Local(mexico, "Mexico"),
   Local(pacific, "Pacific"),
-  Local(us, "US"),
 ];

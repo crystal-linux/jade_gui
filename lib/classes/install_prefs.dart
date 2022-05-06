@@ -17,6 +17,7 @@ class InstallPrefs {
   final String hostname;
   final bool ipv6;
   final bool enableTimeshift;
+  final bool enableFlatpak;
   final bool manualPartitioning;
   final List<String> partitions;
 
@@ -36,6 +37,7 @@ class InstallPrefs {
     this.hostname = "",
     this.ipv6 = false,
     this.enableTimeshift = false,
+    this.enableFlatpak = false,
     this.manualPartitioning = false,
     this.partitions = const [],
   });
@@ -72,6 +74,7 @@ class InstallPrefs {
         "rootpass": rootPass,
         "desktop": desktop.name,
         "timeshift": enableTimeshift,
+        "flatpak": enableFlatpak,
         "extra_packages": [
           "firefox",
         ]

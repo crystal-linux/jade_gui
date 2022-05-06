@@ -56,6 +56,7 @@ Widget summary(
   String hostname,
   bool ipv6,
   bool enableTimeshift,
+  bool enableFlatpak,
   String rotational,
   String diskSize,
   setDiskType,
@@ -293,6 +294,9 @@ Widget summary(
                   const SizedBox(height: 10),
                   infoTextTemplate(
                       "Enable timeshift", enableTimeshift.toString()),
+                  const SizedBox(height: 10),
+                  infoTextTemplate(
+                      "Install flatpak,", enableFlatpak.toString()),
                 ],
               ),
             ),

@@ -33,6 +33,7 @@ Widget install(
     String hostname,
     bool ipv6,
     bool enableTimeshift,
+    bool enableFlatpak,
     setOutput,
     output,
     running,
@@ -67,6 +68,7 @@ Widget install(
     hostname: hostname,
     ipv6: ipv6,
     enableTimeshift: enableTimeshift,
+    enableFlatpak: enableFlatpak,
   );
   String jsonPrefs = jsonEncode(prefs.toJson());
   //writeConfig(jsonPrefs);
@@ -94,14 +96,6 @@ Widget install(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.black),
           color: const Color.fromARGB(255, 15, 15, 15),
-          //color: Colors.black,
-          /*boxShadow: const [
-            BoxShadow(
-              color: Colors.black,
-              blurRadius: 2,
-              offset: Offset(-2, 3),
-            ),
-          ]*/
         ),
         child: SingleChildScrollView(
           reverse: true,
