@@ -77,15 +77,6 @@ Widget install(
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image(
-            image: output
-                    .toString()
-                    .contains("Installation finished! You may reboot now!")
-                ? const AssetImage("assets/success.png")
-                : const AssetImage("assets/loadanim.gif"),
-            width: 50,
-            height: 50,
-          ),
           Text(
             output
                     .toString()
