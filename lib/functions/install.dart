@@ -11,8 +11,8 @@ test(setOutput, running, setRunning, config, writeToLog) async {
     await File(filename).writeAsString(config);
     writeToLog("Json config: $config");
     var process =
-        await Process.start('pkexec', ['/opt/jade_gui/scripts/jadewrapper.sh']);
-    //await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
+        //await Process.start('pkexec', ['/opt/jade_gui/scripts/jadewrapper.sh']);
+        await Process.start('/opt/jade_gui/scripts/jadeemu.sh', []);
     process.stdout.transform(utf8.decoder).forEach(setOutput);
     setRunning(true);
   }
@@ -75,14 +75,30 @@ Widget install(
   test(setOutput, running, setRunning, jsonPrefs, writeToLog);
   return Column(
     children: [
-      Text(
-        output.toString().contains("Installation finished! You may reboot now!")
-            ? "Installed!"
-            : "Installing...",
-        style: const TextStyle(
-            fontSize: 50,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 169, 0, 255)),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image(
+            image: output
+                    .toString()
+                    .contains("Installation finished! You may reboot now!")
+                ? const AssetImage("assets/success.png")
+                : const AssetImage("assets/loadanim.gif"),
+            width: 50,
+            height: 50,
+          ),
+          Text(
+            output
+                    .toString()
+                    .contains("Installation finished! You may reboot now!")
+                ? "Installed!"
+                : " Installing...",
+            style: const TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 169, 0, 255)),
+          ),
+        ],
       ),
       const SizedBox(
         height: 20,

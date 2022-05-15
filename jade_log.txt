@@ -1,3 +1,2 @@
 
-Disks:widget /dev/sda
-/dev/nvme0n1
+Disks:widget 

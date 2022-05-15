@@ -567,16 +567,16 @@ class _JadeguiState extends State<Jadegui> {
                 },
                 rootPass,
                 confirmRootPass,
-                () {
-                  setState(() {
-                    _selectedIndex = _selectedIndex + 1;
-                  });
-                },
                 enableFlatpak,
                 (value) {
                   setState(() {
                     enableFlatpak = value;
                     writeToLog("Enable flatpak: $enableFlatpak");
+                  });
+                },
+                () {
+                  setState(() {
+                    _selectedIndex = _selectedIndex + 1;
                   });
                 },
               ),
