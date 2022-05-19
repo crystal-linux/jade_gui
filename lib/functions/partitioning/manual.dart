@@ -122,7 +122,8 @@ Widget manualPartitioning(
     "/opt",
     "/tmp",
     "/usr",
-    "/var"
+    "/var",
+    "unakite"
   ];
   var filesystems = <String>[
     "don't format",

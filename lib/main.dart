@@ -123,6 +123,7 @@ class _JadeguiState extends State<Jadegui> {
   bool enableFlatpak = true;
   bool connected = false;
   bool manualPartitioning = false;
+  bool enableUnakite = true;
   bool running = false;
   bool runningInfo = false;
   bool runningPart = false;
@@ -142,6 +143,10 @@ class _JadeguiState extends State<Jadegui> {
   String _diskType = "";
   String hostname = "";
   String output = "";
+  String unakiteRoot = "";
+  String crystalRoot = "";
+  String unakiteEfiDir = "";
+  String unakiteBootDev = "";
   Desktop currDesktop = desktops[0];
   Keymap chosenLayout = Keymap();
   List<Partition> partitions = [];
@@ -671,14 +676,26 @@ class _JadeguiState extends State<Jadegui> {
                   (partition, value) {
                     setState(() {
                       partition.mountpoint = value;
-                      if (value == "/boot/efi") {
-                        partition.format = "vfat";
+                      if (value == "/boot/efi" && isEfi) {
+                        partition.filesystem = "vfat";
+                        unakiteEfiDir = value;
+                        unakiteBootDev = partition.partition;
+                      } else if (value == "/boot") {
+                        unakiteEfiDir = value;
+                        unakiteBootDev = partition.partition;
+                      } else if (value == "/") {
+                        crystalRoot = partition.partition;
+                      } else if (value == "unakite") {
+                        unakiteRoot = partition.partition;
+                        partition.filesystem = "btrfs";
                       }
                     });
                   },
                   (partition, value) {
                     setState(() {
-                      partition.filesystem = value;
+                      if (partition.mountpoint != "unakite") {
+                        partition.filesystem = value;
+                      }
                     });
                   },
                   isEfi),
@@ -757,6 +774,11 @@ class _JadeguiState extends State<Jadegui> {
                 ipv6,
                 enableTimeshift,
                 enableFlatpak,
+                enableUnakite,
+                unakiteRoot,
+                unakiteBootDev,
+                unakiteEfiDir,
+                crystalRoot,
                 (value) {
                   setState(() {
                     if (value.compareTo(output) == 1) {

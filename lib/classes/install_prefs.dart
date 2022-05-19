@@ -20,6 +20,11 @@ class InstallPrefs {
   final bool enableFlatpak;
   final bool manualPartitioning;
   final List<String> partitions;
+  final bool enableUnakite;
+  final String unakiteRoot;
+  final String crystalRoot;
+  final String unakiteEfiDir;
+  final String unakiteBootDev;
 
   InstallPrefs({
     this.locale = const Location(),
@@ -40,6 +45,11 @@ class InstallPrefs {
     this.enableFlatpak = false,
     this.manualPartitioning = false,
     this.partitions = const [],
+    this.enableUnakite = true,
+    this.unakiteRoot = "",
+    this.crystalRoot = "",
+    this.unakiteEfiDir = "",
+    this.unakiteBootDev = "",
   });
 
   Map toJson() => {
@@ -77,6 +87,13 @@ class InstallPrefs {
         "flatpak": enableFlatpak,
         "extra_packages": [
           "firefox",
-        ]
+        ],
+        "unakite": {
+          "enable": enableUnakite,
+          "root": unakiteRoot,
+          "oldroot": crystalRoot,
+          "efidir": unakiteEfiDir,
+          "bootdev": unakiteBootDev,
+        }
       };
 }

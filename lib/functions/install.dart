@@ -33,6 +33,11 @@ Widget install(
     bool ipv6,
     bool enableTimeshift,
     bool enableFlatpak,
+    bool enableUnakite,
+    String unakiteRoot,
+    String unakiteBootDev,
+    String unakiteEfiDir,
+    String crystalRoot,
     setOutput,
     output,
     running,
@@ -44,8 +49,12 @@ Widget install(
 
   for (var part in partitions) {
     if (part.mountpoint != "none" && part.filesystem != "none") {
-      partsParsed
-          .add("/mnt${part.mountpoint}:${part.partition}:${part.filesystem}");
+      if (part.mountpoint == "unakite") {
+        partsParsed.add("none:${part.partition}:btrfs");
+      } else {
+        partsParsed
+            .add("/mnt${part.mountpoint}:${part.partition}:${part.filesystem}");
+      }
     }
   }
 
@@ -68,6 +77,11 @@ Widget install(
     ipv6: ipv6,
     enableTimeshift: enableTimeshift,
     enableFlatpak: enableFlatpak,
+    enableUnakite: enableUnakite,
+    unakiteRoot: unakiteRoot,
+    unakiteBootDev: unakiteBootDev,
+    unakiteEfiDir: unakiteEfiDir,
+    crystalRoot: crystalRoot,
   );
   String jsonPrefs = jsonEncode(prefs.toJson());
   //writeConfig(jsonPrefs);
