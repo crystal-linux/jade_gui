@@ -85,6 +85,16 @@ void setWindowSize() {
   setWindowMaxSize(const Size(1300, 870));
 }
 
+localIP(setState) async {
+  for (var interface in await NetworkInterface.list()) {
+    for (var addr in interface.addresses) {
+      if (!addr.address.contains(":")) {
+        setState(addr.address);
+      }
+    }
+  }
+}
+
 void main() => runApp(
       const MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -100,6 +110,16 @@ Future<void> setPassword(clearPass, setState) async {
   });
   debugPrint(password);
   setState(password.replaceAll("\n", ""));
+}
+
+Future<void> startWebsocket(key, running, setRunning) async {
+  if (!running && key != "") {
+    Process.run("/opt/jade_gui/scripts/websocket.py", [key], runInShell: true)
+        .then((ProcessResult result) {
+      return result.stdout;
+    });
+    setRunning(true);
+  }
 }
 
 class Jadegui extends StatefulWidget {
@@ -131,6 +151,7 @@ class _JadeguiState extends State<Jadegui> {
   bool runningPartMan = false;
   bool runningSum = false;
   bool runningEfi = false;
+  bool runningWebsocket = false;
   String clearPass = "";
   String password = "";
   String confirmPassword = "";
@@ -147,12 +168,24 @@ class _JadeguiState extends State<Jadegui> {
   String crystalRoot = "";
   String unakiteEfiDir = "";
   String unakiteBootDev = "";
+  String ip = "";
+  String key = "";
   Desktop currDesktop = desktops[0];
   Keymap chosenLayout = Keymap();
   List<Partition> partitions = [];
 
   @override
   Widget build(BuildContext context) {
+    startWebsocket(key, runningWebsocket, (value) {
+      setState(() {
+        runningWebsocket = value;
+      });
+    });
+    localIP((value) {
+      setState(() {
+        ip = value;
+      });
+    });
     getPartition(
         (value) {
           setState(() {
@@ -377,6 +410,13 @@ class _JadeguiState extends State<Jadegui> {
                   });
                 },
                 connected,
+                ip,
+                key,
+                (value) {
+                  setState(() {
+                    key = value;
+                  });
+                },
               ),
             ),
           ),

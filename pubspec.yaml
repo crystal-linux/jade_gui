@@ -42,6 +42,8 @@ dependencies:
       path: plugins/window_size
       ref: a738913c8ce2c9f47515382d40827e794a334274
   adwaita_icons: ^0.2.1
+  qr_flutter: ^4.0.0
+  open_url: ^2.0.0
 
 
 dev_dependencies:

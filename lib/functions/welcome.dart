@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:open_url/open_url.dart';
+import 'dart:math';
 
-Widget welcome(next, connected) {
+String getKey(int length, String key, setState) {
+  if (key == "" || key.length < length) {
+    const ch = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    Random r = Random();
+    String key = String.fromCharCodes(
+        Iterable.generate(length, (_) => ch.codeUnitAt(r.nextInt(ch.length))));
+    setState(key);
+    print(key);
+    return key;
+  }
+  print(key);
+  return key;
+}
+
+Widget welcome(
+  next,
+  connected,
+  localIp,
+  key,
+  setState,
+) {
+  List ipSplit = localIp.split('.');
+  String name = "crystal" + ipSplit.last;
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
@@ -130,7 +155,30 @@ Widget welcome(next, connected) {
           style: TextStyle(fontSize: 20, color: Colors.white)),
       const Text(
           "it's recommended to try that first to see if everything works",
-          style: TextStyle(fontSize: 20, color: Colors.white))
+          style: TextStyle(fontSize: 20, color: Colors.white)),
+      const SizedBox(height: 20),
+      Tooltip(
+        message: "The qr code to scan for jade_batch, click to find out more.",
+        child: ElevatedButton(
+          onPressed: () {
+            openUrl("https://wiki.getcryst.al/index.php/Jade_batch");
+          },
+          style: TextButton.styleFrom(
+            primary: const Color.fromARGB(0, 23, 23, 23),
+            backgroundColor: const Color.fromARGB(0, 23, 23, 23),
+            elevation: 0,
+            padding: EdgeInsets.zero,
+          ),
+          child: QrImage(
+            data: "{\"ip\":\"$localIp\",\"name\":\"$name\",\"key\":\"" +
+                getKey(32, key, setState) +
+                "\"}",
+            embeddedImage: const AssetImage("assets/jade_logo.png"),
+            foregroundColor: Colors.white,
+            size: 150.150,
+          ),
+        ),
+      ),
     ],
   );
 }
