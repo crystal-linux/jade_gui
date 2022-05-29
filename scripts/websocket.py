@@ -59,7 +59,7 @@ async def handler(websocket):
             config = open('/tmp/jade.json', 'w')
             config.write(data)
             config.close()
-            subprocess.check_output(["bash", "-c", "sudo /usr/bin/jade config /tmp/jade.json"])
+            subprocess.check_output(["gnome-terminal", "--", "/bin/bash -c", "/usr/bin/sudo /usr/bin/jade config /tmp/jade.json"])
             await websocket.send(json.dumps({"type": "response", "data": "Finished Installing"}))
     else:
         await websocket.send(json.dumps({"type": encrypt("response", aeskey, iv), "data": encrypt("Invalid Request", aeskey, iv)}))
