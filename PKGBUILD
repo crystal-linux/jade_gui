@@ -3,6 +3,7 @@ pkgname=jade_gui
 pkgver=1.1.1
 pkgrel=3
 pkgdesc="Flutter GUI for installing crystal"
+license=('GPL3')
 arch=('any')
 url="https://git.tar.black/crystal/programs/jade_gui"
 depends=('gtk3' 'jade' 'openssl' 'python-websockets' 'python-pycryptodome' 'inetutils')
