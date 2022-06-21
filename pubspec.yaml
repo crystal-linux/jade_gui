@@ -44,6 +44,7 @@ dependencies:
   adwaita_icons: ^0.2.1
   qr_flutter: ^4.0.0
   open_url: ^2.0.0
+  flutter_svg: ^1.1.0
 
 
 dev_dependencies:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adwaita_icons/adwaita_icons.dart';
+import 'package:flutter_svg/svg.dart';
 
 final _formKey = GlobalKey<FormState>();
 RegExp hostnameRegex = RegExp(
@@ -19,8 +20,16 @@ Widget misc(
     confirmRootPass,
     enableFlatpak,
     setFlatpak,
+    setKernel,
+    String selectedKernel,
     next) {
   bool flatpak = true;
+  List<String> availableKernels = [
+    "linux",
+    "linux-lts",
+    "linux-zen",
+    "linux-hardened",
+  ];
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -113,6 +122,7 @@ Widget misc(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
                             child: const Text(
                               '#',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -280,6 +290,62 @@ Widget misc(
                           ),
                         ),
                       ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.black45),
+                          color: const Color.fromARGB(100, 30, 30, 30),
+                        ),
+                        child: Tooltip(
+                            message: "Installs a different kernel",
+                            child: Row(
+                              children: [
+                                const SizedBox(width: 15),
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                  ),
+                                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 13),
+                                  child:
+                                  SvgPicture.asset(
+                                    'assets/tux_monochrome.svg',
+                                    color: Colors.black,
+                                    height: 25,
+                                    width: 25,
+                                    ),
+                                  ),
+                                const SizedBox(width: 15),
+                                const Text('Kernel to install',
+                                    style: TextStyle(color: Colors.white, fontSize: 17)),
+                                const Spacer(),
+                                DropdownButton(
+                                  icon: const Icon(Icons.arrow_downward),
+                                  elevation: 16,
+                                  style: const TextStyle(color: Colors.deepPurple),
+                                  dropdownColor: const Color.fromARGB(255, 23, 23, 23),
+                                  underline: Container(
+                                    height: 2,
+                                    color: Colors.deepPurpleAccent,
+                                  ),
+                                  value: selectedKernel,
+                                  onChanged: (String? value) {
+                                    setKernel(value);
+                                  },
+                                  items: availableKernels.map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value,
+                                          style: const TextStyle(color: Colors.white)),
+                                    );
+                                  }).toList(),
+                          ),
+                              ],
+                            ),
+                        ),
                     ),
                     const SizedBox(height: 10),
                   ],

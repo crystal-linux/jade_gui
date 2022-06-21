@@ -38,6 +38,7 @@ Widget install(
     String unakiteBootDev,
     String unakiteEfiDir,
     String crystalRoot,
+    String kernel,
     setOutput,
     output,
     running,
@@ -82,6 +83,7 @@ Widget install(
     unakiteBootDev: unakiteBootDev,
     unakiteEfiDir: unakiteEfiDir,
     crystalRoot: crystalRoot,
+    kernel: kernel,
   );
   String jsonPrefs = jsonEncode(prefs.toJson());
   //writeConfig(jsonPrefs);

@@ -25,6 +25,7 @@ class InstallPrefs {
   final String crystalRoot;
   final String unakiteEfiDir;
   final String unakiteBootDev;
+  final String kernel;
 
   InstallPrefs({
     this.locale = const Location(),
@@ -50,6 +51,7 @@ class InstallPrefs {
     this.crystalRoot = "",
     this.unakiteEfiDir = "",
     this.unakiteBootDev = "",
+    this.kernel = "linux",
   });
 
   Map toJson() => {
@@ -94,6 +96,7 @@ class InstallPrefs {
           "oldroot": crystalRoot,
           "efidir": unakiteEfiDir,
           "bootdev": unakiteBootDev,
-        }
+        },
+        "kernel": kernel,
       };
 }

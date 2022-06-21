@@ -170,6 +170,7 @@ class _JadeguiState extends State<Jadegui> {
   String unakiteBootDev = "";
   String ip = "";
   String key = "";
+  String selectedKernel = "linux";
   Desktop currDesktop = desktops[0];
   Keymap chosenLayout = Keymap();
   List<Partition> partitions = [];
@@ -619,6 +620,12 @@ class _JadeguiState extends State<Jadegui> {
                     writeToLog("Enable flatpak: $enableFlatpak");
                   });
                 },
+                (value) {
+                  setState(() {
+                    selectedKernel = value;
+                  });
+                },
+                selectedKernel,
                 () {
                   setState(() {
                     _selectedIndex = _selectedIndex + 1;
