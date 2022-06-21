@@ -1,7 +1,7 @@
 # Maintainer: Matt C <matt[at]getcryst[dot]al>
 pkgname=jade_gui
 pkgver=1.1.1
-pkgrel=3
+pkgrel=4
 pkgdesc="Flutter GUI for installing crystal"
 license=('GPL3')
 arch=('any')
