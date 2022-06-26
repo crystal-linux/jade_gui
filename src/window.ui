@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <template class="JadeGuiWindow" parent="GtkApplicationWindow">
+    <property name="title">Jade</property>
+    <property name="default-width">600</property>
+    <property name="default-height">600</property>
+    <property name="resizable">false</property>
+    <child type="titlebar">
+      <object class="AdwHeaderBar" id="header_bar">
+        <property name="title-widget">
+          <object class="GtkBox">
+            <child>
+              <object class="GtkImage">
+                <property name="resource">/al/getcryst/jadegui/crystal-logo-minimal.png</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="margin-start">2</property>
+                <property name="label">&lt;span font_weight='bold'&gt;Jade&lt;/span&gt;</property>
+                <property name="use-markup">true</property>
+              </object>
+            </child>
+          </object>
+        </property>
+        <style>
+          <class name="flat"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="valign">center</property>
+        <property name="halign">center</property>
+        <property name="vexpand">true</property>
+        <property name="hexpand">true</property>
+        <child>
+          <object class="GtkImage" id="crystal-logo">
+            <property name="resource">/al/getcryst/jadegui/crystal-logo-minimal.png</property>
+            <property name="pixel-size">200</property>
+            <property name="margin-bottom">25</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="welcome">
+            <property name="label">&lt;span font_weight='bold' font_size='20pt'&gt;Welcome to jade&lt;/span&gt;</property>
+            <property name="use-markup">true</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="letsstart">
+            <property name="label">Ready to make your Crystal installation... ready?</property>
+            <property name="margin-bottom">25</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="vexpand">true</property>
+            <property name="hexpand">true</property>
+            <child>
+              <object class="GtkButton" id="quitButton">
+                <property name="label">No...</property>
+                <property name="margin-end">12</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="nextButton">
+                <property name="margin-start">12</property>
+                <property name="label">YEAH!</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label">Prefrences</attribute>
+        <attribute name="action">app.prefrences</attribute>
+      </item>
+      <item>
+        <attribute name="label">Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label">About jade_gui</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

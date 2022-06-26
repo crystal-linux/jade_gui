@@ -1,0 +1,67 @@
+using Gtk 4.0;
+using Adw 1;
+
+template JadeGuiWindow : Gtk.ApplicationWindow {
+    title: "Jade";
+    default-width: 600;
+    default-height: 600;
+    resizable: false;
+
+    [titlebar]
+    Adw.HeaderBar header_bar {
+        title-widget: Gtk.Box {
+            Gtk.Image {
+                resource: "/al/getcryst/jadegui/crystal-logo-minimal.png";
+            }
+            Gtk.Label {
+            	margin-start: 2;
+                label: "<span font_weight='bold'>Jade</span>";
+                use-markup: true;
+            }
+        };
+
+    	styles ["flat"]
+    }
+    Gtk.Box {
+    	orientation: vertical;
+    	valign: center;
+    	halign: center;
+    	vexpand: true;
+    	hexpand: true;
+
+    	Gtk.Image crystal-logo {
+    	    resource: "/al/getcryst/jadegui/crystal-logo-minimal.png";
+    	    pixel-size: 200;
+    	    margin-bottom: 25;
+    	}
+
+        Gtk.Label welcome {
+            label: "<span font_weight='bold' font_size='20pt'>Welcome to jade</span>";
+            use-markup: true;
+        }
+
+	Gtk.Label letsstart {
+	    label: "Ready to make your Crystal installation... ready?";
+	    margin-bottom: 25;
+	}
+
+        Gtk.Box  {
+            orientation: horizontal;
+            halign: center;
+            valign: center;
+            vexpand: true;
+            hexpand: true;
+
+            Gtk.Button quitButton {
+                label: "No...";
+                margin-end: 12;
+            }
+
+            Gtk.Button nextButton {
+                margin-start: 12;
+                label: "YEAH!";
+                styles ["suggested-action"]
+            }
+        }
+    }
+}

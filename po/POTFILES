@@ -1,0 +1,7 @@
+data/al.getcryst.jadegui.desktop.in
+data/al.getcryst.jadegui.appdata.xml.in
+data/al.getcryst.jadegui.gschema.xml
+src/window.ui
+src/main.js
+src/window.js
+

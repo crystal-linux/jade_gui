@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Comment=GUI frontend for the jade crystal installer
-Name=Jade GUI
-Icon=/usr/share/icons/jade-logo.svg
-Exec=jade_gui
-Categories=System

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=jade_gui
+Exec=al.getcryst.jadegui
+Icon=al.getcryst.jadegui
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
