@@ -8,12 +8,11 @@
 
 <p align="center">
     <a href="https://discord.gg/yp4xpZeAgW"><img alt="Discord" src="https://img.shields.io/discord/825473796227858482?color=blue&label=Discord&logo=Discord&logoColor=white"?link=https://discord.gg/yp4xpZeAgW&link=https://discord.gg/yp4xpZeAgW> </a>
+    <img href="https://stopthemingmy.app" src="https://stopthemingmy.app/badge.svg" alt="Please don't theme this app">
 </p>
 
 <p align="center"> The libadwaita/gtk based gui installer using jade as the backend
 </p>
-
-[![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app) 
 
 [The jade gui mockups](https://github.com/crystal-linux/demos-mockups/blob/main/preview.pdf)
 
