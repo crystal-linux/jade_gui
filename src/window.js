@@ -28,8 +28,24 @@ export const JadeGuiWindow = GObject.registerClass({
     _init(application) {
         super._init({ application });
         this._quitButton.connect('clicked', () => {
-            log('Quit!');
+            confirm_quit();
         });
     }
 });
+
+function confirm_quit() {
+    const quitDialog = new Gtk.MessageDialog({
+    text: "Do you want to try\nCrystal without installing?",
+    transient_for: JadeGuiWindow,
+    modal: true,
+    buttons: Gtk.ButtonsType.Ok,
+  });
+
+  quitDialog.connect("response", () => {
+    quitDialog.close();
+  });
+
+  quitDialog.present();
+
+}
 
