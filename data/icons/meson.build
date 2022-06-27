@@ -1,4 +1,4 @@
-application_id = 'al.getcryst.jadegui'
+application_id = 'al.getcyrst.jadegui'
 
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')
 install_data(

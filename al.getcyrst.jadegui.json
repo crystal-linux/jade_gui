@@ -1,9 +1,9 @@
 {
-    "app-id" : "al.getcryst.jadegui",
+    "app-id" : "al.getcyrst.jadegui",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "42",
+    "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
-    "command" : "al.getcryst.jadegui",
+    "command" : "jade_gui",
     "finish-args" : [
         "--share=network",
         "--share=ipc",

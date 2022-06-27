@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/al/getcryst/jadegui">
+  <gresource prefix="/al/getcyrst/jadegui">
     <file>window.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>crystal-logo-minimal.png</file>
