@@ -6,6 +6,7 @@ blueprints = custom_target('blueprints',
   input: files(
     'gtk/help-overlay.blp',
     'window.blp',
+    'widgets/timezone.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
@@ -36,6 +37,8 @@ configure_file(
   install: true,
   install_dir: get_option('bindir')
 )
+
+subdir('widgets')
 
 jade_gui_sources = [
   '__init__.py',

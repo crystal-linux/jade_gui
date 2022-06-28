@@ -39,7 +39,7 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
 	    allow-scroll-wheel: true;
 	    allow-long-swipes: true;
 
-            Gtk.Box {
+            Gtk.Box welcome_page {
     	        orientation: vertical;
     	        valign: center;
     	        halign: center;
@@ -69,12 +69,12 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
                     vexpand: true;
                     hexpand: true;
 
-                    Gtk.Button quitButton {
+                    Gtk.Button quit_button {
                         label: "No...";
                         margin-end: 12;
                     }
 
-                    Gtk.Button nextButton {
+                    Gtk.Button next_button {
                         margin-start: 12;
                         label: "YEAH!";
                         styles ["suggested-action"]
@@ -86,7 +86,7 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
 	    	description: "What's your current timezone?";
 		Gtk.Box {
 		    orientation: vertical;
-		    Gtk.SearchBar timezoneSearch {
+		    Gtk.SearchBar timezone_search {
 		    	Gtk.SearchEntry entry_search {
 		    	    placeholder-text: "Search for a timezone...";
 		    	}
@@ -94,33 +94,8 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
 		    Adw.PreferencesPage {
 		    	Adw.PreferencesGroup {
 		    	    Gtk.ListBox list_timezones {
-		    	    	selection-mode: none;
+		    	    	//selection-mode: none;
 		    	    	styles ["boxed-list"]
-		    	    	Gtk.Label {
-		    	    	    margin-top: 5;
-		    	    	    margin-bottom: 5;
-		    	    	    label: "test";
-		    	    	}
-		    	    	Gtk.Label {
-		    	    	    margin-top: 5;
-		    	    	    margin-bottom: 5;
-		    	    	    label: "test";
-		    	    	}
-		    	    	Gtk.Label {
-		    	    	    margin-top: 5;
-		    	    	    margin-bottom: 5;
-		    	    	    label: "test";
-		    	    	}
-		    	    	Gtk.Label {
-		    	    	    margin-top: 5;
-		    	    	    margin-bottom: 5;
-		    	    	    label: "test";
-		    	    	}
-		    	    	Gtk.Label {
-		    	    	    margin-top: 5;
-		    	    	    margin-bottom: 5;
-		    	    	    label: "test";
-		    	    	}
 		    	    }
 		    	}
 		    }

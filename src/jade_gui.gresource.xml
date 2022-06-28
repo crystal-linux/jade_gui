@@ -2,6 +2,7 @@
 <gresources>
   <gresource prefix="/al/getcyrst/jadegui">
     <file>window.ui</file>
+    <file>widgets/timezone.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>crystal-logo-minimal.png</file>
   </gresource>
