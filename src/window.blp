@@ -23,45 +23,110 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
     	styles ["flat"]
     }
     Gtk.Box {
-    	orientation: vertical;
-    	valign: center;
-    	halign: center;
-    	vexpand: true;
-    	hexpand: true;
+        orientation: horizontal;
+	vexpand: true;
+	hexpand: true;
 
-    	Gtk.Image crystal-logo {
-    	    resource: "/al/getcyrst/jadegui/crystal-logo-minimal.png";
-    	    pixel-size: 200;
-    	    margin-bottom: 25;
-    	}
-
-        Gtk.Label welcome {
-            label: "<span font_weight='bold' font_size='20pt'>Welcome to jade</span>";
-            use-markup: true;
-        }
-
-	Gtk.Label letsstart {
-	    label: "Ready to make your Crystal installation... ready?";
-	    margin-bottom: 25;
+	Adw.CarouselIndicatorDots {
+	    carousel: carousel;
+	    orientation: vertical;
 	}
+	Adw.Carousel carousel {
+	    orientation: horizontal;
+	    vexpand: true;
+	    hexpand: true;
+	    allow-mouse-drag: true;
+	    allow-scroll-wheel: true;
+	    allow-long-swipes: true;
 
-        Gtk.Box  {
-            orientation: horizontal;
-            halign: center;
-            valign: center;
-            vexpand: true;
-            hexpand: true;
+            Gtk.Box {
+    	        orientation: vertical;
+    	        valign: center;
+    	        halign: center;
+    	        vexpand: true;
+    	        hexpand: true;
 
-            Gtk.Button quitButton {
-                label: "No...";
-                margin-end: 12;
-            }
+    	        Gtk.Image crystal-logo {
+    	            resource: "/al/getcyrst/jadegui/crystal-logo-minimal.png";
+    	            pixel-size: 200;
+    	            margin-bottom: 25;
+    	        }
 
-            Gtk.Button nextButton {
-                margin-start: 12;
-                label: "YEAH!";
-                styles ["suggested-action"]
-            }
-        }
+                Gtk.Label welcome {
+                    label: "<span font_weight='bold' font_size='20pt'>Welcome to jade</span>";
+                    use-markup: true;
+                }
+
+	        Gtk.Label letsstart {
+	            label: "Ready to make your Crystal installation... ready?";
+    	            margin-bottom: 25;
+    	        }
+
+                Gtk.Box  {
+                    orientation: horizontal;
+                    halign: center;
+                    valign: center;
+                    vexpand: true;
+                    hexpand: true;
+
+                    Gtk.Button quitButton {
+                        label: "No...";
+                        margin-end: 12;
+                    }
+
+                    Gtk.Button nextButton {
+                        margin-start: 12;
+                        label: "YEAH!";
+                        styles ["suggested-action"]
+                    }
+                }
+    	    }
+	    Adw.StatusPage timezone_page {
+	        title: "Let's get started, shall we?";
+	    	description: "What's your current timezone?";
+		Gtk.Box {
+		    orientation: vertical;
+		    Gtk.SearchBar timezoneSearch {
+		    	Gtk.SearchEntry entry_search {
+		    	    placeholder-text: "Search for a timezone...";
+		    	}
+		    }
+		    Adw.PreferencesPage {
+		    	Adw.PreferencesGroup {
+		    	    Gtk.ListBox list_timezones {
+		    	    	selection-mode: none;
+		    	    	styles ["boxed-list"]
+		    	    	Gtk.Label {
+		    	    	    margin-top: 5;
+		    	    	    margin-bottom: 5;
+		    	    	    label: "test";
+		    	    	}
+		    	    	Gtk.Label {
+		    	    	    margin-top: 5;
+		    	    	    margin-bottom: 5;
+		    	    	    label: "test";
+		    	    	}
+		    	    	Gtk.Label {
+		    	    	    margin-top: 5;
+		    	    	    margin-bottom: 5;
+		    	    	    label: "test";
+		    	    	}
+		    	    	Gtk.Label {
+		    	    	    margin-top: 5;
+		    	    	    margin-bottom: 5;
+		    	    	    label: "test";
+		    	    	}
+		    	    	Gtk.Label {
+		    	    	    margin-top: 5;
+		    	    	    margin-bottom: 5;
+		    	    	    label: "test";
+		    	    	}
+		    	    }
+		    	}
+		    }
+		}
+    	    }
+    	}
     }
 }
+

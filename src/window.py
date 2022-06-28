@@ -18,18 +18,33 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk
-
+from gi.repository import Gdk
+import time
 
 @Gtk.Template(resource_path='/al/getcyrst/jadegui/window.ui')
 class JadeGuiWindow(Gtk.ApplicationWindow):
     __gtype_name__ = 'JadeGuiWindow'
 
     quitButton = Gtk.Template.Child()
-
-    def __init__(self, window, **kwargs):
+    nextButton = Gtk.Template.Child()
+    carousel = Gtk.Template.Child()
+    timezone_page = Gtk.Template.Child()
+    list_timezones = Gtk.Template.Child()
+    entry_search = Gtk.Template.Child()
+    timezone_search = Gtk.Template.Child()
+    event_controller = Gtk.EventControllerKey.new()
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.quitButton.connect("clicked", self.confirmQuit)
-        self.window = window
+        #self.window = window
+        self.nextButton.connect("clicked", self.nextPage)
+        self.event_controller.connect("key-released", self.search_timezones)
+        self.entry_search.add_controller(self.event_controller)
+        self.timezone_search.set_key_capture_widget(self)
+        self.list_timezones.connect("row-selected", self.selected_timezone)
+
+    def nextPage(self, idk):
+        self.carousel.scroll_to(self.timezonePage, True)
 
     def confirmQuit(self, idk):
 
@@ -49,6 +64,20 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         )
         dialog.connect("response", handle_response)
         dialog.present()
+
+    def selected_timezone(self, widget, row):
+        print(row.timezone)
+
+    def search_timezones(self, *args):
+        term = self.entry_search.get_text()
+        self.list_timezones.set_filter_func(self.filter_timezones, terms)
+
+    @staticmethod
+    def filter_timezones(row, terms=None):
+        text = row.get_title().lower() + row.get_subtitle().lower()
+        if terms.lower() in text:
+            return True
+        return False
 
 class AboutDialog(Gtk.AboutDialog):
 

@@ -30,12 +30,16 @@ from .window import JadeGuiWindow, AboutDialog
 class Jade_guiApplication(Adw.Application):
     """The main application singleton class."""
 
+
     def __init__(self):
         super().__init__(application_id='al.getcyrst.jadegui',
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
         self.create_action('quit', self.quit, ['<primary>q'])
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
+
+    def testResize(self, idk):
+        self.window.resize(800, 600)
 
     def do_activate(self):
         """Called when the application is activated.
@@ -45,7 +49,7 @@ class Jade_guiApplication(Adw.Application):
         """
         win = self.props.active_window
         if not win:
-            win = JadeGuiWindow(application=self, window=win)
+            win = JadeGuiWindow(application=self)
         win.present()
 
     def on_about_action(self, widget, _):
