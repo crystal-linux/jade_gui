@@ -81,27 +81,6 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
                     }
                 }
     	    }
-	    Adw.StatusPage timezone_page {
-	        title: "Let's get started, shall we?";
-	    	description: "What's your current timezone?";
-		Gtk.Box {
-		    orientation: vertical;
-		    Gtk.SearchBar timezone_search {
-		    	Gtk.SearchEntry entry_search {
-		    	    placeholder-text: "Search for a timezone...";
-		    	}
-		    }
-		    Adw.PreferencesPage {
-		    	Adw.PreferencesGroup {
-		    	    Gtk.ListBox list_timezones {
-		    	    	//selection-mode: none;
-		    	    	styles ["boxed-list"]
-		    	    }
-		    	}
-		    }
-		}
-    	    }
     	}
     }
 }
-

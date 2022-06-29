@@ -1,0 +1,57 @@
+using Gtk 4.0;
+using Adw 1;
+
+template KeyboardScreen : Adw.Bin {
+    hexpand: true;
+    vexpand: true;
+        Gtk.Box {
+            vexpand: true;
+            hexpand: true;
+            //halign: center;
+            //valign: center;
+            Adw.StatusPage {
+                hexpand: true;
+                vexpand: true;
+                title: "Next question: keyboard layout?";
+                description: "What is it? Huh?";
+                Gtk.Box {
+                    orientation: vertical;
+                    Gtk.SearchBar keyboard_search {
+                        Gtk.SearchEntry keyboard_entry_search {
+                            placeholder-text: "Search for a timezone...";
+                        }
+                    }
+                }
+            Adw.PreferencesPage {
+                Adw.Carousel keyboard_carousel {
+                    orientation: horizontal;
+                    vexpand: true;
+                    hexpand: true;
+                    Adw.PreferencesGroup keyboard_layouts {
+                        hexpand: true;
+                        vexpand: true;
+                        margin-end: 5;
+                        Gtk.ListBox list_keyboard_layouts {
+                            //selection-mode: none;
+                            hexpand: true;
+                            vexpand: true;
+                            //  margin-end: 5;
+                            styles ["boxed-list"]
+                        }
+                    }
+                    Adw.PreferencesGroup keyboard_variants {
+                        hexpand: true;
+                        vexpand: true;
+                        margin-start: 5;
+                        Gtk.ListBox list_keyboard_variants {
+                            hexpand: true;
+                            vexpand: true;
+                            // margin-start: 5;
+                            styles ["boxed-list"]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

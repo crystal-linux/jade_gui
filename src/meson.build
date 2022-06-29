@@ -7,6 +7,10 @@ blueprints = custom_target('blueprints',
     'gtk/help-overlay.blp',
     'window.blp',
     'widgets/timezone.blp',
+    'widgets/layout.blp',
+    'widgets/variant.blp',
+    'pages/keyboard_screen.blp',
+    'pages/timezone_screen.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
@@ -25,7 +29,7 @@ gnome.compile_resources('jade_gui',
 python = import('python')
 
 conf = configuration_data()
-conf.set('PYTHON', python.find_installation('python3').path())
+conf.set('PYTHON', python.find_installation('python3').full_path())
 conf.set('VERSION', meson.project_version())
 conf.set('localedir', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set('pkgdatadir', pkgdatadir)
@@ -39,6 +43,7 @@ configure_file(
 )
 
 subdir('widgets')
+subdir('functions')
 
 jade_gui_sources = [
   '__init__.py',

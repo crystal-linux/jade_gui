@@ -1,4 +1,4 @@
-# timezone.py
+# variant.py
 
 #
 # Copyright 2022 user
@@ -17,26 +17,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from datetime import datetime
-import pytz
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcyrst/jadegui/widgets/timezone.ui')
-class TimezoneEntry(Adw.ActionRow):
-    __gtype_name__ = 'TimezoneEntry'
+@Gtk.Template(resource_path='/al/getcyrst/jadegui/widgets/variant.ui')
+class KeyboardVariant(Adw.ActionRow):
+    __gtype_name__ = 'KeyboardVariant'
 
-    time_label = Gtk.Template.Child()
-
-    def __init__(self, window, location, region, locale, timezone, application, **kwargs):
+    def __init__(self, window, variant, country, country_shorthand, application, **kwargs):
         super().__init__(**kwargs)
 
-        self.set_title(region+"/"+location)
-        self.set_subtitle(timezone)
+        self.set_title(variant)
+        self.set_subtitle(country+" - "+country_shorthand)
 
-        self.time_label.set_text(self.calculate_time(location, region))
-
-    def calculate_time(widget, location, region):
-        timezone = pytz.timezone(location+"/"+region)
-        datetime_timezone = datetime.now(timezone)
-        return datetime_timezone.strftime('%H:%M')
