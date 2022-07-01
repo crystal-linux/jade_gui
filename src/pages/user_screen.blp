@@ -1,0 +1,68 @@
+using Gtk 4.0;
+using Adw 1;
+
+template UserScreen : Adw.Bin {
+    hexpand: true;
+    vexpand: true;
+    Gtk.Box {
+        vexpand: true;
+        hexpand: true;
+        Adw.StatusPage {
+            hexpand: true;
+            vexpand: true;
+            title: "Create your user";
+            description: "You can add more users in the settings on the installed system";
+	    Adw.PreferencesPage {
+	    	Adw.PreferencesGroup {
+		    Gtk.Entry username_entry {
+		    	margin-bottom: 7;
+			primary-icon-name: "avatar-default-symbolic";
+			primary-icon-activatable: false;
+			secondary-icon-name: "edit-clear";
+			secondary-icon-activatable: true;
+		    	placeholder-text: "Enter your username";
+		    }
+		    Gtk.Entry password_entry {
+		    	margin-top: 7;
+		    	margin-bottom: 7;
+		        primary-icon-name: "system-lock-screen-symbolic";
+		        primary-icon-activatable: false;
+			secondary-icon-name: "edit-clear";
+			secondary-icon-activatable: true;
+		    	placeholder-text: "Enter your password";
+		    }
+		    Gtk.Entry password_confirmation {
+		    	margin-top: 7;
+		    	margin-bottom: 7;
+		        primary-icon-name: "system-lock-screen-symbolic";
+		        primary-icon-activatable: false;
+			secondary-icon-name: "edit-clear";
+			secondary-icon-activatable: true;
+		    	placeholder-text: "Repeat your password";
+		    	styles ["big"]
+		    }
+		    Gtk.ListBox { // TODO: MOVE TO ADVANCED/MISC SECTION???
+		    	margin-top: 7;
+		    	styles ["boxed-list"]
+		    	Adw.ActionRow {
+		    	    title: "Enable administrative rights for user";
+		    	    subtitle: "Allows the user to use sudo";
+		    	    Gtk.Switch enable_sudo_switch {
+		    	    	valign: center;
+		    	    	state: true;
+		    	    }
+		    	}
+		    	Adw.ActionRow {
+		    	    title: "Enable superuser account";
+		    	    subtitle: "Allows using the root user";
+		    	    Gtk.Switch enable_root_switch {
+				valign: center;
+		    	    	state: false;
+		    	    }
+		    	}
+		    }
+	    	}
+	    }
+        }
+    }
+}

@@ -7,6 +7,7 @@
     <file>widgets/variant.ui</file>
     <file>pages/keyboard_screen.ui</file>
     <file>pages/timezone_screen.ui</file>
+    <file>pages/user_screen.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>crystal-logo-minimal.png</file>
   </gresource>

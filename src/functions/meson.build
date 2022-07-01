@@ -5,5 +5,6 @@ jade_gui_sources = [
     '__init__.py',
     'keyboard_screen.py',
     'timezone_screen.py',
+    'user_screen.py',
 ]
 install_data(jade_gui_sources, install_dir: functionsdir)

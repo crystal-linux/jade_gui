@@ -11,11 +11,20 @@ blueprints = custom_target('blueprints',
     'widgets/variant.blp',
     'pages/keyboard_screen.blp',
     'pages/timezone_screen.blp',
+    'pages/user_screen.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
 )
 
+
+
+gnome.compile_resources('jade_gui_resources',
+  'resources.gresource.xml',
+  gresource_bundle: true,
+  install: true,
+  install_dir: pkgdatadir,
+)
 
 
 gnome.compile_resources('jade_gui',
