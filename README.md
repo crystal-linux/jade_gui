@@ -11,10 +11,11 @@
     <img href="https://stopthemingmy.app" src="https://stopthemingmy.app/badge.svg" alt="Please don't theme this app">
 </p>
 
-<p align="center"> The libadwaita/gtk based gui installer using jade as the backend
+<p align="center"> The libadwaita/gtk based gui installer using jade as the backend.
 </p>
 
-[The jade gui mockups](https://github.com/crystal-linux/demos-mockups/blob/main/preview.pdf)
+<p align="center"><a  href="https://github.com/crystal-linux/demos-mockups/blob/main/preview.pdf">The jade gui mockups</p></a>
+
 
 ![](main-page-screenshot.png)
 
@@ -22,20 +23,20 @@
 ### Building
 __NOTE: the jade gui libadwaita rewrite is not complete and CAN'T install a crystal system yet__
 
-using gnome-builder to build and run this currently doesn't work as jade_gui requires python-pytz which gnome-builder doesn't provide when building
+Using gnome-builder to build and run this currently doesn't work as jade_gui requires python-pytz which gnome-builder doesn't provide when building.
 
-dependencies:
+Dependencies:
 - python-pytz
 - python-gobject
 
 
-first you have to clone this repo and change the branch:
+First you have to clone this repo and change the branch:
 ```sh
 git clone https://github.com/crystal-linux/jade_gui/
 cd jade_gui
 git checkout libadwaita-rewrite
 ```
-then you can simply run
+Then you can simply run:
 ```sh
 ./build.sh build # to just build it
 ./build.sh install # to install a previous build
