@@ -24,6 +24,7 @@ from .widgets.layout import KeyboardLayout
 from .widgets.variant import KeyboardVariant
 from .functions.keyboard_screen import KeyboardScreen
 from .functions.timezone_screen import TimezoneScreen
+from .functions.user_screen import UserScreen
 
 @Gtk.Template(resource_path='/al/getcyrst/jadegui/window.ui')
 class JadeGuiWindow(Gtk.ApplicationWindow):
@@ -41,10 +42,12 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.keyboard_screen = KeyboardScreen(window=self, main_carousel=self.carousel, next_page=None, **kwargs)
+        self.user_screen = UserScreen(window=self, main_carousel=self.carousel, next_page=None, **kwargs)
+        self.keyboard_screen = KeyboardScreen(window=self, main_carousel=self.carousel, next_page=self.user_screen, **kwargs)
         self.timezone_screen = TimezoneScreen(window=self, main_carousel=self.carousel, next_page=self.keyboard_screen, **kwargs)
         self.carousel.append(self.timezone_screen)
         self.carousel.append(self.keyboard_screen)
+        self.carousel.append(self.user_screen)
         ### Widgets for first page (welcome screen)
         self.quit_button.connect("clicked", self.confirmQuit)
         self.next_button.connect("clicked", self.nextPage)

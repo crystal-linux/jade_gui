@@ -40,7 +40,9 @@ if __name__ == '__main__':
 
     from gi.repository import Gio
     resource = Gio.Resource.load(os.path.join(pkgdatadir, 'jade_gui.gresource'))
+    icons = Gio.Resource.load(os.path.join(pkgdatadir, 'jade_gui_resources.gresource'))
     resource._register()
+    icons._register()
 
     from jade_gui import main
     sys.exit(main.main(VERSION))
