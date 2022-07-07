@@ -31,6 +31,7 @@ class UserScreen(Adw.Bin):
     password_confirmation = Gtk.Template.Child()
     enable_sudo_switch = Gtk.Template.Child()
     enable_root_switch = Gtk.Template.Child()
+    next_page = Gtk.Template.Child()
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
@@ -38,20 +39,25 @@ class UserScreen(Adw.Bin):
         self.carousel = main_carousel
         self.sudo_enabled = True
         self.root_enabled = True
-        self.next_page = next_page
         self.enable_root_switch.set_active(self.root_enabled)
         self.enable_sudo_switch.set_active(self.sudo_enabled)
         self.username_entry.connect('changed', self.username_passes_regex)
         self.enable_root_switch.connect('state-set', self.enable_root_user)
         self.enable_sudo_switch.connect('state-set', self.enable_sudo)
+        self.password_entry.connect('changed', self.verify_password)
+        self.password_confirmation.connect('changed', self.verify_password)
 
     def username_passes_regex(self, widget):
         input = self.username_entry.get_text()
         print(input)
         if not re.search("^[a-z_]([a-z0-9_-]{0,31}|[a-z0-9_-]{0,30}\$)$", input):
             print("Invalid username!")
+            self.username_entry.add_css_class('error')
+            self.next_page.set_sensitive(False)
         else:
             print("Valid username!")
+            self.username_entry.remove_css_class('error')
+            self.next_page.set_sensitive(True)
 
     def enable_root_user(self, widget, switch_state):
         print("root")
@@ -76,3 +82,12 @@ class UserScreen(Adw.Bin):
             self.enable_root_switch.set_active(not switch_state)
         else:
             self.sudo_enabled = switch_state
+
+    def verify_password(self, widget):
+        if self.password_entry.get_text() == self.password_confirmation.get_text():
+            self.next_page.set_sensitive(True)
+            self.password_confirmation.add_css_class('error')
+        elif self.password_entry.get_text() != self.password_confirmation.get_text():
+            self.next_page.set_sensitive(False)
+            self.password_confirmation.remove_css_class('error')
+            

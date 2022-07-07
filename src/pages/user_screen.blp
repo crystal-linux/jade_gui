@@ -4,6 +4,19 @@ using Adw 1;
 template UserScreen : Adw.Bin {
     hexpand: true;
     vexpand: true;
+
+    Gtk.Overlay {
+        Gtk.Button next_page {
+            margin-end: 20;
+            margin-bottom: 20;
+            label: "Next";
+            halign: end;
+            valign: end;
+	    tooltip-text: "Move to next page";
+	    styles ["suggested-action"]
+        }
+    }
+
     Gtk.Box {
         vexpand: true;
         hexpand: true;
@@ -14,32 +27,14 @@ template UserScreen : Adw.Bin {
             description: "You can add more users in the settings on the installed system";
 	    Adw.PreferencesPage {
 	    	Adw.PreferencesGroup {
-		    Gtk.Entry username_entry {
-		    	margin-bottom: 7;
-			primary-icon-name: "avatar-default-symbolic";
-			primary-icon-activatable: false;
-			secondary-icon-name: "edit-clear";
-			secondary-icon-activatable: true;
-		    	placeholder-text: "Enter your username";
+		    Adw.EntryRow username_entry {
+		    	title: "Enter your username";
 		    }
-		    Gtk.Entry password_entry {
-		    	margin-top: 7;
-		    	margin-bottom: 7;
-		        primary-icon-name: "system-lock-screen-symbolic";
-		        primary-icon-activatable: false;
-			secondary-icon-name: "edit-clear";
-			secondary-icon-activatable: true;
-		    	placeholder-text: "Enter your password";
+		    Adw.EntryRow password_entry {
+                        title: "Enter your password";
 		    }
-		    Gtk.Entry password_confirmation {
-		    	margin-top: 7;
-		    	margin-bottom: 7;
-		        primary-icon-name: "system-lock-screen-symbolic";
-		        primary-icon-activatable: false;
-			secondary-icon-name: "edit-clear";
-			secondary-icon-activatable: true;
-		    	placeholder-text: "Repeat your password";
-		    	styles ["big"]
+		    Adw.EntryRow password_confirmation {
+                        title: "Repeat your password";
 		    }
 		    Gtk.ListBox { // TODO: MOVE TO ADVANCED/MISC SECTION???
 		    	margin-top: 7;
