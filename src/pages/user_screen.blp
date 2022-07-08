@@ -5,17 +5,6 @@ template UserScreen : Adw.Bin {
     hexpand: true;
     vexpand: true;
 
-    Gtk.Overlay {
-        Gtk.Button next_page {
-            margin-end: 20;
-            margin-bottom: 20;
-            label: "Next";
-            halign: end;
-            valign: end;
-	    tooltip-text: "Move to next page";
-	    styles ["suggested-action"]
-        }
-    }
 
     Gtk.Box {
         vexpand: true;
@@ -58,6 +47,18 @@ template UserScreen : Adw.Bin {
 		    }
 	    	}
 	    }
+        }
+        Gtk.Overlay {
+            [overlay]
+            Gtk.Button next_page_button {
+                margin-end: 20;
+                margin-bottom: 20;
+                label: "Next";
+                halign: end;
+                valign: end;
+	        tooltip-text: "Move to next page";
+	        styles ["suggested-action"]
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-# variant.py
+# desktop_screen.py
 
 #
 # Copyright 2022 user
@@ -17,16 +17,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GLib, Adw
+
+from gi.repository import Gtk, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcryst/jadegui/widgets/variant.ui')
-class KeyboardVariant(Adw.ActionRow):
-    __gtype_name__ = 'KeyboardVariant'
+@Gtk.Template(resource_path='/al/getcryst/jadegui/pages/desktop_screen.ui')
+class DesktopScreen(Adw.Bin):
+    __gtype_name__ = 'DesktopScreen'
 
-    def __init__(self, window, variant, country, country_shorthand, application, **kwargs):
+    list_desktops = Gtk.Template.Child()
+
+    def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
+        self.window = window
+        self.carousel = main_carousel
+        self.next_page = next_page
 
-        self.set_title(variant)
-        self.set_subtitle(country+" - "+country_shorthand)
+        self.list_desktops.connect("row-selected", self.selected_timezone)
+
+    def selected_timezone(self, widget, row):
+            if row is not None:
+                print(row.get_title())
+                row.select_button.set_active(True)
+            else:
+                print("row is none!!")
 

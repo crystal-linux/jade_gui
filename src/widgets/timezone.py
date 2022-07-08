@@ -22,7 +22,7 @@ import pytz
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcyrst/jadegui/widgets/timezone.ui')
+@Gtk.Template(resource_path='/al/getcryst/jadegui/widgets/timezone.ui')
 class TimezoneEntry(Adw.ActionRow):
     __gtype_name__ = 'TimezoneEntry'
 

@@ -22,7 +22,7 @@ from gi.repository import Gtk, Adw
 from gettext import gettext as _
 import re
 
-@Gtk.Template(resource_path='/al/getcyrst/jadegui/pages/user_screen.ui')
+@Gtk.Template(resource_path='/al/getcryst/jadegui/pages/user_screen.ui')
 class UserScreen(Adw.Bin):
     __gtype_name__ = "UserScreen"
 
@@ -31,12 +31,13 @@ class UserScreen(Adw.Bin):
     password_confirmation = Gtk.Template.Child()
     enable_sudo_switch = Gtk.Template.Child()
     enable_root_switch = Gtk.Template.Child()
-    next_page = Gtk.Template.Child()
+    next_page_button = Gtk.Template.Child()
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
         self.carousel = main_carousel
+        self.next_page = next_page
         self.sudo_enabled = True
         self.root_enabled = True
         self.enable_root_switch.set_active(self.root_enabled)
@@ -46,6 +47,7 @@ class UserScreen(Adw.Bin):
         self.enable_sudo_switch.connect('state-set', self.enable_sudo)
         self.password_entry.connect('changed', self.verify_password)
         self.password_confirmation.connect('changed', self.verify_password)
+        self.next_page_button.connect('clicked', self.carousel_next)
 
     def username_passes_regex(self, widget):
         input = self.username_entry.get_text()
@@ -86,8 +88,10 @@ class UserScreen(Adw.Bin):
     def verify_password(self, widget):
         if self.password_entry.get_text() == self.password_confirmation.get_text():
             self.next_page.set_sensitive(True)
-            self.password_confirmation.add_css_class('error')
+            self.password_confirmation.remove_css_class('error')
         elif self.password_entry.get_text() != self.password_confirmation.get_text():
             self.next_page.set_sensitive(False)
-            self.password_confirmation.remove_css_class('error')
-            
+            self.password_confirmation.add_css_class('error')
+
+    def carousel_next(self, widget):
+        self.carousel.scroll_to(self.next_page, True)

@@ -32,7 +32,7 @@ class Jade_guiApplication(Adw.Application):
 
 
     def __init__(self):
-        super().__init__(application_id='al.getcyrst.jadegui',
+        super().__init__(application_id='al.getcryst.jadegui',
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
         self.create_action('quit', self.quit, ['<primary>q'])
         self.create_action('about', self.on_about_action)

@@ -12,7 +12,7 @@
           <object class="GtkBox">
             <child>
               <object class="GtkImage">
-                <property name="resource">/al/getcyrst/jadegui/crystal-logo-minimal.png</property>
+                <property name="resource">/al/getcryst/jadegui/crystal-logo-minimal.png</property>
               </object>
             </child>
             <child>
@@ -57,7 +57,7 @@
                 <property name="hexpand">true</property>
                 <child>
                   <object class="GtkImage" id="crystal-logo">
-                    <property name="resource">/al/getcyrst/jadegui/crystal-logo-minimal.png</property>
+                    <property name="resource">/al/getcryst/jadegui/crystal-logo-minimal.png</property>
                     <property name="pixel-size">200</property>
                     <property name="margin-bottom">25</property>
                   </object>

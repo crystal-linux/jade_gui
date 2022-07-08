@@ -21,7 +21,7 @@
 from gi.repository import Gtk, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcyrst/jadegui/pages/timezone_screen.ui')
+@Gtk.Template(resource_path='/al/getcryst/jadegui/pages/timezone_screen.ui')
 class TimezoneScreen(Adw.Bin):
     __gtype_name__ = 'TimezoneScreen'
 

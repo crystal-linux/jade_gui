@@ -20,7 +20,7 @@
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcyrst/jadegui/widgets/layout.ui')
+@Gtk.Template(resource_path='/al/getcryst/jadegui/widgets/layout.ui')
 class KeyboardLayout(Adw.ActionRow):
     __gtype_name__ = 'KeyboardLayout'
 

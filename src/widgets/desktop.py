@@ -1,4 +1,4 @@
-# variant.py
+# desktop.py
 
 #
 # Copyright 2022 user
@@ -20,13 +20,15 @@
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcryst/jadegui/widgets/variant.ui')
-class KeyboardVariant(Adw.ActionRow):
-    __gtype_name__ = 'KeyboardVariant'
+@Gtk.Template(resource_path='/al/getcryst/jadegui/widgets/desktop.ui')
+class DesktopEntry(Adw.ActionRow):
+    __gtype_name__ = 'DesktopEntry'
 
-    def __init__(self, window, variant, country, country_shorthand, application, **kwargs):
+    select_button = Gtk.Template.Child()
+
+    def __init__(self, window, desktop, button_group, application, **kwargs):
         super().__init__(**kwargs)
 
-        self.set_title(variant)
-        self.set_subtitle(country+" - "+country_shorthand)
+        self.set_title(desktop)
+        self.select_button.set_group(button_group)
 

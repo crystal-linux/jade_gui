@@ -21,7 +21,7 @@
 from gi.repository import Gtk, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcyrst/jadegui/pages/keyboard_screen.ui')
+@Gtk.Template(resource_path='/al/getcryst/jadegui/pages/keyboard_screen.ui')
 class KeyboardScreen(Adw.Bin):
     __gtype_name__ = 'KeyboardScreen'
 

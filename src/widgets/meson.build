@@ -6,5 +6,6 @@ jade_gui_sources = [
     'timezone.py',
     'layout.py',
     'variant.py',
+    'desktop.py',
 ]
 install_data(jade_gui_sources, install_dir: widgetsdir)
