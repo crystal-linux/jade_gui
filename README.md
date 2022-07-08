@@ -27,22 +27,11 @@
 ### Building
 __NOTE: the jade gui libadwaita rewrite is not complete and CAN'T install a crystal system yet__
 
-Using gnome-builder to build and run this currently doesn't work as jade_gui requires python-pytz which gnome-builder doesn't provide when building.
+jade gui relies on a yet unreleased version of libadwaita, that's why you have to use flatpak to build it:
 
-Dependencies:
-- python-pytz
-- python-gobject
-
-
-First you have to clone this repo and change the branch:
 ```sh
-git clone https://github.com/crystal-linux/jade_gui/
+git clone https://github.com/crystal-linux/jade_gui
 cd jade_gui
-git checkout libadwaita-rewrite
-```
-Then you can simply run:
-```sh
-./build.sh build # to just build it
-./build.sh install # to install a previous build
-./build.sh install-build # to build and install it
+flatpak-builder --user --install --install-deps-from=flathub --force-clean build-dir al.getcryst.jadegui 
+flatpak run al.getcryst.jadegui
 ```
