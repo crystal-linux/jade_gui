@@ -59,7 +59,7 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
 
 	        Gtk.Label letsstart {
 	            label: "Ready to make your Crystal installation... ready?";
-    	            margin-bottom: 25;
+    	            margin-bottom: 28;
     	        }
 
                 Gtk.Box  {
@@ -69,15 +69,10 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
                     vexpand: true;
                     hexpand: true;
 
-                    Gtk.Button quit_button {
-                        label: "No...";
-                        margin-end: 12;
-                    }
-
                     Gtk.Button next_button {
                         margin-start: 12;
                         label: "YEAH!";
-                        styles ["suggested-action"]
+                        styles ["suggested-action", "pill"]
                     }
                 }
     	    }

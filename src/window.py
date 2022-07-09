@@ -37,7 +37,7 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
 
     ### Page and widgets on welcome screen
     welcome_page = Gtk.Template.Child()
-    quit_button = Gtk.Template.Child()
+  #  quit_button = Gtk.Template.Child()
     next_button = Gtk.Template.Child()
 
 
@@ -53,7 +53,7 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         self.carousel.append(self.user_screen)
         self.carousel.append(self.desktop_screen)
         ### Widgets for first page (welcome screen)
-        self.quit_button.connect("clicked", self.confirmQuit)
+        #self.quit_button.connect("clicked", self.confirmQuit)
         self.next_button.connect("clicked", self.nextPage)
         ### ---------
 
