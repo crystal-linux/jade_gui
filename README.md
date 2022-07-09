@@ -9,11 +9,11 @@
 <p align="center">
     <a href="https://github.com/crystal-linux/.github/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg" alt="License">
     <a href="https://github/crystal-linux/jade_gui"><img alt="GitHub isses" src="https://img.shields.io/github/issues-raw/crystal-linux/jade_gui"></a>
-    <a href="https://github/crystal-linux/jade_gui"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr-raw/crystal-linux/jade_gui"></a>
-    <a href="https://stopthemingmy.app/"><img alt="Please don't theme" src="https://stopthemingmy.app/badge.svg"><br>
+    <a href="https://github/crystal-linux/jade_gui"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr-raw/crystal-linux/jade_gui"></a><br>
     <a href="https://twitter.com/intent/user?screen_name=crystal_linux"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/crystal_linux?style=flat?color=blue">
     <a href="https://discord.gg/hYJgu8K5aA"><img alt="Discord" src="https://img.shields.io/discord/825473796227858482?color=blue&label=Discord&logo=Discord&logoColor=white"> </a>
-    <a href="https://github.com/axtloss"><a href="https://github.com/axtloss"><img src="https://img.shields.io/badge/Maintainer-@axtloss-brightgreen" alt="The maintainer of this repository" href="https://github.com/axtloss"></a></a>
+    <a href="https://github.com/axtloss"><a href="https://github.com/axtloss"><img src="https://img.shields.io/badge/Maintainer-@axtloss-brightgreen" alt="The maintainer of this repository" href="https://github.com/axtloss"></a></a><br>
+    <a href="https://stopthemingmy.app/"><img alt="Please don't theme" src="https://stopthemingmy.app/badge.svg">
 </p>
 
 <p align="center"> The libadwaita/gtk based gui installer using jade as the backend.
