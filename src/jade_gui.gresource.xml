@@ -10,6 +10,7 @@
     <file>pages/timezone_screen.ui</file>
     <file>pages/user_screen.ui</file>
     <file>pages/desktop_screen.ui</file>
+    <file>pages/misc_screen.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>crystal-logo-minimal.png</file>
   </gresource>

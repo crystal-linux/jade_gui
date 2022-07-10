@@ -7,5 +7,6 @@ jade_gui_sources = [
     'timezone_screen.py',
     'user_screen.py',
     'desktop_screen.py',
+    'misc_screen.py',
 ]
 install_data(jade_gui_sources, install_dir: functionsdir)

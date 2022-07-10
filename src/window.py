@@ -27,6 +27,7 @@ from .functions.keyboard_screen import KeyboardScreen
 from .functions.timezone_screen import TimezoneScreen
 from .functions.user_screen import UserScreen
 from .functions.desktop_screen import DesktopScreen
+from .functions.misc_screen import MiscScreen
 
 @Gtk.Template(resource_path='/al/getcryst/jadegui/window.ui')
 class JadeGuiWindow(Gtk.ApplicationWindow):
@@ -44,7 +45,8 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.desktop_screen = DesktopScreen(window=self, main_carousel=self.carousel, next_page=None, **kwargs)
+        self.misc_screen = MiscScreen(window=self, main_carousel=self.carousel, next_page=None, **kwargs)
+        self.desktop_screen = DesktopScreen(window=self, main_carousel=self.carousel, next_page=self.misc_screen, **kwargs)
         self.user_screen = UserScreen(window=self, main_carousel=self.carousel, next_page=self.desktop_screen, **kwargs)
         self.keyboard_screen = KeyboardScreen(window=self, main_carousel=self.carousel, next_page=self.user_screen, **kwargs)
         self.timezone_screen = TimezoneScreen(window=self, main_carousel=self.carousel, next_page=self.keyboard_screen, **kwargs)
@@ -52,6 +54,7 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         self.carousel.append(self.keyboard_screen)
         self.carousel.append(self.user_screen)
         self.carousel.append(self.desktop_screen)
+        self.carousel.append(self.misc_screen)
         ### Widgets for first page (welcome screen)
         #self.quit_button.connect("clicked", self.confirmQuit)
         self.next_button.connect("clicked", self.nextPage)
