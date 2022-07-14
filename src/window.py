@@ -23,11 +23,13 @@ from .widgets.timezone import TimezoneEntry
 from .widgets.layout import KeyboardLayout
 from .widgets.variant import KeyboardVariant
 from .widgets.desktop import DesktopEntry
+from .widgets.disk import DiskEntry
 from .functions.keyboard_screen import KeyboardScreen
 from .functions.timezone_screen import TimezoneScreen
 from .functions.user_screen import UserScreen
 from .functions.desktop_screen import DesktopScreen
 from .functions.misc_screen import MiscScreen
+from .functions.partition_screen import PartitionScreen
 
 @Gtk.Template(resource_path='/al/getcryst/jadegui/window.ui')
 class JadeGuiWindow(Gtk.ApplicationWindow):
@@ -45,7 +47,8 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.misc_screen = MiscScreen(window=self, main_carousel=self.carousel, next_page=None, **kwargs)
+        self.partition_screen = PartitionScreen(window=self, main_carousel=self.carousel, next_page=None, **kwargs)
+        self.misc_screen = MiscScreen(window=self, main_carousel=self.carousel, next_page=self.partition_screen, **kwargs)
         self.desktop_screen = DesktopScreen(window=self, main_carousel=self.carousel, next_page=self.misc_screen, **kwargs)
         self.user_screen = UserScreen(window=self, main_carousel=self.carousel, next_page=self.desktop_screen, **kwargs)
         self.keyboard_screen = KeyboardScreen(window=self, main_carousel=self.carousel, next_page=self.user_screen, **kwargs)
@@ -55,6 +58,7 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         self.carousel.append(self.user_screen)
         self.carousel.append(self.desktop_screen)
         self.carousel.append(self.misc_screen)
+        self.carousel.append(self.partition_screen)
         ### Widgets for first page (welcome screen)
         #self.quit_button.connect("clicked", self.confirmQuit)
         self.next_button.connect("clicked", self.nextPage)
@@ -95,6 +99,15 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         self.desktop_screen.list_desktops.append(desktop_test)
         self.desktop_screen.list_desktops.append(desktop_test_two)
         self.desktop_screen.list_desktops.append(desktop_test_three)
+        ### ---------
+
+        ### Test partitions
+        partition_test = DiskEntry(window=self, disk="/dev/sda", disk_size="2000gb", button_group=None, **kwargs)
+        partition_test_two = DiskEntry(window=self, disk="/dev/nvme0n1", disk_size="100mb (morbillion bytes)", button_group=partition_test.select_button, **kwargs)
+        partition_test_three = DiskEntry(window=self, disk="/dev/whatotherdisklabelsarethere", disk_size="no", button_group=partition_test.select_button, **kwargs)
+        self.partition_screen.partition_list.append(partition_test)
+        self.partition_screen.partition_list.append(partition_test_two)
+        self.partition_screen.partition_list.append(partition_test_three)
         ### ---------
 
     # TODO: offload functions to seperate files/classes

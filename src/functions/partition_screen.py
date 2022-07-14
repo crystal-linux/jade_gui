@@ -1,4 +1,4 @@
-# desktop_screen.py
+# partition_screen.py
 
 #
 # Copyright 2022 user
@@ -17,32 +17,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 from gi.repository import Gtk, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcryst/jadegui/pages/desktop_screen.ui')
-class DesktopScreen(Adw.Bin):
-    __gtype_name__ = 'DesktopScreen'
+@Gtk.Template(resource_path='/al/getcryst/jadegui/pages/partition_screen.ui')
+class PartitionScreen(Adw.Bin):
+    __gtype_name__ = "PartitionScreen"
 
-    list_desktops = Gtk.Template.Child()
+    partition_list = Gtk.Template.Child()
     next_page_button = Gtk.Template.Child()
+    #custom_partition = Gtk.Template.Child()
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
         self.carousel = main_carousel
         self.next_page = next_page
-
-        self.list_desktops.connect("row-selected", self.selected_timezone)
         self.next_page_button.connect("clicked", self.carousel_next)
 
     def carousel_next(self, widget):
         self.carousel.scroll_to(self.next_page, True)
-
-    def selected_timezone(self, widget, row):
-            if row is not None:
-                print(row.get_title())
-                row.select_button.set_active(True)
-            else:
-                print("row is none!!")

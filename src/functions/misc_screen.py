@@ -24,13 +24,18 @@ from gettext import gettext as _
 class MiscScreen(Adw.Bin):
     __gtype_name__ = "MiscScreen"
 
-    hostname_entry = Gtk.Template().Child()
-    ipv_switch = Gtk.Template().Child()
-    timeshift_switch = Gtk.Template().Child()
-    theme_switch = Gtk.Template().Child()
+    hostname_entry = Gtk.Template.Child()
+    ipv_switch = Gtk.Template.Child()
+    timeshift_switch = Gtk.Template.Child()
+    theme_switch = Gtk.Template.Child()
+    next_page_button = Gtk.Template.Child()
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
         self.carousel = main_carousel
         self.next_page = next_page
+        self.next_page_button.connect("clicked", self.carousel_next)
+
+    def carousel_next(self, widget):
+        self.carousel.scroll_to(self.next_page, True)

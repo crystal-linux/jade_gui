@@ -1,4 +1,4 @@
-# desktop.py
+# disk.py
 
 #
 # Copyright 2022 user
@@ -20,15 +20,15 @@
 from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
-@Gtk.Template(resource_path='/al/getcryst/jadegui/widgets/desktop.ui')
-class DesktopEntry(Adw.ActionRow):
-    __gtype_name__ = 'DesktopEntry'
+@Gtk.Template(resource_path='/al/getcryst/jadegui/widgets/disk.ui')
+class DiskEntry(Adw.ActionRow):
+    __gtype_name__ = 'DiskEntry'
 
     select_button = Gtk.Template.Child()
 
-    def __init__(self, window, desktop, button_group, application, **kwargs):
+    def __init__(self, window, disk, disk_size, button_group, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
-        self.set_title(desktop)
+        self.set_title(disk)
+        self.set_subtitle(disk_size)
         self.select_button.set_group(button_group)
-
