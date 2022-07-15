@@ -1,0 +1,155 @@
+using Gtk 4.0;
+using Adw 1;
+
+template SummaryScreen : Adw.Bin {
+    hexpand: true;
+    vexpand: true;
+
+    Gtk.Box {
+        hexpand: true;
+        vexpand: true;
+        Adw.StatusPage {
+            hexpand: true;
+            vexpand: true;
+            title: "Summary";
+            description: "Last chance to verify everything";
+            Adw.PreferencesPage {
+                Adw.PreferencesGroup {
+                    title: "Timezone and Locale";
+                    Gtk.ListBox timezone_listbox {
+                        Adw.ActionRow timezone_label {
+                            title: "region/location";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        Adw.ActionRow locale_label {
+                            title: "locale";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        styles ["boxed-list"]
+                    }
+                }
+                Adw.PreferencesGroup {
+                    title: "Keyboard Layout";
+                    Gtk.ListBox keyboard_listbox {
+                        Adw.ActionRow keyboard_label {
+                            title: "layout";
+                            subtitle: "keymap";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        styles ["boxed-list"]
+                    }
+                }
+                Adw.PreferencesGroup {
+                    title: "User Settings";
+                    Gtk.ListBox user_listbox {
+                        Adw.ActionRow username_label {
+                            title: "username";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        Adw.ActionRow sudo_label {
+                            title: "sudo enabled/disabled";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        Adw.ActionRow root_label {
+                            title: "root enabled/disabled";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        styles ["boxed-list"]
+                    }
+                }
+                Adw.PreferencesGroup {
+                    title: "Partition Settings";
+                    Gtk.ListBox partition_listbox {
+                        Adw.ActionRow partition_label {
+                            title: "selected install partition";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        Adw.ActionRow disksize_label {
+                            title: "size of disk";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        Adw.ActionRow uefi_label {
+                            title: "legacy bios/uefi";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        styles ["boxed-list"]
+                    }
+                }
+                Adw.PreferencesGroup {
+                    title: "Miscellaneous Settings";
+                    Gtk.ListBox misc_listbox {
+                        Adw.ActionRow ipv_label {
+                            title: "ipv6 enabled/disabled";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        Adw.ActionRow timeshift_label {
+                            title: "timeshift enabled/disabled";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        Adw.ActionRow theme_label {
+                            title: "crystal theming enaled/disabled";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        Adw.ActionRow unakite_label {
+                            title: "unakite enaled/disabled";
+                            Gtk.Button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        styles ["boxed-list"]
+                    }
+                }
+            }
+        }
+    }
+}

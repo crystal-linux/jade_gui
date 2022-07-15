@@ -13,6 +13,7 @@
     <file>pages/desktop_screen.ui</file>
     <file>pages/misc_screen.ui</file>
     <file>pages/partition_screen.ui</file>
+    <file>pages/summary_screen.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>crystal-logo-minimal.png</file>
   </gresource>

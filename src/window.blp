@@ -10,15 +10,17 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
     [titlebar]
     Adw.HeaderBar header_bar {
         title-widget: Gtk.Box {
-            Gtk.Image {
-                resource: "/al/getcryst/jadegui/crystal-logo-minimal.png";
-            }
-            Gtk.Label {
-            	margin-start: 2;
-                label: "<span font_weight='bold'>Jade</span>";
-                use-markup: true;
-            }
+            Adw.CarouselIndicatorDots {
+	        carousel: carousel;
+	        orientation: horizontal;
+	    }
         };
+
+        [start]
+        Gtk.Button {
+            label: "Back";
+            //icon-name: ;
+        }
 
     	styles ["flat"]
     }
@@ -26,11 +28,6 @@ template JadeGuiWindow : Gtk.ApplicationWindow {
         orientation: horizontal;
 	vexpand: true;
 	hexpand: true;
-
-	Adw.CarouselIndicatorDots {
-	    carousel: carousel;
-	    orientation: vertical;
-	}
 	Adw.Carousel carousel {
 	    orientation: horizontal;
 	    vexpand: true;
