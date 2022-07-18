@@ -10,5 +10,6 @@ jade_gui_sources = [
     'misc_screen.py',
     'partition_screen.py',
     'summary_screen.py',
+    'install_screen.py',
 ]
 install_data(jade_gui_sources, install_dir: functionsdir)
