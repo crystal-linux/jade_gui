@@ -32,6 +32,7 @@ from .functions.misc_screen import MiscScreen
 from .functions.partition_screen import PartitionScreen
 from .functions.summary_screen import SummaryScreen
 from .functions.install_screen import InstallScreen
+from .functions.finished_screen import FinishedScreen
 
 @Gtk.Template(resource_path='/al/getcryst/jadegui/window.ui')
 class JadeGuiWindow(Gtk.ApplicationWindow):
@@ -49,7 +50,8 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.installer_screen = InstallScreen(window=self, main_carousel=self.carousel, next_page=None, **kwargs)
+        self.finished_screen = FinishedScreen(window=self, **kwargs)
+        self.installer_screen = InstallScreen(window=self, main_carousel=self.carousel, next_page=self.finished_screen, **kwargs)
         self.summary_screen = SummaryScreen(window=self, main_carousel=self.carousel, next_page=self.installer_screen, **kwargs)
         self.partition_screen = PartitionScreen(window=self, main_carousel=self.carousel, next_page=self.summary_screen, **kwargs)
         self.misc_screen = MiscScreen(window=self, main_carousel=self.carousel, next_page=self.partition_screen, **kwargs)
@@ -65,6 +67,7 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         self.carousel.append(self.partition_screen)
         self.carousel.append(self.summary_screen)
         self.carousel.append(self.installer_screen)
+        self.carousel.append(self.finished_screen)
         ### Widgets for first page (welcome screen)
         #self.quit_button.connect("clicked", self.confirmQuit)
         self.next_button.connect("clicked", self.nextPage)

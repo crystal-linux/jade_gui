@@ -15,6 +15,7 @@
     <file>pages/partition_screen.ui</file>
     <file>pages/summary_screen.ui</file>
     <file>pages/install_screen.ui</file>
+    <file>pages/finished_screen.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>crystal-logo-minimal.png</file>
   </gresource>
