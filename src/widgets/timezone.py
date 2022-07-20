@@ -32,8 +32,7 @@ class TimezoneEntry(Adw.ActionRow):
         super().__init__(**kwargs)
 
         self.set_title(region+"/"+location)
-        if location != "Argentina": # TODO: pytz for some reason doesn't like America/Argentina, fix this
-            self.time_label.set_text(self.calculate_time(location=location, region=region))
+        self.time_label.set_text(self.calculate_time(location=location, region=region))
 
     def calculate_time(self, location, region):
         timezone = pytz.timezone(region+"/"+location)

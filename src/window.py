@@ -119,8 +119,6 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         self.partition_screen.partition_list.append(partition_test_three)
         ### ---------
 
-    # TODO: offload functions to seperate files/classes
-
     def nextPage(self, idk):
         self.carousel.scroll_to(self.timezone_screen, True)
 

@@ -23,7 +23,67 @@ america = [
   ),
   locale(
     region="America",
-    location="Argentina",
+    location="Argentina/Buenos_Aires",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/Catamarca",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/ComodRivadavia",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/Cordoba",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/Jujuy",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/La_Rioja",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/Mendoza",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/Rio_Gallegos",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/Salta",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/San_Juan",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/San_Luis",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/Tucuman",
+    locales="es_AR.UTF-8 UTF-8",
+  ),
+  locale(
+    region="America",
+    location="Argentina/Ushuaia",
     locales="es_AR.UTF-8 UTF-8",
   ),
   locale(
