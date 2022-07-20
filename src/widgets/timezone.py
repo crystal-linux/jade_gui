@@ -28,15 +28,14 @@ class TimezoneEntry(Adw.ActionRow):
 
     time_label = Gtk.Template.Child()
 
-    def __init__(self, window, location, region, locale, timezone, application, **kwargs):
+    def __init__(self, window, region, location, locale, application, **kwargs):
         super().__init__(**kwargs)
 
         self.set_title(region+"/"+location)
-        self.set_subtitle(timezone)
+        if location != "Argentina": # TODO: pytz for some reason doesn't like America/Argentina, fix this
+            self.time_label.set_text(self.calculate_time(location=location, region=region))
 
-        self.time_label.set_text(self.calculate_time(location, region))
-
-    def calculate_time(widget, location, region):
-        timezone = pytz.timezone(location+"/"+region)
+    def calculate_time(self, location, region):
+        timezone = pytz.timezone(region+"/"+location)
         datetime_timezone = datetime.now(timezone)
         return datetime_timezone.strftime('%H:%M')

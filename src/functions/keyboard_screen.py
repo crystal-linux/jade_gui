@@ -25,42 +25,61 @@ from gettext import gettext as _
 class KeyboardScreen(Adw.Bin):
     __gtype_name__ = 'KeyboardScreen'
 
-    event_controller = Gtk.EventControllerKey.new()
-    #carousel = Gtk.Template.Child()
+    layout_event_controller = Gtk.EventControllerKey.new()
+    variant_event_controller = Gtk.EventControllerKey.new()
 
-    ### Page and widgets for keyboard screen
-   # keyboard_page = Gtk.Template.Child()
-    keyboard_entry_search = Gtk.Template.Child()
-    keyboard_search = Gtk.Template.Child()
     keyboard_carousel = Gtk.Template.Child()
     list_keyboard_layouts = Gtk.Template.Child()
     list_keyboard_variants = Gtk.Template.Child()
     keyboard_layouts = Gtk.Template.Child()
     keyboard_variants = Gtk.Template.Child()
+    layout_search = Gtk.Template.Child()
+    layout_entry_search = Gtk.Template.Child()
+    variant_search = Gtk.Template.Child()
+    variant_entry_search = Gtk.Template.Child()
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
         self.carousel = main_carousel
         self.next_page = next_page
-        ### Widgets for third page (keyboard layout)
-        self.keyboard_search.set_key_capture_widget(self)
         self.list_keyboard_layouts.connect("row-selected", self.selected_layout)
         self.list_keyboard_variants.connect("row-selected", self.selected_variant)
+        self.layout_event_controller.connect("key-released", self.search_layouts)
+        self.variant_event_controller.connect("key-released", self.search_variants)
+        self.layout_entry_search.add_controller(self.layout_event_controller)
+        self.variant_entry_search.add_controller(self.variant_event_controller)
 
-    def search_keyboards(self, *args):
-        pass
+    def search_layouts(self, *args):
+        terms = self.layout_entry_search.get_text()
+        self.list_keyboard_layouts.set_filter_func(self.filter_text, terms)
+
+    def search_variants(self, *args):
+        print("in variant")
+        terms = self.variant_entry_search.get_text()
+        self.list_keyboard_variants.set_filter_func(self.filter_text, terms)
 
     def selected_layout(self, widget, row):
-        if row is not None:
+        if row is not None or row is not self.layout_entry_search:
             self.keyboard_carousel.scroll_to(self.keyboard_variants, True)
         else:
             print("row is none!! layout")
 
     def selected_variant(self, widget, row):
-        if row is not None:
+        if row is not None or row is not self.variant_entry_search:
             print("variant selected")
             self.carousel.scroll_to(self.next_page, True)
         else:
             print("row is none!! variant")
 
+    @staticmethod
+    def filter_text(row, terms=None):
+        try:
+            text = row.get_title()
+            text = text.lower() + row.get_subtitle().lower()
+            if terms.lower() in text:
+                return True
+        except:
+            print("exception")
+            return True
+        return False

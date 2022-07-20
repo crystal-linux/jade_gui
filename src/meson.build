@@ -61,11 +61,14 @@ configure_file(
 
 subdir('widgets')
 subdir('functions')
+subdir('classes')
+subdir('locales')
 
 jade_gui_sources = [
   '__init__.py',
   'main.py',
   'window.py',
+  'keymaps.py',
 ]
 
 install_data(jade_gui_sources, install_dir: moduledir)

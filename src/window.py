@@ -33,6 +33,8 @@ from .functions.partition_screen import PartitionScreen
 from .functions.summary_screen import SummaryScreen
 from .functions.install_screen import InstallScreen
 from .functions.finished_screen import FinishedScreen
+from .locales.locales_list import locations
+from .keymaps import keymaps
 
 @Gtk.Template(resource_path='/al/getcryst/jadegui/window.ui')
 class JadeGuiWindow(Gtk.ApplicationWindow):
@@ -74,21 +76,19 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         ### ---------
 
         ### Test timezones
-        timezone_test = TimezoneEntry(window=self, location="Europe", region="Berlin", timezone="CEST UTC+2", locale="en_US.UTF-8", **kwargs)
-        timezone_test_two = TimezoneEntry(window=self, location="Europe", region="London", timezone="BST UTC+1", locale="en_US.UTF-8", **kwargs)
-        timezone_test_three = TimezoneEntry(window=self, location="America", region="Chihuahua", timezone="MDT UTC-6", locale="en_MX.UTF-8", **kwargs)
-        self.timezone_screen.list_timezones.append(timezone_test)
-        self.timezone_screen.list_timezones.append(timezone_test_two)
-        self.timezone_screen.list_timezones.append(timezone_test_three)
+        for i in locations:
+            for locale in i:
+                print(locale.region)
+                print(locale.location)
+                print(locale.locales)
+                self.timezone_screen.list_timezones.append(TimezoneEntry(window=self, region=locale.region, location=locale.location, locale=locale.locales, **kwargs))
         ### ---------
 
         ### Test layouts
-        layout_test = KeyboardLayout(window=self, country="Germany", country_shorthand="DE", **kwargs)
-        layout_test_two = KeyboardLayout(window=self, country="United Kingdom", country_shorthand="GB", **kwargs)
-        layout_test_three = KeyboardLayout(window=self, country="United States", country_shorthand="US", **kwargs)
-        self.keyboard_screen.list_keyboard_layouts.append(layout_test)
-        self.keyboard_screen.list_keyboard_layouts.append(layout_test_two)
-        self.keyboard_screen.list_keyboard_layouts.append(layout_test_three)
+        for keymap in keymaps:
+            print(keymap.layout)
+            print(keymap.backend_layout)
+            self.keyboard_screen.list_keyboard_layouts.append(KeyboardLayout(window=self, country=keymap.layout, country_shorthand=keymap.backend_layout, **kwargs))
         ### ---------
 
         ### Test variants

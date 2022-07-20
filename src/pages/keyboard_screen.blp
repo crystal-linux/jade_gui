@@ -14,14 +14,6 @@ template KeyboardScreen : Adw.Bin {
                 vexpand: true;
                 title: "Next question: keyboard layout?";
                 description: "What is it? Huh?";
-                Gtk.Box {
-                    orientation: vertical;
-                    Gtk.SearchBar keyboard_search {
-                        Gtk.SearchEntry keyboard_entry_search {
-                            placeholder-text: "Search for a timezone...";
-                        }
-                    }
-                }
             Adw.PreferencesPage {
                 Adw.Carousel keyboard_carousel {
                     orientation: horizontal;
@@ -29,24 +21,29 @@ template KeyboardScreen : Adw.Bin {
                     hexpand: true;
                     Adw.PreferencesGroup keyboard_layouts {
                         hexpand: true;
-                        vexpand: true;
-                        margin-end: 5;
+                        margin-end: 20;
+                        margin-start: 20;
                         Gtk.ListBox list_keyboard_layouts {
-                            //selection-mode: none;
-                            hexpand: true;
-                            vexpand: true;
-                            //  margin-end: 5;
+                            Gtk.Box layout_search {
+					            Gtk.SearchEntry layout_entry_search {
+						            hexpand: true;
+						            placeholder-text: _("Search for a keyboard layout");
+					            }
+				            }
                             styles ["boxed-list"]
                         }
                     }
                     Adw.PreferencesGroup keyboard_variants {
                         hexpand: true;
-                        vexpand: true;
-                        margin-start: 5;
+                        margin-end: 20;
+                        margin-start: 20;
                         Gtk.ListBox list_keyboard_variants {
-                            hexpand: true;
-                            vexpand: true;
-                            // margin-start: 5;
+                            Gtk.Box variant_search {
+					            Gtk.SearchEntry variant_entry_search {
+						            hexpand: true;
+						            placeholder-text: _("Search for a keyboard variant");
+					            }
+				            }
                             styles ["boxed-list"]
                         }
                     }
