@@ -14,15 +14,18 @@ template TimezoneScreen : Adw.Bin {
             description: "What's your curent timezone?";
             Gtk.Box {
                 orientation: vertical;
+                Gtk.Box timezone_search {
+					        Gtk.SearchEntry timezone_entry_search {
+						        hexpand: true;
+						        //margin-bottom: 5;
+						        margin-end: 30;
+						        margin-start: 30;
+						        placeholder-text: _("Search for a timezone");
+					        }
+				        }
                 Adw.PreferencesPage {
                     Adw.PreferencesGroup {
                         Gtk.ListBox list_timezones {
-                            Gtk.Box timezone_search {
-					            Gtk.SearchEntry timezone_entry_search {
-						            hexpand: true;
-						            placeholder-text: _("Search for a timezone");
-					            }
-				            }
                             styles ["boxed-list"]
                         }
                     }
