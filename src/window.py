@@ -35,6 +35,7 @@ from .functions.install_screen import InstallScreen
 from .functions.finished_screen import FinishedScreen
 from .locales.locales_list import locations
 from .keymaps import keymaps
+from .desktops import desktops
 
 @Gtk.Template(resource_path='/al/getcryst/jadegui/window.ui')
 class JadeGuiWindow(Gtk.ApplicationWindow):
@@ -96,13 +97,12 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         ### ---------
 
         ### Test desktops
-        desktop_test = DesktopEntry(window=self, desktop="GNOME", button_group=None, **kwargs)
-        desktop_test_two = DesktopEntry(window=self, desktop="Onyx", button_group=desktop_test.select_button, **kwargs)
-        desktop_test_three = DesktopEntry(window=self, desktop="KDE", button_group=desktop_test.select_button, **kwargs)
-        desktop_test.select_button.set_active(True)
-        self.desktop_screen.list_desktops.append(desktop_test)
-        self.desktop_screen.list_desktops.append(desktop_test_two)
-        self.desktop_screen.list_desktops.append(desktop_test_three)
+        onyx = DesktopEntry(window=self, desktop="Onyx", button_group=None, **kwargs) # Manually specifying onyx since the other entries need a button group to attach to
+        self.desktop_screen.list_desktops.append(onyx)
+        for desktop in desktops:
+            if desktop is not "Onyx":
+                print(desktop)
+                self.desktop_screen.list_desktops.append(DesktopEntry(window=self, desktop=desktop, button_group=onyx.select_button, **kwargs))
         ### ---------
 
         ### Test partitions

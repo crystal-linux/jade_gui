@@ -69,6 +69,7 @@ jade_gui_sources = [
   'main.py',
   'window.py',
   'keymaps.py',
+  'desktops.py',
 ]
 
 install_data(jade_gui_sources, install_dir: moduledir)
