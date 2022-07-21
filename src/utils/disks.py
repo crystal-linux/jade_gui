@@ -17,7 +17,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-only
 
-import subprocess
+import subprocess, math
 def get_disks():
     command=subprocess.run(["bash", "-c", "bash -- /app/share/jade_gui/jade_gui/scripts/getDisks.sh"], capture_output=True)
     disks=command.stdout.decode('utf-8')[:-1].split('\n')
@@ -27,4 +27,4 @@ def get_disk_size(disk: str):
     command=subprocess.run(["bash", "-c", "bash -- /app/share/jade_gui/jade_gui/scripts/getDiskSize.sh "+disk], capture_output=True)
     size=command.stdout.decode('utf-8').strip('\n')
     print(disk+":"+size)
-    return size+"iB"
+    return str(math.floor(int(size)/1000**3))+" GB"
