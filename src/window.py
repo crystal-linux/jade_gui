@@ -36,6 +36,7 @@ from .functions.finished_screen import FinishedScreen
 from .locales.locales_list import locations
 from .keymaps import keymaps
 from .desktops import desktops
+from .utils import disks
 
 @Gtk.Template(resource_path='/al/getcryst/jadegui/window.ui')
 class JadeGuiWindow(Gtk.ApplicationWindow):
@@ -92,26 +93,25 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
             self.keyboard_screen.list_keyboard_layouts.append(KeyboardLayout(window=self, country=keymap.layout, country_shorthand=keymap.backend_layout, variants=keymap.variant, **kwargs))
         ### ---------
 
-        ### Test variants
-
-        ### ---------
-
         ### Test desktops
         onyx = DesktopEntry(window=self, desktop="Onyx", button_group=None, **kwargs) # Manually specifying onyx since the other entries need a button group to attach to
         self.desktop_screen.list_desktops.append(onyx)
         for desktop in desktops:
-            if desktop is not "Onyx":
+            if desktop != "Onyx":
                 print(desktop)
                 self.desktop_screen.list_desktops.append(DesktopEntry(window=self, desktop=desktop, button_group=onyx.select_button, **kwargs))
         ### ---------
 
         ### Test partitions
-        partition_test = DiskEntry(window=self, disk="/dev/sda", disk_size="2000gb", button_group=None, **kwargs)
-        partition_test_two = DiskEntry(window=self, disk="/dev/nvme0n1", disk_size="100mb (morbillion bytes)", button_group=partition_test.select_button, **kwargs)
-        partition_test_three = DiskEntry(window=self, disk="/dev/whatotherdisklabelsarethere", disk_size="no", button_group=partition_test.select_button, **kwargs)
-        self.partition_screen.partition_list.append(partition_test)
-        self.partition_screen.partition_list.append(partition_test_two)
-        self.partition_screen.partition_list.append(partition_test_three)
+        available_disks = disks.get_disks()
+        firstdisk = DiskEntry(window=self, disk=available_disks[0], disk_size=disks.get_disk_size(available_disks[0]), button_group=None, **kwargs)
+        self.partition_screen.partition_list.append(firstdisk)
+        print(available_disks[0])
+        print(available_disks)
+        for disk in available_disks:
+            if disk != available_disks[0]:
+                print(disk)
+                self.partition_screen.partition_list.append(DiskEntry(window=self, disk=disk, disk_size=disks.get_disk_size(disk), button_group=firstdisk.select_button, **kwargs))
         ### ---------
 
     def nextPage(self, idk):

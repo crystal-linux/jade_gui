@@ -1,0 +1,8 @@
+pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
+scriptsdir = join_paths(pkgdatadir, 'jade_gui/scripts')
+
+jade_gui_sources = [
+    'getDisks.sh',
+    'getDiskSize.sh',
+]
+install_data(jade_gui_sources, install_dir: scriptsdir)

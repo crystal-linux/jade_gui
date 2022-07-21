@@ -63,6 +63,8 @@ subdir('widgets')
 subdir('functions')
 subdir('classes')
 subdir('locales')
+subdir('utils')
+subdir('scripts')
 
 jade_gui_sources = [
   '__init__.py',
