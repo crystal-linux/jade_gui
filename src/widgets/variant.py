@@ -24,7 +24,7 @@ from gettext import gettext as _
 class KeyboardVariant(Adw.ActionRow):
     __gtype_name__ = 'KeyboardVariant'
 
-    def __init__(self, window, variant, country, country_shorthand, application, **kwargs):
+    def __init__(self, window, variant, country, country_shorthand, **kwargs):
         super().__init__(**kwargs)
 
         self.set_title(variant)

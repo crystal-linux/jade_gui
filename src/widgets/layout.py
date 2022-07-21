@@ -24,9 +24,15 @@ from gettext import gettext as _
 class KeyboardLayout(Adw.ActionRow):
     __gtype_name__ = 'KeyboardLayout'
 
-    def __init__(self, window, country, country_shorthand, application, **kwargs):
+    variants=[]
+
+    def __init__(self, window, country, country_shorthand, variants, application, **kwargs):
         super().__init__(**kwargs)
+
+        self.country = country
+        self.country_shorthand = country_shorthand
 
         self.set_title(country)
         self.set_subtitle(country_shorthand)
+        self.variants = variants
 

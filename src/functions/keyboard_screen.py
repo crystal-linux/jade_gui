@@ -18,6 +18,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from jade_gui.locales.locales_list import locations
+from jade_gui.widgets.variant import KeyboardVariant
 from gi.repository import Gtk, Adw
 from gettext import gettext as _
 
@@ -37,6 +39,9 @@ class KeyboardScreen(Adw.Bin):
     layout_entry_search = Gtk.Template.Child()
     variant_search = Gtk.Template.Child()
     variant_entry_search = Gtk.Template.Child()
+
+    layout = None
+    variant = ""
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
@@ -59,15 +64,24 @@ class KeyboardScreen(Adw.Bin):
         terms = self.variant_entry_search.get_text()
         self.list_keyboard_variants.set_filter_func(self.filter_text, terms)
 
-    def selected_layout(self, widget, row):
+    def selected_layout(self, widget, row, *args):
         if row is not None or row is not self.layout_entry_search:
+            if self.layout is not None:
+                for n in range(len(self.layout.variants)):
+                    print(n)
+                    print(self.list_keyboard_variants.get_row_at_index(n))
+                    if self.list_keyboard_variants.get_row_at_index(n) is not None:
+                        self.list_keyboard_variants.remove(self.list_keyboard_variants.get_row_at_index(n))
+            self.layout = row
+            for variant in row.variants:
+                self.list_keyboard_variants.append(KeyboardVariant(window=self.window, country=row.country, country_shorthand=row.country_shorthand, variant=variant, *args))
             self.keyboard_carousel.scroll_to(self.keyboard_variants, True)
         else:
             print("row is none!! layout")
 
     def selected_variant(self, widget, row):
         if row is not None or row is not self.variant_entry_search:
-            print("variant selected")
+            self.variant = row
             self.carousel.scroll_to(self.next_page, True)
         else:
             print("row is none!! variant")

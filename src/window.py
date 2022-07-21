@@ -88,16 +88,11 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         for keymap in keymaps:
             print(keymap.layout)
             print(keymap.backend_layout)
-            self.keyboard_screen.list_keyboard_layouts.append(KeyboardLayout(window=self, country=keymap.layout, country_shorthand=keymap.backend_layout, **kwargs))
+            self.keyboard_screen.list_keyboard_layouts.append(KeyboardLayout(window=self, country=keymap.layout, country_shorthand=keymap.backend_layout, variants=keymap.variant, **kwargs))
         ### ---------
 
         ### Test variants
-        variant_test = KeyboardVariant(window=self, variant="Colemak", country="United Kingdom", country_shorthand="GB", **kwargs)
-        variant_test_two = KeyboardVariant(window=self, variant="QWERTY", country="Germany", country_shorthand="DE", **kwargs)
-        variant_test_three = KeyboardVariant(window=self, variant="QWERTZ", country="United States", country_shorthand="US", **kwargs)
-        self.keyboard_screen.list_keyboard_variants.append(variant_test)
-        self.keyboard_screen.list_keyboard_variants.append(variant_test_two)
-        self.keyboard_screen.list_keyboard_variants.append(variant_test_three)
+
         ### ---------
 
         ### Test desktops
