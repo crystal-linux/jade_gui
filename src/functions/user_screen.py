@@ -33,6 +33,11 @@ class UserScreen(Adw.Bin):
     enable_root_switch = Gtk.Template.Child()
     next_page_button = Gtk.Template.Child()
 
+    username = ""
+    sudo_enabled = True
+    root_enabled = True
+    move_to_summary = False
+
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
@@ -60,6 +65,7 @@ class UserScreen(Adw.Bin):
             print("Valid username!")
             self.username_entry.remove_css_class('error')
             self.next_page.set_sensitive(True)
+            self.username = input
 
     def enable_root_user(self, widget, switch_state):
         print("root")
@@ -94,4 +100,12 @@ class UserScreen(Adw.Bin):
             self.password_confirmation.add_css_class('error')
 
     def carousel_next(self, widget):
+        if self.move_to_summary:
+            self.window.summary_screen.initialize()
+            self.carousel.scroll_to(self.window.summary_screen, True)
+        else:
+            self.carousel.scroll_to(self.next_page, True)
+
+    def carousel_next_summary(self, widget):
+        self.next_page.move_to_summary=True
         self.carousel.scroll_to(self.next_page, True)

@@ -34,6 +34,7 @@ class MiscScreen(Adw.Bin):
     ipv_enabled = False
     crystal_theming_enabled = False
     timeshift_enabled = True
+    move_to_summary = False
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
@@ -47,4 +48,12 @@ class MiscScreen(Adw.Bin):
         self.ipv_enabled = self.ipv_switch.get_state()
         self.crystal_theming_enabled = self.theme_switch.get_state()
         self.timeshift_enabled = self.timeshift_switch.get_state()
+        if self.move_to_summary:
+            self.window.summary_screen.initialize()
+            self.carousel.scroll_to(self.window.summary_screen, True)
+        else:
+            self.carousel.scroll_to(self.next_page, True)
+
+    def carousel_next_summary(self, widget):
+        self.next_page.move_to_summary=True
         self.carousel.scroll_to(self.next_page, True)

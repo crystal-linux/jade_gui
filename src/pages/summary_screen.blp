@@ -17,17 +17,11 @@ template SummaryScreen : Adw.Bin {
                 Adw.PreferencesGroup {
                     title: "Timezone and Locale";
                     Gtk.ListBox timezone_listbox {
+                        selection-mode: none;
                         Adw.ActionRow timezone_label {
                             title: "region/location";
-                            Gtk.Button {
-                                valign: center;
-                                halign: center;
-                                icon-name: "document-edit-symbolic";
-                            }
-                        }
-                        Adw.ActionRow locale_label {
-                            title: "locale";
-                            Gtk.Button {
+                            subtitle: "locale";
+                            Gtk.Button timezone_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
@@ -39,10 +33,11 @@ template SummaryScreen : Adw.Bin {
                 Adw.PreferencesGroup {
                     title: "Keyboard Layout";
                     Gtk.ListBox keyboard_listbox {
+                        selection-mode: none;
                         Adw.ActionRow keyboard_label {
                             title: "layout";
                             subtitle: "keymap";
-                            Gtk.Button {
+                            Gtk.Button keyboard_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
@@ -54,9 +49,10 @@ template SummaryScreen : Adw.Bin {
                 Adw.PreferencesGroup {
                     title: "User Settings";
                     Gtk.ListBox user_listbox {
+                        selection-mode: none;
                         Adw.ActionRow username_label {
                             title: "username";
-                            Gtk.Button {
+                            Gtk.Button username_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
@@ -64,7 +60,7 @@ template SummaryScreen : Adw.Bin {
                         }
                         Adw.ActionRow sudo_label {
                             title: "sudo enabled/disabled";
-                            Gtk.Button {
+                            Gtk.Button sudo_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
@@ -72,7 +68,22 @@ template SummaryScreen : Adw.Bin {
                         }
                         Adw.ActionRow root_label {
                             title: "root enabled/disabled";
-                            Gtk.Button {
+                            Gtk.Button root_button {
+                                valign: center;
+                                halign: center;
+                                icon-name: "document-edit-symbolic";
+                            }
+                        }
+                        styles ["boxed-list"]
+                    }
+                }
+                Adw.PreferencesGroup {
+                    title: "Desktop";
+                    Gtk.ListBox desktop_listbox {
+                        selection-mode: none;
+                        Adw.ActionRow desktop_label {
+                            title: "desktop";
+                            Gtk.Button desktop_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
@@ -84,17 +95,11 @@ template SummaryScreen : Adw.Bin {
                 Adw.PreferencesGroup {
                     title: "Partition Settings";
                     Gtk.ListBox partition_listbox {
+                        selection-mode: none;
                         Adw.ActionRow partition_label {
                             title: "selected install partition";
-                            Gtk.Button {
-                                valign: center;
-                                halign: center;
-                                icon-name: "document-edit-symbolic";
-                            }
-                        }
-                        Adw.ActionRow disksize_label {
-                            title: "size of disk";
-                            Gtk.Button {
+                            subtitle: "Disk size";
+                            Gtk.Button partition_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
@@ -102,11 +107,6 @@ template SummaryScreen : Adw.Bin {
                         }
                         Adw.ActionRow uefi_label {
                             title: "legacy bios/uefi";
-                            Gtk.Button {
-                                valign: center;
-                                halign: center;
-                                icon-name: "document-edit-symbolic";
-                            }
                         }
                         styles ["boxed-list"]
                     }
@@ -114,9 +114,10 @@ template SummaryScreen : Adw.Bin {
                 Adw.PreferencesGroup {
                     title: "Miscellaneous Settings";
                     Gtk.ListBox misc_listbox {
+                        selection-mode: none;
                         Adw.ActionRow ipv_label {
                             title: "ipv6 enabled/disabled";
-                            Gtk.Button {
+                            Gtk.Button ipv_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
@@ -124,7 +125,7 @@ template SummaryScreen : Adw.Bin {
                         }
                         Adw.ActionRow timeshift_label {
                             title: "timeshift enabled/disabled";
-                            Gtk.Button {
+                            Gtk.Button timeshift_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
@@ -132,20 +133,20 @@ template SummaryScreen : Adw.Bin {
                         }
                         Adw.ActionRow theme_label {
                             title: "crystal theming enaled/disabled";
-                            Gtk.Button {
+                            Gtk.Button theme_button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
                             }
                         }
-                        Adw.ActionRow unakite_label {
+                        /*Adw.ActionRow unakite_label {
                             title: "unakite enaled/disabled";
                             Gtk.Button {
                                 valign: center;
                                 halign: center;
                                 icon-name: "document-edit-symbolic";
                             }
-                        }
+                        }*/
                         styles ["boxed-list"]
                     }
                 }

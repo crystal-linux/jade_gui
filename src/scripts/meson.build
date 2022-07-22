@@ -4,5 +4,6 @@ scriptsdir = join_paths(pkgdatadir, 'jade_gui/scripts')
 jade_gui_sources = [
     'getDisks.sh',
     'getDiskSize.sh',
+    'checkEFI.sh',
 ]
 install_data(jade_gui_sources, install_dir: scriptsdir)

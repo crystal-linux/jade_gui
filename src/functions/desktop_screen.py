@@ -28,21 +28,33 @@ class DesktopScreen(Adw.Bin):
     list_desktops = Gtk.Template.Child()
     next_page_button = Gtk.Template.Child()
 
+    chosen_desktop = ""
+    move_to_summary = False
+
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
         self.carousel = main_carousel
         self.next_page = next_page
 
-        self.list_desktops.connect("row-selected", self.selected_timezone)
+        self.list_desktops.connect("row-selected", self.selected_desktop)
         self.next_page_button.connect("clicked", self.carousel_next)
 
     def carousel_next(self, widget):
+        if self.move_to_summary:
+            self.window.summary_screen.initialize()
+            self.carousel.scroll_to(self.window.summary_screen, True)
+        else:
+            self.carousel.scroll_to(self.next_page, True)
+
+    def carousel_next_summary(self, widget):
+        self.next_page.move_to_summary=True
         self.carousel.scroll_to(self.next_page, True)
 
-    def selected_timezone(self, widget, row):
+    def selected_desktop(self, widget, row):
             if row is not None:
                 print(row.get_title())
+                self.chosen_desktop = row.get_title()
                 row.select_button.set_active(True)
             else:
                 print("row is none!!")

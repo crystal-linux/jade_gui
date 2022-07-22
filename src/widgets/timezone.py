@@ -31,6 +31,10 @@ class TimezoneEntry(Adw.ActionRow):
     def __init__(self, window, region, location, locale, application, **kwargs):
         super().__init__(**kwargs)
 
+        self.region = region
+        self.location = location
+        self.locale = locale
+
         self.set_title(region+"/"+location)
         self.time_label.set_text(self.calculate_time(location=location, region=region))
 

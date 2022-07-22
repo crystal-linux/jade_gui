@@ -42,6 +42,7 @@ class KeyboardScreen(Adw.Bin):
 
     layout = None
     variant = ""
+    move_to_summary = False
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
@@ -82,9 +83,20 @@ class KeyboardScreen(Adw.Bin):
     def selected_variant(self, widget, row):
         if row is not None or row is not self.variant_entry_search:
             self.variant = row
-            self.carousel.scroll_to(self.next_page, True)
+            self.carousel_next()
         else:
             print("row is none!! variant")
+
+    def carousel_next(self):
+        if self.move_to_summary:
+            self.window.summary_screen.initialize()
+            self.carousel.scroll_to(self.window.summary_screen, True)
+        else:
+            self.carousel.scroll_to(self.next_page, True)
+
+    def carousel_next_summary(self, widget):
+        self.next_page.move_to_summary=True
+        self.carousel.scroll_to(self.next_page, True)
 
     @staticmethod
     def filter_text(row, terms=None):

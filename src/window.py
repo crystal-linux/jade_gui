@@ -74,31 +74,34 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         self.carousel.append(self.finished_screen)
         ### Widgets for first page (welcome screen)
         #self.quit_button.connect("clicked", self.confirmQuit)
+        #self.summary_screen.connect_buttons()
         self.next_button.connect("clicked", self.nextPage)
         ### ---------
 
         ### Test timezones
         for i in locations:
             for locale in i:
-                print(locale.region)
-                print(locale.location)
-                print(locale.locales)
+              #  print(locale.region)
+              #  print(locale.location)
+              #  print(locale.locales)
                 self.timezone_screen.list_timezones.append(TimezoneEntry(window=self, region=locale.region, location=locale.location, locale=locale.locales, **kwargs))
         ### ---------
 
         ### Test layouts
         for keymap in keymaps:
-            print(keymap.layout)
-            print(keymap.backend_layout)
+            #print(keymap.layout)
+            #print(keymap.backend_layout)
             self.keyboard_screen.list_keyboard_layouts.append(KeyboardLayout(window=self, country=keymap.layout, country_shorthand=keymap.backend_layout, variants=keymap.variant, **kwargs))
         ### ---------
 
         ### Test desktops
         onyx = DesktopEntry(window=self, desktop="Onyx", button_group=None, **kwargs) # Manually specifying onyx since the other entries need a button group to attach to
         self.desktop_screen.list_desktops.append(onyx)
+        self.desktop_screen.chosen_desktop = self.desktop_screen.list_desktops.get_row_at_index(0).get_title()
+        self.desktop_screen.list_desktops.select_row(onyx)
         for desktop in desktops:
             if desktop != "Onyx":
-                print(desktop)
+                #print(desktop)
                 self.desktop_screen.list_desktops.append(DesktopEntry(window=self, desktop=desktop, button_group=onyx.select_button, **kwargs))
         ### ---------
 
@@ -106,11 +109,13 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
         available_disks = disks.get_disks()
         firstdisk = DiskEntry(window=self, disk=available_disks[0], disk_size=disks.get_disk_size(available_disks[0]), button_group=None, **kwargs)
         self.partition_screen.partition_list.append(firstdisk)
-        print(available_disks[0])
-        print(available_disks)
+        self.partition_screen.selected_partition = self.partition_screen.partition_list.get_row_at_index(0)
+        self.partition_screen.partition_list.select_row(firstdisk)
+        #print(available_disks[0])
+        #print(available_disks)
         for disk in available_disks:
             if disk != available_disks[0]:
-                print(disk)
+                #print(disk)
                 self.partition_screen.partition_list.append(DiskEntry(window=self, disk=disk, disk_size=disks.get_disk_size(disk), button_group=firstdisk.select_button, **kwargs))
         ### ---------
 

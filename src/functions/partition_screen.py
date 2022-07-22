@@ -28,12 +28,25 @@ class PartitionScreen(Adw.Bin):
     next_page_button = Gtk.Template.Child()
     #custom_partition = Gtk.Template.Child()
 
+    selected_partition = None
+    move_to_summary = False
+
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
         self.carousel = main_carousel
         self.next_page = next_page
         self.next_page_button.connect("clicked", self.carousel_next)
+        self.partition_list.connect("row_selected", self.row_selected)
+
+    def row_selected(self, widget, row):
+        if row is not None:
+            print(row.get_title())
+            row.select_button.set_active(True)
+            self.selected_partition = row
+        else:
+            print("row is none!!")
 
     def carousel_next(self, widget):
+        self.window.summary_screen.initialize()
         self.carousel.scroll_to(self.next_page, True)

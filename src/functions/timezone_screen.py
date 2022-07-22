@@ -32,6 +32,9 @@ class TimezoneScreen(Adw.Bin):
     timezone_entry_search = Gtk.Template.Child()
     timezone_search = Gtk.Template.Child()
 
+    chosen_timezone = None
+    move_to_summary = False
+
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
         self.window = window
@@ -46,9 +49,21 @@ class TimezoneScreen(Adw.Bin):
             print(row)
             if row is not None or row is not self.timezone_search:
                 print(row.get_title())
-                self.carousel.scroll_to(self.next_page, True)
+                self.chosen_timezone = row
+                self.carousel_next()
             else:
                 print("row is none!!")
+
+    def carousel_next(self):
+        if self.move_to_summary:
+            self.window.summary_screen.initialize()
+            self.carousel.scroll_to(self.window.summary_screen, True)
+        else:
+            self.carousel.scroll_to(self.next_page, True)
+
+    def carousel_next_summary(self):
+        self.next_page.move_to_summary=True
+        self.carousel.scroll_to(self.next_page, True)
 
     def search_timezones(self, *args):
         terms = self.timezone_entry_search.get_text()

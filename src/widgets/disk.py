@@ -28,7 +28,8 @@ class DiskEntry(Adw.ActionRow):
 
     def __init__(self, window, disk, disk_size, button_group, application, **kwargs):
         super().__init__(**kwargs)
-        self.window = window
+        self.disk = disk
+        self.disk_size = disk
         self.set_title(disk)
         self.set_subtitle(disk_size)
         self.select_button.set_group(button_group)
