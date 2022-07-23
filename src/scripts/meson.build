@@ -5,5 +5,7 @@ jade_gui_sources = [
     'getDisks.sh',
     'getDiskSize.sh',
     'checkEFI.sh',
+    'install.sh',
+    'savePrefs.sh',
 ]
 install_data(jade_gui_sources, install_dir: scriptsdir)

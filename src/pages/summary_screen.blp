@@ -131,7 +131,7 @@ template SummaryScreen : Adw.Bin {
                                 icon-name: "document-edit-symbolic";
                             }
                         }
-                        Adw.ActionRow theme_label {
+                        /*Adw.ActionRow theme_label {
                             title: "crystal theming enaled/disabled";
                             Gtk.Button theme_button {
                                 valign: center;
@@ -139,7 +139,7 @@ template SummaryScreen : Adw.Bin {
                                 icon-name: "document-edit-symbolic";
                             }
                         }
-                        /*Adw.ActionRow unakite_label {
+                        Adw.ActionRow unakite_label {
                             title: "unakite enaled/disabled";
                             Gtk.Button {
                                 valign: center;
@@ -150,6 +150,18 @@ template SummaryScreen : Adw.Bin {
                         styles ["boxed-list"]
                     }
                 }
+            }
+        }
+        Gtk.Overlay {
+            [overlay]
+            Gtk.Button next_page_button {
+                margin-end: 20;
+                margin-bottom: 20;
+                label: "Next";
+                halign: end;
+                valign: end;
+	        tooltip-text: "Move to next page";
+	        styles ["suggested-action"]
             }
         }
     }

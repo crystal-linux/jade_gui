@@ -95,6 +95,7 @@ class UserScreen(Adw.Bin):
         if self.password_entry.get_text() == self.password_confirmation.get_text():
             self.next_page.set_sensitive(True)
             self.password_confirmation.remove_css_class('error')
+            self.password = self.password_entry.get_text()
         elif self.password_entry.get_text() != self.password_confirmation.get_text():
             self.next_page.set_sensitive(False)
             self.password_confirmation.add_css_class('error')

@@ -17,8 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-from gi.repository import Gtk, Adw
+import subprocess, os
+import asyncio
+from gi.repository import Gtk, GLib, Adw
 from gettext import gettext as _
 
 @Gtk.Template(resource_path='/al/getcryst/jadegui/pages/install_screen.ui')
@@ -29,4 +30,18 @@ class InstallScreen(Adw.Bin):
 
     def __init__(self, window, main_carousel, next_page, application, **kwargs):
         super().__init__(**kwargs)
-        self.log_text.set_text("tsarnitasnri\ntnaoietnioer\ntsarnitoarsn\ntisratnoisr")
+        self.window = window
+
+    def install(self):
+        prefs = self.window.summary_screen.installprefs.generate_json()
+        with open(os.getenv("HOME")+"/test.log", "wb") as f:
+            process = subprocess.Popen(["bash", "-c", "bash -- /app/share/jade_gui/jade_gui/scripts/install.sh"], stdout=subprocess.PIPE)
+            for c in iter(lambda: process.stdout.read(1), b""):
+                log=c
+                GLib.idle_add(self.update_output, c.decode("utf-8"))
+                f.write(c)
+
+    def update_output(self, message):
+        log=self.log_text.get_label()
+        new_log=f"{log}{message}"
+        self.log_text.set_label(new_log)
