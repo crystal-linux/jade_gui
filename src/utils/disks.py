@@ -33,3 +33,15 @@ def get_uefi():
     command=subprocess.run(["bash", "-c", "bash -- /app/share/jade_gui/jade_gui/scripts/checkEFI.sh"], capture_output=True)
     isEfi=True if command.stdout.decode('utf-8').strip('\n') == "UEFI" else False
     return isEfi
+
+def get_disk_type(disk: str):
+    command=subprocess.run(["bash", "-c", "bash -- /app/share/jade_gui/jade_gui/scripts/getDiskType.sh "+disk], capture_output=True)
+    disk_type=command.stdout.decode('utf-8').strip()
+    print(disk_type)
+    if disk_type == "0":
+        return "Solid-State Drive (SSD)"
+    elif disk_type == "1":
+        return "Hard Disk (HDD)"
+    else:
+        return "Drive type unknown"
+

@@ -20,7 +20,7 @@
 
 from gi.repository import Gtk, Adw
 from gettext import gettext as _
-import re
+import re, subprocess
 
 @Gtk.Template(resource_path='/al/getcryst/jadegui/pages/user_screen.ui')
 class UserScreen(Adw.Bin):
@@ -95,10 +95,16 @@ class UserScreen(Adw.Bin):
         if self.password_entry.get_text() == self.password_confirmation.get_text():
             self.next_page.set_sensitive(True)
             self.password_confirmation.remove_css_class('error')
-            self.password = self.password_entry.get_text()
-        elif self.password_entry.get_text() != self.password_confirmation.get_text():
+            self.password = self.encrypt_password(self.password_entry.get_text())
+        else:
             self.next_page.set_sensitive(False)
             self.password_confirmation.add_css_class('error')
+
+    def encrypt_password(self, password):
+        command=subprocess.run(["openssl", "passwd", "-6", password], capture_output=True)
+        password_encrypted=command.stdout.decode('utf-8').strip('\n')
+        return password_encrypted
+
 
     def carousel_next(self, widget):
         if self.move_to_summary:

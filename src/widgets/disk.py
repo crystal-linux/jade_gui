@@ -24,12 +24,24 @@ from gettext import gettext as _
 class DiskEntry(Adw.ActionRow):
     __gtype_name__ = 'DiskEntry'
 
+    size_label = Gtk.Template.Child()
     select_button = Gtk.Template.Child()
 
-    def __init__(self, window, disk, disk_size, button_group, application, **kwargs):
+    def __init__(self, window, disk, disk_size, disk_type, button_group, application, **kwargs):
         super().__init__(**kwargs)
+        self.window = window
         self.disk = disk
-        self.disk_size = disk
-        self.set_title(disk)
-        self.set_subtitle(disk_size)
+        self.disk_size = disk_size
+        self.disk_type = disk_type
+        self.set_title(disk.strip('/dev/'))
+        self.set_subtitle(disk_type)
+        self.size_label.set_label("Disk Size: "+disk_size)
         self.select_button.set_group(button_group)
+        self.select_button.connect("toggled", self.toggled_cb)
+
+    def toggled_cb(self, check_button):
+        if check_button.props.active:
+            row = check_button.get_ancestor(Gtk.ListBoxRow)
+            row.emit('activate')
+            self.selected_partition = row.get_title()
+

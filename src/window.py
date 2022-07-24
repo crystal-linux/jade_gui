@@ -107,16 +107,31 @@ class JadeGuiWindow(Gtk.ApplicationWindow):
 
         ### Test partitions
         available_disks = disks.get_disks()
-        firstdisk = DiskEntry(window=self, disk=available_disks[0], disk_size=disks.get_disk_size(available_disks[0]), button_group=None, **kwargs)
+        firstdisk = DiskEntry(
+            window=self,
+            disk=available_disks[0],
+            disk_size=disks.get_disk_size(available_disks[0]),
+            disk_type=disks.get_disk_type(available_disks[0]),
+            #disk_model=disks.get_disk_model(available_disks[0]),
+            button_group=None,
+            **kwargs
+        )
         self.partition_screen.partition_list.append(firstdisk)
-        self.partition_screen.selected_partition = self.partition_screen.partition_list.get_row_at_index(0)
-        self.partition_screen.partition_list.select_row(firstdisk)
-        #print(available_disks[0])
-        #print(available_disks)
+        firstdisk.toggled_cb(firstdisk.select_button)
         for disk in available_disks:
             if disk != available_disks[0]:
-                #print(disk)
-                self.partition_screen.partition_list.append(DiskEntry(window=self, disk=disk, disk_size=disks.get_disk_size(disk), button_group=firstdisk.select_button, **kwargs))
+                self.partition_screen.partition_list.append(
+                    DiskEntry(
+                        window=self,
+                        disk=disk,
+                        disk_size=disks.get_disk_size(disk),
+                        disk_type=disks.get_disk_type(disk),
+                        #disk_model=disks.get_disk_model(disk),
+                        button_group=firstdisk.select_button,
+                        **kwargs
+                    )
+                )
+
         ### ---------
 
     def nextPage(self, idk):

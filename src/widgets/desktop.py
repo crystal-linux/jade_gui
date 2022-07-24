@@ -31,4 +31,11 @@ class DesktopEntry(Adw.ActionRow):
         self.window = window
         self.set_title(desktop)
         self.select_button.set_group(button_group)
+        self.select_button.connect("toggled", self.toggled_cb)
+
+    def toggled_cb(self, check_button):
+        if check_button.props.active:
+            row = check_button.get_ancestor(Gtk.ListBoxRow)
+            row.activate()
+            self.selected_partition = row.get_title()
 

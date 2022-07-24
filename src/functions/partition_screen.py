@@ -45,7 +45,7 @@ class PartitionScreen(Adw.Bin):
             row.select_button.set_active(True)
             self.selected_partition = row
         else:
-            print("row is none!!")
+            print("ERROR: invalid row slected")
 
     def carousel_next(self, widget):
         self.window.summary_screen.initialize()

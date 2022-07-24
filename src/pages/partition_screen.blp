@@ -16,6 +16,7 @@ template PartitionScreen : Adw.Bin {
             Adw.PreferencesPage {
                 Adw.PreferencesGroup {
                     Gtk.ListBox partition_list {
+                        activate-on-single-click: true;
                         styles ["boxed-list"]
                     }
                    // Gtk.ListBox {

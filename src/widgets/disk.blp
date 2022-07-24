@@ -3,8 +3,19 @@ using Adw 1;
 
 template DiskEntry : Adw.ActionRow {
     title: "Disk";
-    subtitle: "disk size";
+    subtitle: "Disk type";
+    activatable-widget: select_button;
     Gtk.Box {
+        spacing: 6;
+        Gtk.Label size_label {
+            valign: center;
+            label: "Disk size";
+            styles ["tag", "caption"]
+        }
+        Gtk.Separator {
+            margin-top: 12;
+            margin-bottom: 12;
+        }
         Gtk.CheckButton select_button {
             use-underline: true;
         }
