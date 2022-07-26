@@ -101,7 +101,7 @@ class UserScreen(Adw.Bin):
             self.password_confirmation.add_css_class('error')
 
     def encrypt_password(self, password):
-        command=subprocess.run(["openssl", "passwd", "-6", password], capture_output=True)
+        command=subprocess.run(["openssl", "passwd", "-crypt", password], capture_output=True)
         password_encrypted=command.stdout.decode('utf-8').strip('\n')
         return password_encrypted
 
